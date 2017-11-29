@@ -1,5 +1,65 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+.userComponent {
+	position: relative;
+	width: 300px;
+	height: 173.21px;
+	margin: 86.60px 0;
+	background-size: auto 346.4102px;
+	background-position: center;
+}
+
+.userTop,
+.userBottom {
+	position: absolute;
+	z-index: 1;
+	width: 212.13px;
+	height: 212.13px;
+	overflow: hidden;
+	-webkit-transform: scaleY(0.5774) rotate(-45deg);
+	-ms-transform: scaleY(0.5774) rotate(-45deg);
+	transform: scaleY(0.5774) rotate(-45deg);
+	background: inherit;
+	left: 43.93px;
+}
+
+/*counter transform the bg image on the caps*/
+.userTop:after,
+.userBottom:after {
+	content: "";
+	position: absolute;
+	width: 300.0000px;
+	height: 173.20508075688775px;
+	-webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+	-ms-transform: rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+	transform: rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+	-webkit-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+	background: inherit;
+}
+
+.userTop {
+	top: -106.0660px;
+}
+
+.userTop:after {
+	background-position: center top;
+}
+
+.userBottom {
+	bottom: -106.0660px;
+}
+
+.userBottom:after {
+	background-position: center bottom;
+}
+
+.userComponent:after {
+	content: "";
+	position: absolute;
+	top: 0.0000px;
+	left: 0;
+	width: 300.0000px;
+	height: 173.2051px;
+	z-index: 2;
+	background: inherit;
 }
