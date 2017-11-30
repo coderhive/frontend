@@ -1,3 +1,4 @@
+/*User HoneycombComponent*/
 .userComponent {
 	position: relative;
 	width: 300px;
@@ -62,4 +63,35 @@
 	height: 173.2051px;
 	z-index: 2;
 	background: inherit;
+}
+
+.rank {
+	font-size: 25px;
+	position: relative;
+	left: 175px;
+	bottom: 90px;
+	text-align: center;
+	line-height: 90px;
+	border: black 0.5px solid;
+	border-radius: 50%;
+	width: 85px;
+	height: 85px;
+	z-index: 2;
+	background-color: white;
+	margin-bottom: -170px;
+}
+
+.userGrid {
+	width: 1000px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.evenGrid {
+	display: flex;
+}
+
+.oddGrid {
+	display: flex;
+	position: relative;
+	left: 152px;
 }
