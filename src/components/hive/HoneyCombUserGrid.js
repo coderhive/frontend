@@ -8,7 +8,7 @@ export default function HoneyCombUserGrid({ users }) {
 			.map((user, index, arr) => {
 				return index % size === 0 ? arr.slice(index, index + size) : null;
 			})
-			.filter(e => e);
+			.filter(u => u);
 		return (
 			<div className="userGrid">
 				{chunks.map((chunk, index) => {
