@@ -11,21 +11,22 @@ export default function HoneyCombUserGrid({ users }) {
 			.filter(u => u);
 		return (
 			<div className="userGrid">
-				{chunks.map((chunk, index) => {
+				{chunks.map(function(chunk, index) {
 					if (index % 2 !== 0) {
 						return (
-							<div className="oddGrid">
-								{chunk.map((user, id) => <HoneyCombUserComponent user={user} id={(index, id)} />)}
+							<div className="oddGrid" key={index}>
+								{chunk.map((user, id) => <HoneyCombUserComponent user={user} key={user.id} />)}
 							</div>
 						);
 					}
 					if (index % 2 === 0) {
 						return (
-							<div className="evenGrid">
-								{chunk.map((user, id) => <HoneyCombUserComponent user={user} id={(index, id)} />)}
+							<div className="evenGrid" key={index}>
+								{chunk.map((user, id) => <HoneyCombUserComponent user={user} key={user.id} />)}
 							</div>
 						);
 					}
+					return null;
 				})}
 			</div>
 		);

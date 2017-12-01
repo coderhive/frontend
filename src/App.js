@@ -1,16 +1,24 @@
 import React, { Component } from "react";
+import { ApolloProvider } from "react-apollo";
+import ApolloClient from "apollo-client";
+import { HttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import HivePage from "./components/hive/HivePage";
+
+const client = new ApolloClient({
+	link: new HttpLink({ uri: "http://localhost:3000/graphql" }),
+	cache: new InMemoryCache()
+});
 
 class App extends Component {
 	render() {
 		return (
-			<div className="App">
-				<header className="App-header">
-					<h1 className="App-title">Welcome to React</h1>
-				</header>
-				<p className="App-intro">
-					To get started, edit <code>src/App.js</code> and save to reload.
-				</p>
-			</div>
+			<ApolloProvider client={client}>
+				<Router>
+					<Route exact path="/" component={HivePage} />
+				</Router>
+			</ApolloProvider>
 		);
 	}
 }
