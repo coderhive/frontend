@@ -1,8 +1,8 @@
 import React from "react";
 import HoneyCombUserComponent from "./HoneyCombUserComponent";
 
-export default function HoneyCombUserGrid({ users }) {
-	if (users) {
+export default function HoneyCombUserGrid({ users = [] }) {
+	if (users.length) {
 		let size = 3;
 		let chunks = users
 			.map((user, index, arr) => {
