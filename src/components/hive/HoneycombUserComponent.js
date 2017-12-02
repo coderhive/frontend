@@ -24,7 +24,7 @@ export default function HoneyCombUserComponent({ user }) {
 
 let styles = {
 	container: {
-		width: "302px",
+		width: "301px",
 		paddingLeft: "1.3px",
 		paddingRight: "1.3px"
 	}
