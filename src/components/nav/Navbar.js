@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Dropdown, Image, Menu } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends PureComponent {
 	constructor(props) {
@@ -12,12 +13,13 @@ export default class Navbar extends PureComponent {
 
 		return (
 			<Menu fixed="top" inverted style={{ marginBottom: "10em" }}>
-				<Menu.Item header position="left">
+				<Menu.Item as={Link} to="/" header position="left">
 					<Image size="mini" src="/favicon.ico" />
 					CoderHive
 				</Menu.Item>
 				<Menu.Item
-					as="a"
+					as={Link}
+					to="/hive"
 					position="right"
 					name="hive"
 					active={activeItem === "hive"}
