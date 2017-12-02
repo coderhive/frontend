@@ -1,11 +1,13 @@
 import React, { PureComponent } from "react";
-import { Dropdown, Image, Menu } from "semantic-ui-react";
+import { Dropdown, Image, Menu, Label } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class Navbar extends PureComponent {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			user: this.props.user
+		};
 	}
 	handleClick = (e, { name }) => this.setState({ activeItem: name });
 	render() {
@@ -27,21 +29,16 @@ export default class Navbar extends PureComponent {
 					Hive
 				</Menu.Item>
 
-				<Dropdown item simple text="Dropdown" position="right" onClick={this.handleClick}>
+				<Dropdown
+					item
+					simple
+					text={this.props.user.display_name}
+					position="right"
+					onClick={this.handleClick}>
 					<Dropdown.Menu>
-						<Dropdown.Item>List Item</Dropdown.Item>
-						<Dropdown.Item>List Item</Dropdown.Item>
-						<Dropdown.Divider />
-						<Dropdown.Header>Header Item</Dropdown.Header>
-						<Dropdown.Item>
-							<i className="dropdown icon" />
-							<span className="text">Submenu</span>
-							<Dropdown.Menu>
-								<Dropdown.Item>List Item</Dropdown.Item>
-								<Dropdown.Item>List Item</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown.Item>
-						<Dropdown.Item>List Item</Dropdown.Item>
+						<Dropdown.Item>Profile</Dropdown.Item>
+						<Dropdown.Item>Settings</Dropdown.Item>
+						<Dropdown.Item>Logout</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 			</Menu>
