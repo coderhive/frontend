@@ -6,7 +6,10 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<Route exact path="/" component={HivePage} />
+				<div>
+					<Route exact path="/" component={HivePage} />
+					<Route exact path="/hive" component={HivePage} />
+				</div>
 			</Router>
 		);
 	}

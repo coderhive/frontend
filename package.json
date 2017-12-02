@@ -26,6 +26,9 @@
 		"storybook": "NODE_PATH=src start-storybook -p 9001 -c .storybook"
 	},
 	"devDependencies": {
-		"@storybook/react": "^3.2.16"
+		"@storybook/react": "^3.2.16",
+		"apollo-storybook-decorator": "^0.5.1",
+		"redux-logger": "^3.0.6",
+		"storybook-router": "^0.3.2"
 	}
 }

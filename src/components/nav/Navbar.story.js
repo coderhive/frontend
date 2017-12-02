@@ -1,8 +1,9 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
+import { storiesOf, addDecorator } from "@storybook/react";
 import Navbar from "./Navbar";
+import StoryRouter from "storybook-router";
 
-storiesOf("Navbar", module).add("Happy Path", () =>
+storiesOf("Navbar", module).addDecorator(StoryRouter()).add("Happy Path", () =>
 	<Navbar
 		user={{
 			image:
