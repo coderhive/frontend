@@ -86,7 +86,7 @@
 	width: 1000px;
 	display: flex;
 	flex-wrap: wrap;
-	margin: 100px auto;
+	margin: 20px auto;
 }
 .evenGrid {
 	display: flex;

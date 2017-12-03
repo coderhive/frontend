@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 // import HiveLayout from "./HiveLayout";
 import Navbar from "../nav/Navbar";
 import HoneyCombUserGrid from "./HoneyCombUserGrid";
+import { Button } from "semantic-ui-react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -29,6 +30,10 @@ class HivePage extends PureComponent {
 		};
 	}
 
+	handleClick = () => {
+		this.setState({ toggleComponents: !this.state.toggleComponents });
+	};
+
 	render() {
 		let { data } = this.props;
 		if (data.loading) {
@@ -37,7 +42,24 @@ class HivePage extends PureComponent {
 		return (
 			<div>
 				<Navbar user={data.oneUser} />
-				<HoneyCombUserGrid users={[data.oneUser]} />
+				{this.state.toggleComponents
+					? <div style={{ marginTop: "90px" }}>
+							<Button primary onClick={this.handleClick}>
+								Components
+							</Button>
+							<Button secondary onClick={this.handleClick}>
+								Users
+							</Button>
+						</div>
+					: <div style={{ marginTop: "90px" }}>
+							<Button secondary onClick={this.handleClick}>
+								Components
+							</Button>
+							<Button primary onClick={this.handleClick}>
+								Users
+							</Button>
+							<HoneyCombUserGrid users={[data.oneUser]} />
+						</div>}
 			</div>
 		);
 	}
