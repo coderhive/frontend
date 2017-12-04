@@ -23,7 +23,6 @@
 	left: 43.93px;
 }
 
-/*counter transform the bg image on the caps*/
 .userTop:after,
 .userBottom:after {
 	content: "";
@@ -66,28 +65,13 @@
 	background: inherit;
 }
 
-.rank {
-	font-size: 25px;
-	position: relative;
-	left: 175px;
-	bottom: 90px;
-	text-align: center;
-	line-height: 90px;
-	border: black 0.5px solid;
-	border-radius: 50%;
-	width: 85px;
-	height: 85px;
-	z-index: 2;
-	background-color: white;
-	margin-bottom: -170px;
-}
-
 .userGrid {
 	width: 1000px;
 	display: flex;
 	flex-wrap: wrap;
-	margin: 20px auto;
+	margin: 30px auto;
 }
+
 .evenGrid {
 	display: flex;
 }
@@ -96,4 +80,12 @@
 	display: flex;
 	position: relative;
 	left: 151px;
+}
+
+.hiddenText {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: row;
+	height: 345px;
 }
