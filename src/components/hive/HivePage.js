@@ -31,7 +31,9 @@ class HivePage extends PureComponent {
 	}
 
 	handleClick = () => {
-		this.setState({ toggleComponents: !this.state.toggleComponents });
+		this.setState(prevState => {
+			return { toggleComponents: !prevState.toggleComponents };
+		});
 	};
 
 	render() {
