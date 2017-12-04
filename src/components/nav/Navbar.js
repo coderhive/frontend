@@ -7,7 +7,7 @@ export default class Navbar extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentUser: this.props.user
+			currentUser: this.props.user || "loading..."
 		};
 	}
 	handleClick = (e, { name }) => this.setState({ activeItem: name });
@@ -15,7 +15,7 @@ export default class Navbar extends PureComponent {
 		const { activeItem } = this.state;
 
 		return (
-			<Menu fixed="top" inverted style={{ marginBottom: "10em" }}>
+			<Menu fixed="top" inverted style={{ marginBottom: "10px" }}>
 				<Menu.Item as={Link} to="/" header position="left">
 					<Image size="mini" src="/favicon.ico" />
 					CoderHive
@@ -33,7 +33,7 @@ export default class Navbar extends PureComponent {
 				<Dropdown
 					item
 					simple
-					text={this.props.user.display_name}
+					text={this.state.currentUser.display_name}
 					position="right"
 					onClick={this.handleClick}>
 					<Dropdown.Menu>
