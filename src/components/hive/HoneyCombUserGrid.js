@@ -1,7 +1,7 @@
 import React from "react";
 import HoneyCombUserComponent from "./HoneyCombUserComponent";
 
-export default function HoneyCombUserGrid({ users = [] }) {
+export default function HoneyCombUserGrid({ users }) {
 	if (users.length) {
 		let size = 3;
 		let chunks = users
@@ -15,14 +15,18 @@ export default function HoneyCombUserGrid({ users = [] }) {
 					if (index % 2 !== 0) {
 						return (
 							<div className="oddGrid" key={index}>
-								{chunk.map((user, id) => <HoneyCombUserComponent user={user} key={user.id} />)}
+								{chunk.map((user, id) =>
+									<HoneyCombUserComponent user={user} key={user.id + index} />
+								)}
 							</div>
 						);
 					}
 					if (index % 2 === 0) {
 						return (
 							<div className="evenGrid" key={index}>
-								{chunk.map((user, id) => <HoneyCombUserComponent user={user} key={user.id} />)}
+								{chunk.map((user, id) =>
+									<HoneyCombUserComponent user={user} key={user.id + index} />
+								)}
 							</div>
 						);
 					}

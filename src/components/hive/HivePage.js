@@ -8,14 +8,12 @@ import gql from "graphql-tag";
 
 const users = gql`
 	query {
-		oneUser(email: "chuckhagy@gmail.com") {
+		allUsers {
 			id
 			display_name
 			profile_picture
 			status
-			role
 			experience
-			email
 			created_at
 		}
 	}
@@ -41,9 +39,10 @@ class HivePage extends PureComponent {
 		if (data.loading) {
 			return <div>Loading...</div>;
 		}
+		console.log(data.allUsers);
 		return (
 			<div>
-				<Navbar user={data.currentUser} />
+				<Navbar user={data.allUsers[0]} />
 				{this.state.toggleComponents
 					? <div style={{ marginTop: "90px" }}>
 							<Button primary onClick={this.handleClick}>
@@ -60,7 +59,7 @@ class HivePage extends PureComponent {
 							<Button primary onClick={this.handleClick}>
 								Users
 							</Button>
-							<HoneyCombUserGrid users={[data.allUsers]} />
+							<HoneyCombUserGrid users={data.allUsers} />
 						</div>}
 			</div>
 		);
