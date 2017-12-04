@@ -6,7 +6,7 @@ import { Button } from "semantic-ui-react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
-const user = gql`
+const users = gql`
 	query {
 		oneUser(email: "chuckhagy@gmail.com") {
 			id
@@ -41,7 +41,7 @@ class HivePage extends PureComponent {
 		}
 		return (
 			<div>
-				<Navbar user={data.oneUser} />
+				<Navbar user={data.currentUser} />
 				{this.state.toggleComponents
 					? <div style={{ marginTop: "90px" }}>
 							<Button primary onClick={this.handleClick}>
@@ -58,7 +58,7 @@ class HivePage extends PureComponent {
 							<Button primary onClick={this.handleClick}>
 								Users
 							</Button>
-							<HoneyCombUserGrid users={[data.oneUser]} />
+							<HoneyCombUserGrid users={[data.allUsers]} />
 						</div>}
 			</div>
 		);
@@ -66,11 +66,7 @@ class HivePage extends PureComponent {
 }
 
 const queryOptions = {
-	options: props => ({
-		variables: {
-			email: "chuckhagy@gmail.com"
-		}
-	})
+	options: props => ({})
 };
 
-export default graphql(user, queryOptions)(HivePage);
+export default graphql(users)(HivePage);

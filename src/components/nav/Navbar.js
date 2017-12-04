@@ -1,12 +1,13 @@
 import React, { PureComponent } from "react";
 import { Dropdown, Image, Menu, Label } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+// import LoginComponent from '../login/LoginComponent'
 
 export default class Navbar extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user: this.props.user
+			currentUser: this.props.user
 		};
 	}
 	handleClick = (e, { name }) => this.setState({ activeItem: name });
