@@ -1,7 +1,7 @@
 import React from "react";
 import HoneyCombComponent from "./HoneyCombComponent";
 
-export default function HoneycombComponentGrid({ components }) {
+export default function HoneycombComponentGrid({ components, history }) {
 	if (components.length) {
 		let size = 3;
 		let chunks = components
@@ -16,7 +16,11 @@ export default function HoneycombComponentGrid({ components }) {
 						return (
 							<div className="oddGrid" key={index}>
 								{chunk.map((component, id) =>
-									<HoneyCombComponent component={component} key={component.id + index} />
+									<HoneyCombComponent
+										component={component}
+										key={component.id + index}
+										history={history}
+									/>
 								)}
 							</div>
 						);
@@ -25,7 +29,11 @@ export default function HoneycombComponentGrid({ components }) {
 						return (
 							<div className="evenGrid" key={index}>
 								{chunk.map((component, id) =>
-									<HoneyCombComponent component={component} key={component.id + index} />
+									<HoneyCombComponent
+										component={component}
+										key={component.id + index}
+										history={history}
+									/>
 								)}
 							</div>
 						);

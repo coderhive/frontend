@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HivePage from "./components/hive/HivePage";
 
 class App extends Component {
+	state = {
+		token: this.props.token
+	};
+
 	render() {
 		return (
 			<Router>

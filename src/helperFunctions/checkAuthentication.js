@@ -17,7 +17,7 @@ export default async function checkAuthentication({ baseUrl }) {
 			return null;
 		}
 
-		const user = await this.props.oneUser({ variables: { id } });
+		const user = await this.props.loggedUser({ variables: { id } });
 		return { user, token };
 	} catch (error) {
 		console.log(error);

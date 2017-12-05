@@ -1,5 +1,5 @@
 import React from "react";
-import { Reveal, Table } from "semantic-ui-react";
+import { Reveal, Table, Button } from "semantic-ui-react";
 
 export default function HoneyCombUserComponent({ user }) {
 	return (
@@ -25,9 +25,9 @@ export default function HoneyCombUserComponent({ user }) {
 							<Table.Body>
 								<Table.Row textAlign="center">
 									<Table.Cell>
-										<h2 style={{ color: "white" }}>
+										<Button inverted style={{ color: "white" }}>
 											{`${user.display_name} (Rank: ${user.experience})`}
-										</h2>
+										</Button>
 									</Table.Cell>
 								</Table.Row>
 								<Table.Row textAlign="center">

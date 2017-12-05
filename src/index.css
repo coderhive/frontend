@@ -10,7 +10,7 @@ body {
 	width: 300px;
 	height: 173.21px;
 	margin: 86.60px 0;
-	background-size: auto 346.4102px;
+	background-size: auto 347px;
 	background-position: center;
 }
 
@@ -62,9 +62,9 @@ body {
 .honeyCombComponent:after {
 	content: "";
 	position: absolute;
-	top: 0.0000px;
+	top: 0px;
 	left: 0;
-	width: 300.0000px;
+	width: 300px;
 	height: 173.2051px;
 	z-index: 2;
 	background: inherit;
