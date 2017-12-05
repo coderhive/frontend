@@ -1,22 +1,9 @@
 import React from "react";
-import { Image, Reveal, Table } from "semantic-ui-react";
-
-// user.profile_picture
-// 	? { backgroundImage: "url(" + user.profile_picture + ")" }
-// 	: {
-// 			backgroundImage:
-// 				"url(https://static.pexels.com/photos/20787/pexels-photo.jpg)"
-// 		}
+import { Reveal, Table } from "semantic-ui-react";
 
 export default function HoneyCombUserComponent({ user }) {
-	let image;
-	if (!user.profile_picture) {
-		image = "https://static.pexels.com/photos/20787/pexels-photo.jpg";
-	} else {
-		image = user.profile_picture;
-	}
 	return (
-		<div className="honeyComb userComponent" style={styles.container}>
+		<div className="honeyCombComponent" style={styles.container}>
 			<Reveal animated="fade">
 				<Reveal.Content visible>
 					<div
@@ -27,9 +14,9 @@ export default function HoneyCombUserComponent({ user }) {
 										backgroundImage: "url(https://static.pexels.com/photos/20787/pexels-photo.jpg)"
 									}
 						}
-						className="userComponent">
-						<div className="userTop" />
-						<div className="userBottom" />
+						className="honeyCombComponent">
+						<div className="honeyCombTop" />
+						<div className="honeyCombBottom" />
 					</div>
 				</Reveal.Content>
 				<Reveal.Content hidden>
@@ -65,23 +52,3 @@ let styles = {
 		paddingRight: "1.3px"
 	}
 };
-
-{
-	/* <div className="honeyComb" style={styles.container}>
-	<div className="userComponent">
-		<Reveal animated="fade" className ="userComponent">
-			<Reveal.Content visible>
-				<Image src={image} />
-			</Reveal.Content>
-			<Reveal.Content hidden>
-				<div>hi!</div>
-			</Reveal.Content>
-		</Reveal>
-		<div className="userTop" />
-		<div className="userBottom" />
-	</div>
-	<div className="rank">
-		{user.experience}
-	</div>
-</div> */
-}

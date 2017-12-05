@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Dropdown, Image, Menu, Label } from "semantic-ui-react";
+import { Dropdown, Image, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 // import LoginComponent from '../login/LoginComponent'
 

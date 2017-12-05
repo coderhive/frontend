@@ -1,6 +1,6 @@
 @import '~semantic-ui-css/semantic.css';
 /*User HoneycombComponent*/
-.userComponent {
+.honeyCombComponent {
 	position: relative;
 	width: 300px;
 	height: 173.21px;
@@ -9,8 +9,8 @@
 	background-position: center;
 }
 
-.userTop,
-.userBottom {
+.honeyCombTop,
+.honeyCombBottom {
 	position: absolute;
 	z-index: 1;
 	width: 212.13px;
@@ -23,11 +23,11 @@
 	left: 43.93px;
 }
 
-.userTop:after,
-.userBottom:after {
+.honeyCombTop:after,
+.honeyCombBottom:after {
 	content: "";
 	position: absolute;
-	width: 300.0000px;
+	width: 300px;
 	height: 173.20508075688775px;
 	-webkit-transform: rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
 	-ms-transform: rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
@@ -38,23 +38,23 @@
 	background: inherit;
 }
 
-.userTop {
+.honeyCombTop {
 	top: -106.0660px;
 }
 
-.userTop:after {
+.honeyCombTop:after {
 	background-position: center top;
 }
 
-.userBottom {
+.honeyCombBottom {
 	bottom: -106.0660px;
 }
 
-.userBottom:after {
+.honeyCombBottom:after {
 	background-position: center bottom;
 }
 
-.userComponent:after {
+.honeyCombComponent:after {
 	content: "";
 	position: absolute;
 	top: 0.0000px;
@@ -69,7 +69,7 @@
 	width: 1000px;
 	display: flex;
 	flex-wrap: wrap;
-	margin: 30px auto;
+	margin: auto;
 }
 
 .evenGrid {
@@ -79,7 +79,8 @@
 .oddGrid {
 	display: flex;
 	position: relative;
-	left: 151px;
+	left: 150.3px;
+	margin-top: -85.5px;
 }
 
 .hiddenText {

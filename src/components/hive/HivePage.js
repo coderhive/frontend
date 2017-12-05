@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 // import HiveLayout from "./HiveLayout";
 import Navbar from "../nav/Navbar";
 import HoneyCombUserGrid from "./HoneyCombUserGrid";
+import HoneyCombComponentGrid from "./HoneyCombComponentGrid";
 import { Button } from "semantic-ui-react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
@@ -15,15 +16,14 @@ const users = gql`
 			status
 			experience
 			created_at
+			summary
 		}
-	}
-`;
-
-const components = gql`
-	query {
 		allComponents {
 			id
 			created_at
+			title
+			description
+			component_picture
 		}
 	}
 `;
@@ -45,6 +45,7 @@ class HivePage extends PureComponent {
 
 	render() {
 		let { data } = this.props;
+
 		if (data.loading) {
 			return <div>Loading...</div>;
 		}
@@ -60,6 +61,7 @@ class HivePage extends PureComponent {
 									Users
 								</button>
 							</div>
+							<HoneyCombComponentGrid components={data.allComponents} />
 						</div>
 					: <div>
 							<div className="ui large buttons" style={{ marginTop: "90px" }}>
@@ -80,4 +82,4 @@ const queryOptions = {
 	options: props => ({})
 };
 
-export default graphql(users, components)(HivePage);
+export default graphql(users)(HivePage);
