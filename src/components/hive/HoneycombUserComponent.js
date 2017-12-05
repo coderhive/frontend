@@ -21,20 +21,21 @@ export default function HoneyCombUserComponent({ user }) {
 				</Reveal.Content>
 				<Reveal.Content hidden>
 					<div className="hiddenText" style={styles.container}>
-						<Table basic="very">
+						<Table basic="very" style={{ padding: "20px" }}>
 							<Table.Body>
 								<Table.Row textAlign="center">
 									<Table.Cell>
-										<h2>
+										<h2 style={{ color: "white" }}>
 											{`${user.display_name} (Rank: ${user.experience})`}
 										</h2>
 									</Table.Cell>
 								</Table.Row>
 								<Table.Row textAlign="center">
-									<Table.Cell>{`Member since ${user.created_at}`}</Table.Cell>
+									<Table.Cell
+										style={{ color: "white" }}>{`Member since ${user.created_at}`}</Table.Cell>
 								</Table.Row>
-								<Table.Row textAlign="left">
-									<Table.Cell>{`Summary: ${user.summary}`}</Table.Cell>
+								<Table.Row textAlign="center">
+									<Table.Cell style={{ color: "white" }}>{`Summary: ${user.summary}`}</Table.Cell>
 								</Table.Row>
 							</Table.Body>
 						</Table>

@@ -30,7 +30,6 @@ export default function HoneycombComponentGrid({ components }) {
 							</div>
 						);
 					}
-					return null;
 				})}
 			</div>
 		);

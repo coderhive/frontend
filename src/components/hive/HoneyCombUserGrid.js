@@ -30,7 +30,6 @@ export default function HoneyCombUserGrid({ users }) {
 							</div>
 						);
 					}
-					return null;
 				})}
 			</div>
 		);

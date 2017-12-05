@@ -25,16 +25,20 @@ export default function HoneycombComponent({ component }) {
 							<Table.Body>
 								<Table.Row textAlign="center">
 									<Table.Cell>
-										<h2>
+										<h2 style={{ color: "white" }}>
 											{`${component.title}`}
 										</h2>
 									</Table.Cell>
 								</Table.Row>
 								<Table.Row textAlign="center">
-									<Table.Cell>{`Created on ${component.created_at}`}</Table.Cell>
+									<Table.Cell
+										style={{ color: "white" }}>{`Added on ${component.created_at}`}</Table.Cell>
 								</Table.Row>
-								<Table.Row textAlign="left">
-									<Table.Cell>{`Description: ${component.description}`}</Table.Cell>
+								<Table.Row textAlign="left" style={{ padding: "30px", fontSize: "10px" }}>
+									<Table.Cell
+										style={{
+											color: "white"
+										}}>{`Description: ${component.description}`}</Table.Cell>
 								</Table.Row>
 							</Table.Body>
 						</Table>

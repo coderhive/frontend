@@ -1,4 +1,9 @@
 @import '~semantic-ui-css/semantic.css';
+
+body {
+	background-color: black;
+}
+
 /*User HoneycombComponent*/
 .honeyCombComponent {
 	position: relative;
@@ -74,6 +79,7 @@
 
 .evenGrid {
 	display: flex;
+	margin-top: -85.5px;
 }
 
 .oddGrid {
