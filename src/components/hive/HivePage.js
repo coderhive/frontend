@@ -51,28 +51,32 @@ class HivePage extends PureComponent {
 		}
 		return (
 			<div>
-				<Navbar user={data.allUsers[0]} />
+				<Navbar user={null} />
 				{this.state.toggleComponents
-					? <div>
-							<div className="ui large buttons" style={{ marginTop: "90px" }}>
-								<button className="ui button active">Components</button>
-								<div className="or" />
-								<button className="ui button" onClick={this.handleClick}>
-									Users
-								</button>
+					? <div className="HivePage">
+							<div className="toggleComponents">
+								<div className="ui large buttons" style={{ marginTop: "90px" }}>
+									<button className="ui button active">Components</button>
+									<div className="or" />
+									<button className="ui button" onClick={this.handleClick}>
+										Users
+									</button>
+								</div>
 							</div>
 							<HoneyCombComponentGrid
 								components={data.allComponents}
 								history={this.props.history}
 							/>
 						</div>
-					: <div>
-							<div className="ui large buttons" style={{ marginTop: "90px" }}>
-								<button className="ui button" onClick={this.handleClick}>
-									Components
-								</button>
-								<div className="or" />
-								<button className="ui button active">Users</button>
+					: <div className="HivePage">
+							<div className="toggleComponents">
+								<div className="ui large buttons" style={{ marginTop: "90px" }}>
+									<button className="ui button" onClick={this.handleClick}>
+										Components
+									</button>
+									<div className="or" />
+									<button className="ui button active">Users</button>
+								</div>
 							</div>
 							<HoneyCombUserGrid users={data.allUsers} history={this.props.history} />
 						</div>}

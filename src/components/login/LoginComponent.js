@@ -6,11 +6,9 @@ export default class LoginComponent extends PureComponent {
 
 	render() {
 		return (
-			<Form unstackable onSubmit={this.handleSubmit}>
-				<Form.Group widths={1}>
-					<Form.Input label="Email" placeholder="Email" />
-					<Form.Input label="Password" placeholder="Password" />
-				</Form.Group>
+			<Form onSubmit={this.handleSubmit}>
+				<Form.Input label="Email" placeholder="Email" />
+				<Form.Input label="Password" placeholder="Password" />
 				<Button type="submit">Login</Button>
 			</Form>
 		);

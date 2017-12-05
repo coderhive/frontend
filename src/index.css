@@ -96,3 +96,19 @@ body {
 	flex-flow: row;
 	height: 345px;
 }
+
+.HivePage {
+	width: 100vw;
+	height: 100vh;
+}
+
+.toggleComponents {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 100px;
+}
+
+/*Login CSS*/
+.dropdownNav {
+	margin-left: 0;
+}
