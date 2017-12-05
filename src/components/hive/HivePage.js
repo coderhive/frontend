@@ -33,7 +33,7 @@ class HivePage extends PureComponent {
 		super(props);
 
 		this.state = {
-			toggleComponents: false
+			toggleComponents: true
 		};
 	}
 
@@ -51,7 +51,7 @@ class HivePage extends PureComponent {
 		}
 		return (
 			<div>
-				<Navbar user={null} />
+				<Navbar user={data.loggedUser ? data.loggedUser : null} onSubmit={this.props.handleLogin} />
 				{this.state.toggleComponents
 					? <div className="HivePage">
 							<div className="toggleComponents">

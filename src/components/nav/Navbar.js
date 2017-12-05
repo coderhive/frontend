@@ -12,12 +12,13 @@ export default class Navbar extends PureComponent {
 	}
 	handleClick = (e, { name }) => this.setState({ activeItem: name });
 	render() {
+		const { data } = this.props;
 		const { activeItem } = this.state;
 		if (this.state.loggedUser) {
 			return (
-				<Menu fixed="top" inverted style={{ marginBottom: "10px" }}>
+				<Menu fixed="top" inverted style={{ height: "45px" }}>
 					<Menu.Item as={Link} to="/" header position="left">
-						<Image size="mini" src="/favicon.ico" />
+						<Image size="tiny" src="/favicon.ico" style={{ marginTop: "20px" }} />
 						CoderHive
 					</Menu.Item>
 					<Menu.Item
@@ -29,19 +30,21 @@ export default class Navbar extends PureComponent {
 						onClick={this.handleClick}>
 						Hive
 					</Menu.Item>
-
-					<Dropdown
-						item
-						simple
-						text={this.state.currentUser.display_name}
-						position="right"
-						onClick={this.handleClick}>
-						<Dropdown.Menu>
-							<Dropdown.Item>Profile</Dropdown.Item>
-							<Dropdown.Item>Settings</Dropdown.Item>
-							<Dropdown.Item>Logout</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
+					<Menu.Item as={"a"} style={{ padding: "0" }}>
+						<Dropdown
+							item
+							simple
+							pointing="top right"
+							text={this.state.currentUser.display_name}
+							position="right"
+							onClick={this.handleClick}>
+							<Dropdown.Menu>
+								<Dropdown.Item>Profile</Dropdown.Item>
+								<Dropdown.Item>Settings</Dropdown.Item>
+								<Dropdown.Item>Logout</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
+					</Menu.Item>
 				</Menu>
 			);
 		} else {
@@ -61,10 +64,10 @@ export default class Navbar extends PureComponent {
 						Hive
 					</Menu.Item>
 					<Menu.Item as={"a"} style={{ padding: "0" }}>
-						<Dropdown className="dropdownNav" item pointing="top right" text="Login">
+						<Dropdown item simple pointing="top right" text="Login">
 							<Dropdown.Menu>
 								<Dropdown.Item>
-									<LoginComponent />
+									<LoginComponent onSubmit={this.props.onSubmit} />
 								</Dropdown.Item>
 								<Dropdown.Item>Sign Up</Dropdown.Item>
 							</Dropdown.Menu>
