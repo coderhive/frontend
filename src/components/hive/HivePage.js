@@ -19,6 +19,15 @@ const users = gql`
 	}
 `;
 
+const components = gql`
+	query {
+		allComponents {
+			id
+			created_at
+		}
+	}
+`;
+
 class HivePage extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -39,26 +48,27 @@ class HivePage extends PureComponent {
 		if (data.loading) {
 			return <div>Loading...</div>;
 		}
-		console.log(data.allUsers);
 		return (
 			<div>
 				<Navbar user={data.allUsers[0]} />
 				{this.state.toggleComponents
-					? <div style={{ marginTop: "90px" }}>
-							<Button primary onClick={this.handleClick}>
-								Components
-							</Button>
-							<Button secondary onClick={this.handleClick}>
-								Users
-							</Button>
+					? <div>
+							<div className="ui large buttons" style={{ marginTop: "90px" }}>
+								<button className="ui button active">Components</button>
+								<div className="or" />
+								<button className="ui button" onClick={this.handleClick}>
+									Users
+								</button>
+							</div>
 						</div>
-					: <div style={{ marginTop: "90px" }}>
-							<Button secondary onClick={this.handleClick}>
-								Components
-							</Button>
-							<Button primary onClick={this.handleClick}>
-								Users
-							</Button>
+					: <div>
+							<div className="ui large buttons" style={{ marginTop: "90px" }}>
+								<button className="ui button" onClick={this.handleClick}>
+									Components
+								</button>
+								<div className="or" />
+								<button className="ui button active">Users</button>
+							</div>
 							<HoneyCombUserGrid users={data.allUsers} />
 						</div>}
 			</div>
@@ -70,4 +80,4 @@ const queryOptions = {
 	options: props => ({})
 };
 
-export default graphql(users)(HivePage);
+export default graphql(users, components)(HivePage);

@@ -35,12 +35,21 @@ export default function HoneyCombUserComponent({ user }) {
 				<Reveal.Content hidden>
 					<div className="hiddenText" style={styles.container}>
 						<Table basic="very">
-							<Table.Row as="h1" textAlign="center">
-								{user.display_name}
-							</Table.Row>
-							<Table.Row textAlign="center">
-								{`Member since ${user.created_at}`}
-							</Table.Row>
+							<Table.Body>
+								<Table.Row textAlign="center">
+									<Table.Cell>
+										<h2>
+											{`${user.display_name} (Rank: ${user.experience})`}
+										</h2>
+									</Table.Cell>
+								</Table.Row>
+								<Table.Row textAlign="center">
+									<Table.Cell>{`Member since ${user.created_at}`}</Table.Cell>
+								</Table.Row>
+								<Table.Row textAlign="left">
+									<Table.Cell>{`Summary: ${user.summary}`}</Table.Cell>
+								</Table.Row>
+							</Table.Body>
 						</Table>
 					</div>
 				</Reveal.Content>
