@@ -5,16 +5,23 @@ import login from "./helperFunctions/login";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
-class App extends Component {
-	// state = {
-	// 	token: this.props.token
-	// };
+// const currentUser = gql`
+// 	query {
+// 		loggedUser () {
+// 			id
+// 		}
+// 	}
+// `;
 
-	handleLogin({ email, password }) {
-		const { token } = login({ email, password }, "http://localhost:3000");
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { token: null };
+	}
+	async handleLogin({ email, password }) {
+		const { token } = await login({ email, password }, "http://localhost:3000");
 		if (token) {
-			// const user = await this.props.loggedUser({ variables: { email, password } });
-			console.log(token);
+			this.setState({ token });
 		}
 	}
 
@@ -26,14 +33,14 @@ class App extends Component {
 						exact
 						path="/"
 						render={() => {
-							return <HivePage handleLogin={this.handleLogin} />;
+							return <HivePage handleLogin={this.handleLogin} token={this.state.token} />;
 						}}
 					/>
 					<Route
 						exact
 						path="/hive"
 						render={() => {
-							return <HivePage handleLogin={this.handleLogin} />;
+							return <HivePage handleLogin={this.handleLogin} token={this.state.token} />;
 						}}
 					/>
 				</div>

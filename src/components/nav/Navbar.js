@@ -69,7 +69,9 @@ export default class Navbar extends PureComponent {
 								<Dropdown.Item>
 									<LoginComponent onSubmit={this.props.onSubmit} />
 								</Dropdown.Item>
-								<Dropdown.Item>Sign Up</Dropdown.Item>
+								<Dropdown.Item as={Link} to="/signup">
+									Sign Up for CoderHive
+								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
 					</Menu.Item>

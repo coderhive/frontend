@@ -4,7 +4,7 @@ import Navbar from "../nav/Navbar";
 import HoneyCombUserGrid from "./HoneyCombUserGrid";
 import HoneyCombComponentGrid from "./HoneyCombComponentGrid";
 import { Button } from "semantic-ui-react";
-import { graphql } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
 
 const usersAndComponents = gql`
@@ -24,6 +24,14 @@ const usersAndComponents = gql`
 			title
 			description
 			component_picture
+		}
+	}
+`;
+
+const loggedUser = gql`
+	query {
+		loggedUser {
+			id
 		}
 	}
 `;
@@ -89,4 +97,9 @@ const queryOptions = {
 	options: props => ({})
 };
 
-export default graphql(usersAndComponents)(HivePage);
+export default compose(
+	graphql(loggedUser, {
+		skip: ownProps => !ownProps.token
+	}),
+	graphql(usersAndComponents)
+)(HivePage);

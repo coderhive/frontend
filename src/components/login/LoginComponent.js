@@ -5,7 +5,6 @@ export default class LoginComponent extends PureComponent {
 	handleSubmit = event => {
 		event.preventDefault();
 		const { email, password } = event.target;
-		console.log(email.value, password.value);
 		this.props.onSubmit({
 			email: email.value.trim(),
 			password: password.value.trim(),
