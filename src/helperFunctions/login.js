@@ -1,5 +1,4 @@
 export default function login({ email, password }, baseUrl) {
-	console.log(baseUrl);
 	return fetch(`${baseUrl}/token/`, {
 		method: "POST",
 		headers: {

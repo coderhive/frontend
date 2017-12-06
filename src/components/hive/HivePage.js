@@ -29,9 +29,10 @@ const usersAndComponents = gql`
 `;
 
 const loggedUser = gql`
-	query {
-		loggedUser {
+	query($id: Int!) {
+		loggedUser(id: $id) {
 			id
+			display_name
 		}
 	}
 `;
@@ -59,7 +60,7 @@ class HivePage extends PureComponent {
 		}
 		return (
 			<div>
-				<Navbar user={data.loggedUser ? data.loggedUser : null} onSubmit={this.props.handleLogin} />
+				<Navbar user={[this.props.loggedUser]} onSubmit={this.props.handleLogin} />
 				{this.state.toggleComponents
 					? <div className="HivePage">
 							<div className="toggleComponents">
@@ -93,13 +94,15 @@ class HivePage extends PureComponent {
 	}
 }
 
-const queryOptions = {
-	options: props => ({})
-};
-
 export default compose(
 	graphql(loggedUser, {
-		skip: ownProps => !ownProps.token
+		name: "loggedUser",
+		options: props => ({
+			skip: !props.authenticatedId,
+			variables: {
+				id: props.authenticatedId
+			}
+		})
 	}),
 	graphql(usersAndComponents)
 )(HivePage);
