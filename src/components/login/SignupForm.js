@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Message } from "semantic-ui-react";
 
 export default class SignupForm extends PureComponent {
 	state = {
@@ -7,21 +7,25 @@ export default class SignupForm extends PureComponent {
 		password: "",
 		passwordCheck: "",
 		submittedEmail: "",
-		submittedPassword: ""
+		submittedPassword: "",
+		errorPassword: false
 	};
 
-	handleChange = (e, { name, value }) => this.setState({ [name]: value });
+	handleChange = (e, { name, value }) => this.setState({ [name]: value, errorPassword: false });
 
 	handleSubmit = () => {
-		const { email, password } = this.state;
-		this.setState({ submittedEmail: email, submittedPassword: password });
+		const { email, password, passwordCheck } = this.state;
+		if (password === passwordCheck) {
+			return this.setState({ submittedEmail: email, submittedPassword: password });
+		}
+		this.setState({ errorPassword: true });
 	};
 
 	render() {
 		const { email, password, passwordCheck, submittedPassword, submittedEmail } = this.state;
 		return (
 			<div className="signupForm">
-				<Form onSubmit={this.handleSubmit}>
+				<Form onSubmit={this.handleSubmit} error={this.state.errorPassword}>
 					<div className="signupOne">
 						<div className="honeyCombTopAngled" />
 						<div
@@ -44,6 +48,7 @@ export default class SignupForm extends PureComponent {
 							className="honeyCombComponentAngled"
 							style={{ display: "flex", alignItems: "center" }}>
 							<Form.Input
+								error={this.state.errorPassword}
 								required
 								type="password"
 								placeholder="Password"
@@ -61,8 +66,9 @@ export default class SignupForm extends PureComponent {
 							className="honeyCombComponentAngled"
 							style={{ display: "flex", alignItems: "center" }}>
 							<Form.Input
+								error={this.state.errorPassword}
 								required
-								placeholder="Re-enter Password"
+								placeholder="Confirm Password"
 								type="password"
 								name="passwordCheck"
 								value={passwordCheck}
@@ -72,7 +78,9 @@ export default class SignupForm extends PureComponent {
 						</div>
 						<div className="honeyCombBottomAngled" />
 					</div>
+
 					<Form.Button content="Join the Hive" className="SignupButton" />
+					<Message error header="Password does not match" content="Please re-enter your password" />
 				</Form>
 			</div>
 		);
