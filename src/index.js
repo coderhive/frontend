@@ -37,12 +37,10 @@ const client = new ApolloClient({
 });
 
 async function render() {
-	const authentication = await checkAuthentication({
-		baseUrl: env.BASE_URL
-	});
+	const authenticatedId = await checkAuthentication("http://localhost:3000");
 	ReactDOM.render(
 		<ApolloProvider client={client}>
-			<App authentication={authentication} />
+			<App authenticatedId={authenticatedId} />
 		</ApolloProvider>,
 		document.getElementById("root")
 	);
