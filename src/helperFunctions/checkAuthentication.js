@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 
-export default async function checkAuthentication({ baseUrl }) {
+export default async function checkAuthentication(baseUrl) {
 	try {
 		const token = localStorage.getItem("token");
 
@@ -17,8 +17,7 @@ export default async function checkAuthentication({ baseUrl }) {
 			return null;
 		}
 
-		const user = await this.props.loggedUser({ variables: { id } });
-		return { user, token };
+		return id;
 	} catch (error) {
 		console.log(error);
 

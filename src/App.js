@@ -7,11 +7,14 @@ import jwtDecode from "jwt-decode";
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			authenticatedId: this.props.authenticatedId
+		};
 	}
 	handleLogin = async ({ email, password }) => {
 		let { token } = await login({ email, password }, "http://localhost:3000");
 		if (token) {
+			localStorage.setItem("token", token);
 			let { sub: authenticatedId } = jwtDecode(token);
 			this.setState({ authenticatedId: parseInt(authenticatedId, 10) });
 		}
