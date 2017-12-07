@@ -6,6 +6,10 @@ import LoginComponent from "../login/LoginComponent";
 export default class Navbar extends PureComponent {
 	state = {};
 	handleClick = (e, { name }) => this.setState({ activeItem: name });
+
+	logOut = () => {
+		this.props.onLogout();
+	};
 	render() {
 		const { activeItem } = this.state;
 		if (this.props.user[0]) {
@@ -35,9 +39,11 @@ export default class Navbar extends PureComponent {
 							position="right"
 							onClick={this.handleClick}>
 							<Dropdown.Menu>
-								<Dropdown.Item>Profile</Dropdown.Item>
+								<Dropdown.Item as={Link} to="/users/${id}">
+									Profile
+								</Dropdown.Item>
 								<Dropdown.Item>Settings</Dropdown.Item>
-								<Dropdown.Item>Logout</Dropdown.Item>
+								<Dropdown.Item onClick={this.logOut}>Logout</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
 					</Menu.Item>

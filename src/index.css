@@ -107,3 +107,54 @@ body {
 	justify-content: flex-end;
 	padding-right: 100px;
 }
+
+/*SignUp Page*/
+
+.honeyCombComponentAngled {
+	float: left;
+	height: 300px;
+	width: 173.21px;
+	background-color: white;
+}
+
+.honeyCombTopAngled {
+	float: left;
+	border-right: 86.6px solid white;
+	border-top: 150px solid transparent;
+	border-bottom: 150px solid transparent;
+}
+.honeyCombBottomAngled {
+	float: left;
+	border-left: 86.6px solid white;
+	border-top: 150px solid transparent;
+	border-bottom: 150px solid transparent;
+}
+
+.signupForm {
+	margin: auto;
+	height: 700px;
+	width: 700px;
+}
+
+.signupOne {
+	margin-top: 20px;
+	background-color: white;
+	position: relative;
+}
+.signupTwo {
+	background-color: white;
+	position: relative;
+	top: 150.5px;
+	left: -84px;
+}
+.signupThree {
+	background-color: white;
+	position: relative;
+	bottom: -2px;
+}
+
+.SignupButton {
+	position: relative;
+	right: -370px;
+	bottom: 75px;
+}
