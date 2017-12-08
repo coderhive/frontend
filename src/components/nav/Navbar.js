@@ -12,7 +12,7 @@ export default class Navbar extends PureComponent {
 	};
 	render() {
 		const { activeItem } = this.state;
-		if (this.props.user[0]) {
+		if (this.props.user[0] && this.props.user[0].loggedUser) {
 			let user = this.props.user[0] ? this.props.user[0].loggedUser : null;
 
 			return (
@@ -30,7 +30,7 @@ export default class Navbar extends PureComponent {
 						onClick={this.handleClick}>
 						Hive
 					</Menu.Item>
-					<Menu.Item as={"a"} style={{ padding: "0" }}>
+					<Menu.Item style={{ padding: "0" }}>
 						<Dropdown
 							item
 							simple
@@ -39,7 +39,7 @@ export default class Navbar extends PureComponent {
 							position="right"
 							onClick={this.handleClick}>
 							<Dropdown.Menu>
-								<Dropdown.Item as={Link} to="/users/${id}">
+								<Dropdown.Item as={Link} to={`/users/${user.id}`}>
 									Profile
 								</Dropdown.Item>
 								<Dropdown.Item>Settings</Dropdown.Item>
