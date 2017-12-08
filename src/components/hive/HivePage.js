@@ -1,9 +1,8 @@
 import React, { PureComponent } from "react";
 // import HiveLayout from "./HiveLayout";
-import Navbar from "../nav/Navbar";
+import NavbarContainer from "../../graphql/NavbarContainer";
 import HoneyCombUserGrid from "./HoneyCombUserGrid";
 import HoneyCombComponentGrid from "./HoneyCombComponentGrid";
-import { Button } from "semantic-ui-react";
 
 export default class HivePage extends PureComponent {
 	constructor(props) {
@@ -28,7 +27,8 @@ export default class HivePage extends PureComponent {
 		}
 		return (
 			<div>
-				<Navbar
+				<NavbarContainer
+					authenticatedId={this.props.authenticatedId}
 					user={[this.props.loggedUser]}
 					onSubmit={this.props.handleLogin}
 					onLogout={this.props.handleLogOut}

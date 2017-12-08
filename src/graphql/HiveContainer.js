@@ -24,25 +24,4 @@ const usersAndComponents = gql`
 	}
 `;
 
-const loggedUser = gql`
-	query($id: Int!) {
-		loggedUser(id: $id) {
-			id
-			display_name
-		}
-	}
-`;
-
-export default compose(
-	withRouter,
-	graphql(loggedUser, {
-		name: "loggedUser",
-		options: props => ({
-			skip: !props.authenticatedId,
-			variables: {
-				id: props.authenticatedId
-			}
-		})
-	}),
-	graphql(usersAndComponents)
-)(HivePage);
+export default compose(withRouter, graphql(usersAndComponents))(HivePage);

@@ -58,8 +58,6 @@ export default class HoneycombComponent extends PureComponent {
 
 let styles = {
 	container: {
-		width: "301px",
-		paddingLeft: "1.3px",
-		paddingRight: "1.3px"
+		width: "301px"
 	}
 };

@@ -27,11 +27,6 @@ class App extends Component {
 		this.setState({ authenticatedId: null });
 	};
 
-	handleSignup = (email, password, display_name) => {
-		console.log(email, password, display_name);
-		this.setState({ email, password, display_name });
-	};
-
 	render() {
 		return (
 			<Router>
@@ -71,10 +66,6 @@ class App extends Component {
 									authenticatedId={this.state.authenticatedId}
 									handleLogin={this.handleLogin}
 									handleLogOut={this.handleLogOut}
-									handleSignup={this.handleSignup}
-									email={this.state.email}
-									password={this.state.password}
-									display_name={this.state.display_name}
 								/>
 							);
 						}}

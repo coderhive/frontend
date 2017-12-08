@@ -45,21 +45,23 @@ export default class SignupForm extends PureComponent {
 		}
 	};
 
-	handleSubmit = async () => {
+	handleSubmit = async ({ mutate }) => {
 		const { email, password, passwordCheck } = this.state;
 
 		if (password === passwordCheck) {
 			await this.setState({ submittedEmail: email, submittedPassword: password });
 			const { submittedEmail, submittedPassword } = await this.state;
 			const display_name = submittedEmail.match(/[^@$]*/i)[0];
-
-			return this.props.handleSubmit(submittedEmail, submittedPassword, display_name);
+			this.props.client.mutate({
+				variables: { email: submittedEmail, password: submittedPassword, display_name }
+			});
 		} else {
 			this.setState({ errorPassword: true });
 		}
 	};
 
 	render() {
+		console.log(this.props);
 		const { email, password, passwordCheck, submittedPassword, submittedEmail } = this.state;
 		return (
 			<div className="signupForm">

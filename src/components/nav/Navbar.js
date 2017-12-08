@@ -13,9 +13,12 @@ export default class Navbar extends PureComponent {
 
 	render() {
 		const { activeItem } = this.state;
-		if (this.props.user[0] && this.props.user[0].loggedUser) {
-			let user = this.props.user[0] ? this.props.user[0].loggedUser : null;
 
+		if (this.props.data) {
+			let user = this.props.data.loggedUser;
+			if (this.props.data.loading) {
+				return <div>Loading...</div>;
+			}
 			return (
 				<Menu fixed="top" inverted style={{ height: "45px" }}>
 					<Menu.Item as={Link} to="/" header position="left">
