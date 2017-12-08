@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import { Reveal, Table, Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 
 export default class HoneycombComponent extends PureComponent {
 	handleClick = (id, e) => {

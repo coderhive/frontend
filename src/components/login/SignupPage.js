@@ -6,7 +6,7 @@ export default class SignupPage extends PureComponent {
 	render() {
 		return (
 			<div>
-				<Navbar user={[]} />
+				<Navbar user={[null]} />
 				<SignupForm />
 			</div>
 		);

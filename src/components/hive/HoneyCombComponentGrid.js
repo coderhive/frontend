@@ -37,6 +37,8 @@ export default function HoneycombComponentGrid({ components, history }) {
 								)}
 							</div>
 						);
+					} else {
+						return null;
 					}
 				})}
 			</div>
