@@ -21,6 +21,11 @@ class App extends Component {
 		return;
 	};
 
+	handleLogOut = () => {
+		localStorage.removeItem("token");
+		this.setState({ authenticatedId: null });
+	};
+
 	render() {
 		return (
 			<Router>
@@ -32,6 +37,7 @@ class App extends Component {
 							return (
 								<HivePage
 									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
 									authenticatedId={this.state.authenticatedId}
 								/>
 							);
@@ -44,6 +50,7 @@ class App extends Component {
 							return (
 								<HivePage
 									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
 									authenticatedId={this.state.authenticatedId}
 								/>
 							);
