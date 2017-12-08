@@ -20,7 +20,7 @@ export default class EditorPage extends PureComponent {
         if (panelNumber === 4) this.setState({panel4Collapsed: !this.state.panel4Collapsed});
     };
 
-    
+
 
     render() {
         if (this.props.data.loading) return (<p>LOADING...</p>);

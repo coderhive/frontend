@@ -24,41 +24,36 @@ class App extends Component {
         return;
     };
 
-    handleLogOut = () => {
-        localStorage.removeItem("token");
-        this.setState({authenticatedId: null});
-    };
-
-    render() {
-        return (
-            <Router>
-                <div>
-                    <Route
-                        exact
-                        path="/"
-                        render={() => {
-                            return (
-                                <HiveContainer
-                                    handleLogin={this.handleLogin}
-                                    handleLogOut={this.handleLogOut}
-                                    authenticatedId={this.state.authenticatedId}
-                                />
-                            );
-                        }}
-                    />
-                    <Route
-                        exact
-                        path="/hive"
-                        render={() => {
-                            return (
-                                <HiveContainer
-                                    handleLogin={this.handleLogin}
-                                    handleLogOut={this.handleLogOut}
-                                    authenticatedId={this.state.authenticatedId}
-                                />
-                            );
-                        }}
-                    />
+	render() {
+		return (
+			<Router>
+				<div>
+					<Route
+						exact
+						path="/"
+						render={() => {
+							return (
+								<HiveContainer
+									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
+									authenticatedId={this.state.authenticatedId}
+								/>
+							);
+						}}
+					/>
+					<Route
+						exact
+						path="/components"
+						render={() => {
+							return (
+								<HiveContainer
+									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
+									authenticatedId={this.state.authenticatedId}
+								/>
+							);
+						}}
+					/>
                     <Route
                         exact
                         path="/components/:componentId"
@@ -74,23 +69,36 @@ class App extends Component {
                             );
                         }}
                     />
-                    <Route
-                        exact
-                        path="/signup"
-                        render={() => {
-                            return (
-                                <SignupContainer
-                                    authenticatedId={this.state.authenticatedId}
-                                    handleLogin={this.handleLogin}
-                                    handleLogOut={this.handleLogOut}
-                                />
-                            );
-                        }}
-                    />
-                </div>
-            </Router>
-        );
-    }
+					<Route
+						exact
+						path="/users"
+						render={() => {
+							return (
+								<HiveContainer
+									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
+									authenticatedId={this.state.authenticatedId}
+								/>
+							);
+						}}
+					/>
+					<Route
+						exact
+						path="/signup"
+						render={() => {
+							return (
+								<SignupContainer
+									authenticatedId={this.state.authenticatedId}
+									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
+								/>
+							);
+						}}
+					/>
+				</div>
+			</Router>
+		);
+	}
 }
 
 export default App;

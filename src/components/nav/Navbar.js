@@ -25,14 +25,17 @@ export default class Navbar extends PureComponent {
 						<Image size="tiny" src="/favicon.ico" style={{ marginTop: "20px" }} />
 						CoderHive
 					</Menu.Item>
-					<Menu.Item
-						as={Link}
-						to="/hive"
-						position="right"
-						name="hive"
-						active={activeItem === "hive"}
-						onClick={this.handleClick}>
-						Hive
+					<Menu.Item style={{ padding: "0" }}>
+						<Dropdown item simple text="Hive" position="right">
+							<Dropdown.Menu>
+								<Dropdown.Item as={Link} to={`/users`}>
+									-- Users
+								</Dropdown.Item>
+								<Dropdown.Item as={Link} to={`/components`}>
+									-- Components
+								</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
 					</Menu.Item>
 					<Menu.Item style={{ padding: "0" }}>
 						<Dropdown
@@ -60,14 +63,17 @@ export default class Navbar extends PureComponent {
 						<Image size="tiny" src="/favicon.ico" style={{ marginTop: "20px" }} />
 						CoderHive
 					</Menu.Item>
-					<Menu.Item
-						as={Link}
-						to="/hive"
-						position="right"
-						name="hive"
-						active={activeItem === "hive"}
-						onClick={this.handleClick}>
-						Hive
+					<Menu.Item style={{ padding: "0" }}>
+						<Dropdown item simple text="Hive" position="right">
+							<Dropdown.Menu>
+								<Dropdown.Item as={Link} to={`/users`}>
+									Users
+								</Dropdown.Item>
+								<Dropdown.Item as={Link} to={`/components`}>
+									Components
+								</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
 					</Menu.Item>
 					<Menu.Item style={{ padding: "0" }}>
 						<Dropdown item simple pointing="top right" text="Login">
