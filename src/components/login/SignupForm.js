@@ -17,7 +17,6 @@ export default class SignupForm extends PureComponent {
 	};
 
 	handleChange = async (e, { name, value }) => {
-		console.log(this.state.passwordCheck);
 		await this.setState({ [name]: value, errorPassword: false });
 
 		if (/[0-9]/.test(this.state.password)) {
@@ -46,13 +45,18 @@ export default class SignupForm extends PureComponent {
 		}
 	};
 
-	handleSubmit = () => {
+	handleSubmit = async () => {
 		const { email, password, passwordCheck } = this.state;
 
 		if (password === passwordCheck) {
-			return this.setState({ submittedEmail: email, submittedPassword: password });
+			await this.setState({ submittedEmail: email, submittedPassword: password });
+			const { submittedEmail, submittedPassword } = await this.state;
+			const display_name = submittedEmail.match(/[^@$]*/i)[0];
+
+			return this.props.handleSubmit(submittedEmail, submittedPassword, display_name);
+		} else {
+			this.setState({ errorPassword: true });
 		}
-		this.setState({ errorPassword: true });
 	};
 
 	render() {

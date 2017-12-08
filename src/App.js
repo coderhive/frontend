@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HiveContainer from "./graphql/HiveContainer";
-import SignupPage from "./components/login/SignupPage";
+import SignupContainer from "./graphql/SignupContainer";
 import login from "./helperFunctions/login";
 import jwtDecode from "jwt-decode";
 
@@ -25,6 +25,11 @@ class App extends Component {
 	handleLogOut = () => {
 		localStorage.removeItem("token");
 		this.setState({ authenticatedId: null });
+	};
+
+	handleSignup = (email, password, display_name) => {
+		console.log(email, password, display_name);
+		this.setState({ email, password, display_name });
 	};
 
 	render() {
@@ -61,7 +66,17 @@ class App extends Component {
 						exact
 						path="/signup"
 						render={() => {
-							return <SignupPage />;
+							return (
+								<SignupContainer
+									authenticatedId={this.state.authenticatedId}
+									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
+									handleSignup={this.handleSignup}
+									email={this.state.email}
+									password={this.state.password}
+									display_name={this.state.display_name}
+								/>
+							);
 						}}
 					/>
 				</div>

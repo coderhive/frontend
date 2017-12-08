@@ -10,6 +10,7 @@ export default class Navbar extends PureComponent {
 	logOut = () => {
 		this.props.onLogout();
 	};
+
 	render() {
 		const { activeItem } = this.state;
 		if (this.props.user[0] && this.props.user[0].loggedUser) {
