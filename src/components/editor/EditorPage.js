@@ -85,13 +85,17 @@ export default class EditorPage extends PureComponent {
 
                     {this.state.panel4Collapsed ?
                         <div style={{"marginTop": "70px", "textAlign": "center"}}>
-                            <p className="closedText">U</p>
-                            <p className="closedText">S</p>
-                            <p className="closedText">E</p>
+                            <p className="closedText">C</p>
+                            <p className="closedText">O</p>
+                            <p className="closedText">N</p>
+                            <p className="closedText">T</p>
                             <p className="closedText">R</p>
+                            <p className="closedText">O</p>
+                            <p className="closedText">L</p>
+                            <p className="closedText">S</p>
                         </div>
                         :
-                        <p className="bodyText">User Panel</p>
+                        <p className="bodyText">Controls Panel</p>
                     }
                 </div>
             </div>
