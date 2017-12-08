@@ -1,5 +1,4 @@
 import React, {PureComponent} from "react";
-import ReactDOM from "react-dom";
 
 export default class EditorPage extends PureComponent {
     constructor(props) {
@@ -7,8 +6,8 @@ export default class EditorPage extends PureComponent {
 
         this.state = {
             panel1Collapsed: false,
-            panel3Collapsed: false,
-            panel4Collapsed: false,
+            panel3Collapsed: true,
+            panel4Collapsed: true,
         };
     }
 

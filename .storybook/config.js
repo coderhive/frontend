@@ -10,7 +10,7 @@ function loadStories() {
 	require("../src/components/hive/HoneyCombComponent.story");
 	require("../src/components/hive/HoneyCombComponentGrid.story");
 	require("../src/components/login/LoginComponent.story");
-	require("../src/components/editor/EditorPage.story");
+	require("../src/components/editor/EditorPanes.story");
 	require("../src/components/login/SignupForm.story");
 }
 
