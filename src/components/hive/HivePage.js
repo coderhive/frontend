@@ -4,40 +4,8 @@ import Navbar from "../nav/Navbar";
 import HoneyCombUserGrid from "./HoneyCombUserGrid";
 import HoneyCombComponentGrid from "./HoneyCombComponentGrid";
 import { Button } from "semantic-ui-react";
-import { graphql, compose } from "react-apollo";
-import gql from "graphql-tag";
 
-const usersAndComponents = gql`
-	query {
-		allUsers {
-			id
-			display_name
-			profile_picture
-			status
-			experience
-			created_at
-			summary
-		}
-		allComponents {
-			id
-			created_at
-			title
-			description
-			component_picture
-		}
-	}
-`;
-
-const loggedUser = gql`
-	query($id: Int!) {
-		loggedUser(id: $id) {
-			id
-			display_name
-		}
-	}
-`;
-
-class HivePage extends PureComponent {
+export default class HivePage extends PureComponent {
 	constructor(props) {
 		super(props);
 
@@ -97,16 +65,3 @@ class HivePage extends PureComponent {
 		);
 	}
 }
-
-export default compose(
-	graphql(loggedUser, {
-		name: "loggedUser",
-		options: props => ({
-			skip: !props.authenticatedId,
-			variables: {
-				id: props.authenticatedId
-			}
-		})
-	}),
-	graphql(usersAndComponents)
-)(HivePage);

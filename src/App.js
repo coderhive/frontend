@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import HivePage from "./components/hive/HivePage";
+import HiveContainer from "./graphql/HiveContainer";
 import SignupPage from "./components/login/SignupPage";
 import login from "./helperFunctions/login";
 import jwtDecode from "jwt-decode";
@@ -36,7 +36,7 @@ class App extends Component {
 						path="/"
 						render={() => {
 							return (
-								<HivePage
+								<HiveContainer
 									handleLogin={this.handleLogin}
 									handleLogOut={this.handleLogOut}
 									authenticatedId={this.state.authenticatedId}
@@ -49,7 +49,7 @@ class App extends Component {
 						path="/hive"
 						render={() => {
 							return (
-								<HivePage
+								<HiveContainer
 									handleLogin={this.handleLogin}
 									handleLogOut={this.handleLogOut}
 									authenticatedId={this.state.authenticatedId}
