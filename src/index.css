@@ -144,17 +144,17 @@ body {
 .signupTwo {
 	background-color: white;
 	position: relative;
-	top: 150.5px;
+	top: 150.8px;
 	left: -84px;
 }
 .signupThree {
 	background-color: white;
 	position: relative;
-	bottom: -2px;
+	bottom: -3px;
 }
 
 .SignupButton {
 	position: relative;
 	right: -370px;
-	bottom: 75px;
+	bottom: 74px;
 }
