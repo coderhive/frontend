@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import ReactDOM from "react-dom";
 
-
 export default class EditorPage extends PureComponent {
     constructor(props) {
         super(props);
@@ -17,20 +16,19 @@ export default class EditorPage extends PureComponent {
         if (panelNumber === 1) this.setState({panel1Collapsed: !this.state.panel1Collapsed});
         if (panelNumber === 3) this.setState({panel3Collapsed: !this.state.panel3Collapsed});
         if (panelNumber === 4) this.setState({panel4Collapsed: !this.state.panel4Collapsed});
-    }
-
+    };
 
     render() {
         return (
             <div className="editorContainer">
                 <div className={this.state.panel1Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
                     <div className="toolbarBg">
-                    <div className="editorCollapseButton" onClick={() => this.handleToggle(1)}
-                         style={this.state.panel1Collapsed ? {"backgroundColor": "#012ba3"} : {"backgroundColor": "#841300"}}>
-                        {this.state.panel1Collapsed ?
-                            <i class="plus square outline icon" size="mini"></i> :
-                            <i class="minus square outline icon" size="mini"></i>}
-                    </div>
+                        <div className="editorCollapseButton" onClick={() => this.handleToggle(1)}
+                             style={this.state.panel1Collapsed ? {"backgroundColor": "#012ba3"} : {"backgroundColor": "#841300"}}>
+                            {this.state.panel1Collapsed ?
+                                <i class="plus square outline icon" size="mini"></i> :
+                                <i class="minus square outline icon" size="mini"></i>}
+                        </div>
                     </div>
                     {this.state.panel1Collapsed ?
                         <div style={{"marginTop": "70px", "textAlign": "center"}}>
@@ -49,7 +47,7 @@ export default class EditorPage extends PureComponent {
                     <div className="toolbarBg" style={{"paddingLeft": "8px"}}>
                         <div className="editorCollapseButton"
                              style={{"backgroundColor": "#159901"}}>
-                                <i class="refresh icon" size="mini"></i>
+                            <i class="refresh icon" size="mini"></i>
                         </div>
                     </div>
                     <p className="bodyText">Main Render Space</p>
