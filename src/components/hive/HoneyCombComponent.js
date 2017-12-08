@@ -27,7 +27,7 @@ export default class HoneycombComponent extends PureComponent {
 					</Reveal.Content>
 					<Reveal.Content hidden>
 						<div className="hiddenText" style={styles.container}>
-							<Table basic="very">
+							<Table className="fixed single line" basic="very">
 								<Table.Body>
 									<Table.Row textAlign="center">
 										<Table.Cell>
@@ -40,7 +40,7 @@ export default class HoneycombComponent extends PureComponent {
 										<Table.Cell style={{ color: "white" }}>{`Added on ${this.props.component
 											.created_at}`}</Table.Cell>
 									</Table.Row>
-									<Table.Row textAlign="left" style={{ padding: "30px", fontSize: "10px" }}>
+									<Table.Row textAlign="left" style={{ padding: "10px" }}>
 										<Table.Cell
 											style={{
 												color: "white"
