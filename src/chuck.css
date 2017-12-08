@@ -14,45 +14,58 @@ body {
 	padding: 5px;
 }
 
-.panelsVertical {
-	flex-grow: 1;
+.centerPanelVertical {
+	flex-grow: 40;
 	font-size: 30px;
 	height: 95vh;
 	margin: 5px;
 	background-color: white;
-	transition: all .2s ease-in;
-
 }
 
-.centerPanelVertical {
-	flex-grow: 2;
+.panelsVertical {
+	flex-grow: 20;
 	font-size: 30px;
 	height: 95vh;
 	margin: 5px;
 	background-color: white;
-	transition: all .2s ease-in;
-	padding: 10px
+	transition: all .3s ease;
+
 }
 
 .panelsVerticalCollapsed {
-	max-width: 34px;
+	flex-grow: .1;
+	/*max-width: 34px;*/
 	font-size: 30px;
 	height: 95vh;
 	margin: 5px;
 	background-color: #2f2e2f;
-}
+	transition: all .3s ease;
 
-.editorCollapseButton{
-	display: inline-block;
-	color: white;
-	width: 34px;
-	padding-top: 8px;
-	text-align: center;
-	transition: all .2s ease-in;
 }
 
 .closedText{
 	color: white;
 	font-size: 20px;
 	margin: 2px;
+}
+
+.bodyText{
+	margin: 20px;
+}
+
+.editorCollapseButton{
+	display: inline-block;
+	color: white;
+	width: 35px;
+	padding-top: 11px;
+	text-align: center;
+	border-radius: 14px;
+	margin: 5px 0
+
+}
+.toolbarBg{
+	display: inline-block;
+	width: 100%;
+	padding: 5px;
+	background-color: #2f2e2f;
 }
