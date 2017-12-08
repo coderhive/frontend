@@ -1,29 +1,22 @@
 @import '~semantic-ui-css/semantic.css';
 
 .editorContainer {
+    margin: 5px;
+    overflow: hidden;
+}
+.editorPaneContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    padding: 5px;
+    margin-top: 60px;
 }
 
-.centerPanelVertical {
-    flex-grow: 40;
-    font-size: 30px;
-    height: 95vh;
-    margin: 6px;
-    background-color: white;
-    border-radius: 10px 10px 0 0;
-    border: 2px solid black;
-    border-top: 3px solid black;
-    box-shadow: 0px 0px 0px 3px #1f1e1f;
-}
 
 .panelsVertical {
     flex-grow: 20;
     font-size: 30px;
-    height: 95vh;
+    height: 80vh;
     margin: 6px;
     background-color: white;
     transition: all .3s ease;
@@ -37,7 +30,7 @@
     flex-grow: .1;
     /*max-width: 34px;*/
     font-size: 30px;
-    height: 95vh;
+    height: 80vh;
     margin: 6px;
     background-color: #2f2e2f;
     transition: all .3s ease;
@@ -128,3 +121,86 @@
     letter-spacing: 20px;
     margin: auto;
 }
+
+.detailsBox{
+    width: 98.5%;
+    margin: 5px;
+    padding: 10px;
+    background-color: #2f2e2f;
+    font-size: 20px;
+    color: white;
+    box-shadow: 0px 0px 0px 3px #373537;
+}
+
+.boxDetail1{
+    display: inline-block;
+    width: 300px;
+    vertical-align: top;
+}
+
+.boxDetail1 h1{
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    vertical-align: top;
+
+}
+.boxDetail1 p{
+    font-size: 12px;
+    margin: 1px;
+    word-spacing: 4px;
+}
+
+.boxDetail2{
+    display: inline-block;
+    width: 350px;
+    vertical-align: top;
+    border: 1px solid blue
+
+}
+
+.boxDetail2 p{
+    display: inline-block;
+    font-size: 18px;
+    margin: 0 15px 0 0;
+}
+
+.boxDetail3{
+    display: inline-block;
+    width: 350px;
+    vertical-align: top;
+}
+
+
+.tag {
+    display: inline-block;
+    padding: 3px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 18px;
+    background-color: #ffe77b;
+    color: black;
+    min-width: 26px;
+    text-align: center;
+    box-shadow: 1px 1px 1px black;
+    text-transform: capitalize;
+}
+
+.fan {
+    display: inline-block;
+    padding: 3px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 18px;
+    background-color: #a4ff95;
+    color: black;
+    min-width: 26px;
+    text-align: center;
+    box-shadow: 1px 1px 1px black;
+    text-transform: capitalize;
+
+}
+
+

@@ -15,8 +15,26 @@ export default class EditorPage extends PureComponent {
 
     render() {
         return (
-            <div>
-                working
+            <div className="detailsBox">
+                component_picture: String<br />
+
+                description: String<br />
+
+                owner: User!<br />
+
+                score: Int!<br />
+                votes: [Vote]!<br />
+
+                myParent: Component<br />
+                myChildren: [Component]!<br />
+                myCloneSource: Component<br />
+                myClones: [Component]!<br />
+
+                comments: [Comment]!<br />
+
+                privacy: String<br />
+                status: String!
+
             </div>
         )
     }
