@@ -1,9 +1,5 @@
 @import '~semantic-ui-css/semantic.css';
 
-body {
-    background-color: black;
-}
-
 .editorContainer {
     display: flex;
     flex-direction: row;
@@ -16,18 +12,25 @@ body {
     flex-grow: 40;
     font-size: 30px;
     height: 95vh;
-    margin: 5px;
+    margin: 6px;
     background-color: white;
+    border-radius: 10px 10px 0 0;
+    border: 2px solid black;
+    border-top: 3px solid black;
+    box-shadow: 0px 0px 0px 3px #1f1e1f;
 }
 
 .panelsVertical {
     flex-grow: 20;
     font-size: 30px;
     height: 95vh;
-    margin: 5px;
+    margin: 6px;
     background-color: white;
     transition: all .3s ease;
-
+    border-radius: 10px 10px 0 0;
+    border: 2px solid black;
+    border-top: 3px solid black;
+    box-shadow: 0px 0px 0px 3px #1f1e1f;
 }
 
 .panelsVerticalCollapsed {
@@ -35,36 +38,93 @@ body {
     /*max-width: 34px;*/
     font-size: 30px;
     height: 95vh;
-    margin: 5px;
+    margin: 6px;
     background-color: #2f2e2f;
     transition: all .3s ease;
-
+    border-radius: 8px;
+    border: 2px solid black;
+    border-top: 3px solid black;
+    box-shadow: 0px 0px 0px 3px #1f1e1f;
 }
 
-.closedText {
-    color: white;
-    font-size: 20px;
-    margin: 2px;
-}
 
 .bodyText {
     margin: 20px;
-}
-
-.editorCollapseButton {
-    display: inline-block;
-    color: white;
-    width: 35px;
-    padding-top: 11px;
-    text-align: center;
-    border-radius: 14px;
-    margin: 5px 0
-
 }
 
 .toolbarBg {
     display: inline-block;
     width: 100%;
     padding: 5px;
+    margin-top: -1px;
     background-color: #2f2e2f;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 1px 1px black
+}
+
+.editorCollapseButton {
+    display: inline-block;
+    width: 37px;
+    padding-top: 12px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 5px 0;
+    transition: all .3s ease;
+    text-shadow: 1px 1px black;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    text-align: center;
+    background-color: #2e2d2e;
+    color: #ffe77b;
+}
+
+.editorCollapseButton:hover {
+    background-color: #3f3e3f;
+}
+.editorCollapseButton:active {
+    background-color: #2e2d2e;
+    box-shadow: none;
+}
+
+.editorRefreshButton {
+    display: inline-block;
+    width: 37px;
+    padding-top: 12px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 5px 0;
+    transition: all .3s ease;
+    text-shadow: 1px 1px black;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    text-align: center;
+    color: #ffe77b;
+    background-color: #2e2d2e;
+}
+
+.editorRefreshButton:hover {
+    background-color: #3f3e3f;
+}
+.editorRefreshButton:active {
+    background-color: #2e2d2e;
+    box-shadow: none;
+}
+
+.textHolderCollapsed{
+    text-align: center;
+    margin-top: 80px;
+    max-width: 45px;
+
+}
+
+.closedText {
+    color: white;
+    font-size: 20px;
+    text-shadow: 2px 2px black;
+    transform: rotate(90deg);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 20px;
+    margin: auto;
 }
