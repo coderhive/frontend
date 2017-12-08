@@ -5,7 +5,8 @@ export default function HoneycombComponentGrid({ components, history }) {
 	if (components.length) {
 		let chunks = components
 			.map((component, index, arr) => {
-				let size = Math.floor(Math.random() * (5 - 3)) + 3;
+				let size = 3;
+				// let size = Math.floor(Math.random() * (5 - 3)) + 3;
 				return index % size === 0 ? arr.slice(index, index + size) : null;
 			})
 			.filter(c => c);
