@@ -8,6 +8,7 @@ import { ApolloLink, concat } from "apollo-link";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "react-apollo";
 import "./index.css";
+import "./chuck.css";
 import checkAuthentication from "./helperFunctions/checkAuthentication";
 import env from "./env";
 
