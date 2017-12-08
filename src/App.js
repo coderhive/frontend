@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HivePage from "./components/hive/HivePage";
+import SignupPage from "./components/login/SignupPage";
 import login from "./helperFunctions/login";
 import jwtDecode from "jwt-decode";
 
@@ -54,6 +55,13 @@ class App extends Component {
 									authenticatedId={this.state.authenticatedId}
 								/>
 							);
+						}}
+					/>
+					<Route
+						exact
+						path="/signup"
+						render={() => {
+							return <SignupPage />;
 						}}
 					/>
 				</div>

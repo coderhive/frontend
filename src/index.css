@@ -132,25 +132,23 @@ body {
 
 .signupForm {
 	margin: auto;
+	margin-top: 150px;
 	height: 700px;
 	width: 700px;
 }
 
 .signupOne {
 	margin-top: 20px;
-	background-color: white;
 	position: relative;
 }
 .signupTwo {
-	background-color: white;
 	position: relative;
-	top: 150.8px;
-	left: -84px;
+	top: 155px;
+	left: -75px;
 }
 .signupThree {
-	background-color: white;
 	position: relative;
-	bottom: -3px;
+	bottom: -12px;
 }
 
 .SignupButton {
