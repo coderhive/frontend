@@ -1,9 +1,5 @@
 @import '~semantic-ui-css/semantic.css';
 
-body {
-    background-color: black;
-}
-
 .editorContainer {
     display: flex;
     flex-direction: row;

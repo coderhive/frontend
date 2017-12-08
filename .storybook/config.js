@@ -11,6 +11,7 @@ function loadStories() {
 	require("../src/components/hive/HoneyCombComponentGrid.story");
 	require("../src/components/login/LoginComponent.story");
 	require("../src/components/editor/EditorPanes.story");
+	require("../src/components/editor/EditorDetails.story");
 	require("../src/components/login/SignupForm.story");
 }
 
