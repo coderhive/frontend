@@ -4,6 +4,7 @@ import NavbarContainer from "../../graphql/NavbarContainer";
 
 export default class SignupPage extends PureComponent {
 	render() {
+		console.log(this.props.client.readQuery({}));
 		return (
 			<div>
 				<NavbarContainer

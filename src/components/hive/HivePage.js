@@ -8,18 +8,19 @@ export default class HivePage extends PureComponent {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			toggleComponents: true
-		};
+		// this.state = {
+		// 	toggleComponents: this.props.match.path.replace(/\//, "")
+		// };
 	}
 
-	handleClick = () => {
-		this.setState(prevState => {
-			return { toggleComponents: !prevState.toggleComponents };
-		});
-	};
+	// handleClick = () => {
+	// 	this.setState(prevState => {
+	// 		return { toggleComponents: !prevState.toggleComponents };
+	// 	});
+	// };
 
 	render() {
+		console.log(this.props);
 		let { data } = this.props;
 
 		if (data.loading) {
@@ -33,34 +34,21 @@ export default class HivePage extends PureComponent {
 					onSubmit={this.props.handleLogin}
 					onLogout={this.props.handleLogOut}
 				/>
-				{this.state.toggleComponents
+				{this.props.match.path === "/components"
 					? <div className="HivePage">
-							<div className="toggleComponents">
-								<div className="ui large buttons" style={{ marginTop: "90px" }}>
-									<button className="ui button active">Components</button>
-									<div className="or" />
-									<button className="ui button" onClick={this.handleClick}>
-										Users
-									</button>
-								</div>
-							</div>
+							<div className="toggleComponents" />
 							<HoneyCombComponentGrid
 								components={data.allComponents}
 								history={this.props.history}
 							/>
 						</div>
-					: <div className="HivePage">
-							<div className="toggleComponents">
-								<div className="ui large buttons" style={{ marginTop: "90px" }}>
-									<button className="ui button" onClick={this.handleClick}>
-										Components
-									</button>
-									<div className="or" />
-									<button className="ui button active">Users</button>
-								</div>
-							</div>
+					: null}
+				{this.props.match.path === "/users"
+					? <div className="HivePage">
+							<div className="toggleComponents" />
 							<HoneyCombUserGrid users={data.allUsers} history={this.props.history} />
-						</div>}
+						</div>
+					: null}
 			</div>
 		);
 	}

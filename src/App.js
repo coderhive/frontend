@@ -46,7 +46,20 @@ class App extends Component {
 					/>
 					<Route
 						exact
-						path="/hive"
+						path="/components"
+						render={() => {
+							return (
+								<HiveContainer
+									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
+									authenticatedId={this.state.authenticatedId}
+								/>
+							);
+						}}
+					/>
+					<Route
+						exact
+						path="/users"
 						render={() => {
 							return (
 								<HiveContainer

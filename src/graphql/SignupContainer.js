@@ -1,5 +1,5 @@
 import SignupPage from "../components/login/SignupPage";
-import { graphql, compose } from "react-apollo";
+import { graphql, compose, withApollo } from "react-apollo";
 import gql from "graphql-tag";
 import { withRouter } from "react-router-dom";
 
@@ -13,4 +13,4 @@ const createUser = gql`
 	}
 `;
 
-export default compose(withRouter, graphql(createUser))(SignupPage);
+export default compose(withApollo, withRouter, graphql(createUser))(SignupPage);

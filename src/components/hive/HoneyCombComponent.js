@@ -3,7 +3,7 @@ import { Reveal, Table, Button } from "semantic-ui-react";
 
 export default class HoneycombComponent extends PureComponent {
 	handleClick = (id, e) => {
-		this.props.history.push(`/component/${id}`);
+		this.props.history.push(`/components/${id}`);
 	};
 
 	render() {
