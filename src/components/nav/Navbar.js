@@ -29,10 +29,10 @@ export default class Navbar extends PureComponent {
 						<Dropdown item simple text="Hive" position="right">
 							<Dropdown.Menu>
 								<Dropdown.Item as={Link} to={`/users`}>
-									-- Users
+									Users
 								</Dropdown.Item>
 								<Dropdown.Item as={Link} to={`/components`}>
-									-- Components
+									Components
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
