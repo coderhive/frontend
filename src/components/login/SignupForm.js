@@ -17,7 +17,6 @@ export default class SignupForm extends PureComponent {
 	};
 
 	handleChange = async (e, { name, value }) => {
-		console.log(this.state.passwordCheck);
 		await this.setState({ [name]: value, errorPassword: false });
 
 		if (/[0-9]/.test(this.state.password)) {
@@ -46,25 +45,37 @@ export default class SignupForm extends PureComponent {
 		}
 	};
 
-	handleSubmit = () => {
+	handleSubmit = async ({ mutate }) => {
 		const { email, password, passwordCheck } = this.state;
 
 		if (password === passwordCheck) {
-			return this.setState({ submittedEmail: email, submittedPassword: password });
+			await this.setState({ submittedEmail: email, submittedPassword: password });
+			const { submittedEmail, submittedPassword } = await this.state;
+			const display_name = submittedEmail.match(/[^@$]*/i)[0];
+			this.props.client.mutate({
+				variables: { email: submittedEmail, password: submittedPassword, display_name }
+			});
+		} else {
+			this.setState({ errorPassword: true });
 		}
-		this.setState({ errorPassword: true });
 	};
 
 	render() {
+		console.log(this.props);
 		const { email, password, passwordCheck, submittedPassword, submittedEmail } = this.state;
 		return (
 			<div className="signupForm">
 				<Form onSubmit={this.handleSubmit} error>
 					<div className="signupOne">
-						<div className="honeyCombTopAngled" />
+						<div className="honeyCombTopAngled" style={{ borderRight: "86.6px solid #FFE600" }} />
 						<div
 							className="honeyCombComponentAngled"
-							style={{ display: "flex", alignItems: "center", flexFlow: "wrap" }}>
+							style={{
+								display: "flex",
+								alignItems: "center",
+								flexFlow: "wrap",
+								backgroundColor: "#FFE600"
+							}}>
 							<Form.Input
 								required
 								placeholder="Email"
@@ -74,13 +85,13 @@ export default class SignupForm extends PureComponent {
 								size="small"
 							/>
 						</div>
-						<div className="honeyCombBottomAngled" />
+						<div className="honeyCombBottomAngled" style={{ borderLeft: "86.6px solid #FFE600" }} />
 					</div>
 					<div className="signupTwo">
-						<div className="honeyCombTopAngled" />
+						<div className="honeyCombTopAngled" style={{ borderRight: "86.6px solid #EEC900" }} />
 						<div
 							className="honeyCombComponentAngled"
-							style={{ display: "flex", alignItems: "center" }}>
+							style={{ display: "flex", alignItems: "center", backgroundColor: "#EEC900" }}>
 							<Form.Input
 								error={this.state.errorPassword}
 								required
@@ -100,20 +111,20 @@ export default class SignupForm extends PureComponent {
 									justifyContent: "center",
 									marginLeft: "20px"
 								}}>
-								<Segment style={{ fontSize: "15px", backgroundColor: "white", margin: "auto" }}>
+								<Segment style={{ fontSize: "15px", backgroundColor: "#FEF1B5", margin: "auto" }}>
 									Your password must meet the following criteria:
 									<div style={{ padding: "5px" }}>
 										{this.state.errorLength
-											? <li style={{ color: "red" }}>Must be at least 6 characters long</li>
+											? <li style={{ color: "gray" }}>Must be at least 6 characters long</li>
 											: <li style={{ color: "green" }}>Must be at least 6 characters long</li>}
 										{this.state.errorSymbol
-											? <li style={{ color: "red" }}>Must include a symbol (e.g. !@#$)</li>
+											? <li style={{ color: "gray" }}>Must include a symbol (e.g. !@#$)</li>
 											: <li style={{ color: "green" }}>Must include a symbol (e.g. !@#$)</li>}
 										{this.state.errorNumber
-											? <li style={{ color: "red" }}>Must include a number (e.g. 1234)</li>
+											? <li style={{ color: "gray" }}>Must include a number (e.g. 1234)</li>
 											: <li style={{ color: "green" }}>Must include a number (e.g. 1234)</li>}
 										{this.state.errorCap
-											? <li style={{ color: "red" }}>
+											? <li style={{ color: "gray" }}>
 													Must include a capitalized letter (e.g. ABC)
 												</li>
 											: <li style={{ color: "green" }}>
@@ -123,13 +134,13 @@ export default class SignupForm extends PureComponent {
 								</Segment>
 							</Rail>
 						</div>
-						<div className="honeyCombBottomAngled" />
+						<div className="honeyCombBottomAngled" style={{ borderLeft: "86.6px solid #EEC900" }} />
 					</div>
 					<div className="signupThree">
-						<div className="honeyCombTopAngled" />
+						<div className="honeyCombTopAngled" style={{ borderRight: "86.6px solid #FFC125" }} />
 						<div
 							className="honeyCombComponentAngled"
-							style={{ display: "flex", alignItems: "center" }}>
+							style={{ display: "flex", alignItems: "center", backgroundColor: "#FFC125" }}>
 							<Form.Input
 								error={this.state.errorPassword}
 								required
@@ -141,10 +152,12 @@ export default class SignupForm extends PureComponent {
 								size="small"
 							/>
 						</div>
-						<div className="honeyCombBottomAngled" />
+						<div className="honeyCombBottomAngled" style={{ borderLeft: "86.6px solid #FFC125" }} />
 					</div>
 
 					<Form.Button
+						inverted
+						color="yellow"
 						content="Join the Hive"
 						className="SignupButton"
 						disabled={

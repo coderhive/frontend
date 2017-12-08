@@ -29,6 +29,8 @@ export default function HoneyCombUserGrid({ users, history }) {
 								)}
 							</div>
 						);
+					} else {
+						return null;
 					}
 				})}
 			</div>

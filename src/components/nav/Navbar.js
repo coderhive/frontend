@@ -10,11 +10,15 @@ export default class Navbar extends PureComponent {
 	logOut = () => {
 		this.props.onLogout();
 	};
+
 	render() {
 		const { activeItem } = this.state;
-		if (this.props.user[0]) {
-			let user = this.props.user[0] ? this.props.user[0].loggedUser : null;
 
+		if (this.props.data) {
+			let user = this.props.data.loggedUser;
+			if (this.props.data.loading) {
+				return <div>Loading...</div>;
+			}
 			return (
 				<Menu fixed="top" inverted style={{ height: "45px" }}>
 					<Menu.Item as={Link} to="/" header position="left">
@@ -30,7 +34,7 @@ export default class Navbar extends PureComponent {
 						onClick={this.handleClick}>
 						Hive
 					</Menu.Item>
-					<Menu.Item as={"a"} style={{ padding: "0" }}>
+					<Menu.Item style={{ padding: "0" }}>
 						<Dropdown
 							item
 							simple
@@ -39,7 +43,7 @@ export default class Navbar extends PureComponent {
 							position="right"
 							onClick={this.handleClick}>
 							<Dropdown.Menu>
-								<Dropdown.Item as={Link} to="/users/${id}">
+								<Dropdown.Item as={Link} to={`/users/${user.id}`}>
 									Profile
 								</Dropdown.Item>
 								<Dropdown.Item>Settings</Dropdown.Item>

@@ -10,7 +10,6 @@ import { ApolloProvider } from "react-apollo";
 import "./index.css";
 import "./chuck.css";
 import checkAuthentication from "./helperFunctions/checkAuthentication";
-import env from "./env";
 
 const httpLink = new HttpLink({
 	uri: "http://localhost:3000/graphql"
