@@ -23,21 +23,15 @@ export default class EditorPage extends PureComponent {
             <div className="editorContainer">
                 <div className={this.state.panel1Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
                     <div className="toolbarBg">
-                        <div className="editorCollapseButton" onClick={() => this.handleToggle(1)}
-                             style={this.state.panel1Collapsed ? {"backgroundColor": "#012ba3"} : {"backgroundColor": "#841300"}}>
+                        <div className="editorCollapseButton" onClick={() => this.handleToggle(1)}>
                             {this.state.panel1Collapsed ?
                                 <i class="plus square outline icon" size="mini"></i> :
                                 <i class="minus square outline icon" size="mini"></i>}
                         </div>
                     </div>
                     {this.state.panel1Collapsed ?
-                        <div style={{"marginTop": "70px", "textAlign": "center"}}>
-                            <p className="closedText">E</p>
-                            <p className="closedText">D</p>
-                            <p className="closedText">I</p>
-                            <p className="closedText">T</p>
-                            <p className="closedText">O</p>
-                            <p className="closedText">R</p>
+                        <div className="textHolderCollapsed">
+                            <p className="closedText">Editor</p>
                         </div>
                         :
                         <p className="bodyText">Editor Panel</p>
@@ -45,8 +39,7 @@ export default class EditorPage extends PureComponent {
                 </div>
                 <div className="centerPanelVertical">
                     <div className="toolbarBg" style={{"paddingLeft": "8px"}}>
-                        <div className="editorCollapseButton"
-                             style={{"backgroundColor": "#159901"}}>
+                        <div className="editorRefreshButton">
                             <i class="refresh icon" size="mini"></i>
                         </div>
                     </div>
@@ -54,20 +47,16 @@ export default class EditorPage extends PureComponent {
                 </div>
                 <div className={this.state.panel3Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
                     <div className="toolbarBg">
-                        <div className="editorCollapseButton" onClick={() => this.handleToggle(3)}
-                             style={this.state.panel3Collapsed ? {"backgroundColor": "#012ba3"} : {"backgroundColor": "#841300"}}>
+                        <div className="editorCollapseButton" onClick={() => this.handleToggle(3)}>
                             {this.state.panel3Collapsed ?
                                 <i class="plus square outline icon" size="mini"></i> :
                                 <i class="minus square outline icon" size="mini"></i>}
                         </div>
                     </div>
                     {this.state.panel3Collapsed ?
-                        <div style={{"marginTop": "70px", "textAlign": "center"}}>
-                            <p className="closedText">T</p>
-                            <p className="closedText">E</p>
-                            <p className="closedText">S</p>
-                            <p className="closedText">T</p>
-                            <p className="closedText">S</p>
+                        <div className="textHolderCollapsed">
+                            <p className="closedText">Tests</p>
+
                         </div>
                         :
                         <p className="bodyText">Testing Panel</p>
@@ -75,8 +64,7 @@ export default class EditorPage extends PureComponent {
                 </div>
                 <div className={this.state.panel4Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
                     <div className="toolbarBg">
-                        <div className="editorCollapseButton" onClick={() => this.handleToggle(4)}
-                             style={this.state.panel4Collapsed ? {"backgroundColor": "#012ba3"} : {"backgroundColor": "#841300"}}>
+                        <div className="editorCollapseButton" onClick={() => this.handleToggle(4)}>
                             {this.state.panel4Collapsed ?
                                 <i class="plus square outline icon" size="mini"></i> :
                                 <i class="minus square outline icon" size="mini"></i>}
@@ -84,15 +72,8 @@ export default class EditorPage extends PureComponent {
                     </div>
 
                     {this.state.panel4Collapsed ?
-                        <div style={{"marginTop": "70px", "textAlign": "center"}}>
-                            <p className="closedText">C</p>
-                            <p className="closedText">O</p>
-                            <p className="closedText">N</p>
-                            <p className="closedText">T</p>
-                            <p className="closedText">R</p>
-                            <p className="closedText">O</p>
-                            <p className="closedText">L</p>
-                            <p className="closedText">S</p>
+                        <div className="textHolderCollapsed">
+                            <p className="closedText">Controls</p>
                         </div>
                         :
                         <p className="bodyText">Controls Panel</p>
