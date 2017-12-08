@@ -69,7 +69,6 @@ body {
 
 .editorCollapseButton {
     display: inline-block;
-    color: white;
     width: 37px;
     padding-top: 11px;
     text-align: center;
@@ -80,20 +79,20 @@ body {
     border: 1px solid black;
     box-shadow: 1px 1px 1px black;
     text-align: center;
-    background-color: #012ba3;
+    background-color: #2e2d2e;
+    color: #ffe77b;
 }
 
 .editorCollapseButton:hover {
-    background-color: #0009ce;
+    background-color: #3f3e3f;
 }
 .editorCollapseButton:active {
-    background-color: #001aa8;
+    background-color: #2e2d2e;
     box-shadow: none;
 }
 
 .editorRefreshButton {
     display: inline-block;
-    color: white;
     width: 37px;
     padding-top: 11px;
     text-align: center;
@@ -104,14 +103,15 @@ body {
     border: 1px solid black;
     box-shadow: 1px 1px 1px black;
     text-align: center;
-    background-color: #00a312;
+    color: #ffe77b;
+    background-color: #2e2d2e;
 }
 
 .editorRefreshButton:hover {
-    background-color: #00c312;
+    background-color: #3f3e3f;
 }
 .editorRefreshButton:active {
-    background-color: #00a312;
+    background-color: #2e2d2e;
     box-shadow: none;
 }
 
