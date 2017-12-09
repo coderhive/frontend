@@ -123,7 +123,7 @@
 }
 
 .detailsBox{
-    width: 98.5%;
+    width: 99%;
     display: flex;
     flex-direction: row;
     margin: 5px;
@@ -234,6 +234,24 @@
     display: inline-block;
     margin: 10px 5px 0 5px;
 
+}
+
+.description{
+    background-color: #141515;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+}
+
+.description p{
+    font-size: 12px;
+    margin: 0px;
+}
+
+.description h2{
+    font-size: 14px;
+    margin: 0;
 }
 
 @media screen and (max-width: 1300px)  {

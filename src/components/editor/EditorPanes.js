@@ -248,6 +248,10 @@ export default class EditorPage extends PureComponent {
                             </div>
                         </div>
                         </div>
+                        <div className="description">
+                            <h2>Description</h2>
+                            <p>{this.props.data.oneComponent.description}</p>
+                        </div>
                     </div>
                 </div>
             </div>
