@@ -5,7 +5,7 @@ export default function HoneyCombUserGrid({ users, history }) {
 	if (users.length) {
 		let chunks = users
 			.map((user, index, arr) => {
-				let size = Math.floor(Math.random() * (5 - 3)) + 3;
+				let size = 3;
 				return index % size === 0 ? arr.slice(index, index + size) : null;
 			})
 			.filter(u => u);

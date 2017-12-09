@@ -4,16 +4,11 @@ import { Link } from "react-router-dom";
 import LoginComponent from "../login/LoginComponent";
 
 export default class Navbar extends PureComponent {
-	state = {};
-	handleClick = (e, { name }) => this.setState({ activeItem: name });
-
 	logOut = () => {
 		this.props.onLogout();
 	};
 
 	render() {
-		const { activeItem } = this.state;
-
 		if (this.props.data) {
 			let user = this.props.data.loggedUser;
 			if (this.props.data.loading) {
@@ -28,11 +23,14 @@ export default class Navbar extends PureComponent {
 					<Menu.Item style={{ padding: "0" }}>
 						<Dropdown item simple text="Hive" position="right">
 							<Dropdown.Menu>
-								<Dropdown.Item as={Link} to={`/users`}>
-									-- Users
+								<Dropdown.Item as={Link} to={`/users`} active={this.props.match.path === "/users"}>
+									Users
 								</Dropdown.Item>
-								<Dropdown.Item as={Link} to={`/components`}>
-									-- Components
+								<Dropdown.Item
+									as={Link}
+									to={`/components`}
+									active={this.props.match.path === "/components"}>
+									Components
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
@@ -66,10 +64,13 @@ export default class Navbar extends PureComponent {
 					<Menu.Item style={{ padding: "0" }}>
 						<Dropdown item simple text="Hive" position="right">
 							<Dropdown.Menu>
-								<Dropdown.Item as={Link} to={`/users`}>
+								<Dropdown.Item as={Link} to={`/users`} active={this.props.match.path === "/users"}>
 									Users
 								</Dropdown.Item>
-								<Dropdown.Item as={Link} to={`/components`}>
+								<Dropdown.Item
+									as={Link}
+									to={`/components`}
+									active={this.props.match.path === "/components"}>
 									Components
 								</Dropdown.Item>
 							</Dropdown.Menu>

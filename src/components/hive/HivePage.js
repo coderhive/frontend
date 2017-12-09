@@ -5,22 +5,7 @@ import HoneyCombUserGrid from "./HoneyCombUserGrid";
 import HoneyCombComponentGrid from "./HoneyCombComponentGrid";
 
 export default class HivePage extends PureComponent {
-	constructor(props) {
-		super(props);
-
-		// this.state = {
-		// 	toggleComponents: this.props.match.path.replace(/\//, "")
-		// };
-	}
-
-	// handleClick = () => {
-	// 	this.setState(prevState => {
-	// 		return { toggleComponents: !prevState.toggleComponents };
-	// 	});
-	// };
-
 	render() {
-		console.log(this.props);
 		let { data } = this.props;
 
 		if (data.loading) {

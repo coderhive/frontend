@@ -1,7 +1,7 @@
 import EditorPanes from "../components/editor/EditorPanes";
-import {graphql, compose} from "react-apollo";
+import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const oneComponent = gql`
 	query($id: Int!) {
@@ -45,16 +45,12 @@ const oneComponent = gql`
 `;
 
 export default compose(
-    withRouter,
-    graphql(oneComponent, {
-        options: props => ({
-        variables: {
-            id: props.componentId
-        }
-    })
-})
-)
-(EditorPanes);
-
-
-
+	withRouter,
+	graphql(oneComponent, {
+		options: props => ({
+			variables: {
+				id: props.componentId
+			}
+		})
+	})
+)(EditorPanes);
