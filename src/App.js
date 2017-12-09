@@ -24,6 +24,11 @@ class App extends Component {
 		return;
 	};
 
+	handleLogOut = () => {
+		localStorage.removeItem("token");
+		this.setState({ authenticatedId: null });
+	};
+
 	render() {
 		return (
 			<Router>
