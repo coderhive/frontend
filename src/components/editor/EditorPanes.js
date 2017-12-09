@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {Button, Label} from 'semantic-ui-react'
 import NavBar from '../../graphql/NavbarContainer'
+import EditorComments from './EditorComments';
 
 const moment = require('moment');
 
@@ -254,6 +255,7 @@ export default class EditorPage extends PureComponent {
                         </div>
                     </div>
                 </div>
+                <EditorComments data={this.props.data}/>
             </div>
 
         )

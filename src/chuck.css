@@ -255,6 +255,12 @@
     margin: 0;
 }
 
+
+.commentsContainer{
+    background-color: white;
+    margin: 5px 10px 10px 10px;
+}
+
 @media screen and (max-width: 1300px)  {
     .pairHolder{
         border-bottom: 1px solid black;
