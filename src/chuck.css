@@ -124,32 +124,38 @@
 
 .detailsBox{
     width: 98.5%;
+    display: flex;
+    flex-direction: row;
     margin: 5px;
     padding: 6px;
     background-color: #2f2e2f;
     font-size: 20px;
     color: white;
     box-shadow: 0px 0px 0px 3px #373537;
+    flex-wrap: wrap;
+}
+
+.pairHolder{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
 }
 
 .boxDetail1{
-    display: inline-block;
-    width: 275px;
+    flex-grow: 1;
     vertical-align: top;
 }
 
 .boxDetail1 h1{
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 4px;
+    font-size: 15px;
     text-transform: uppercase;
     margin-bottom: 0px;
     vertical-align: top;
 }
 
 .boxDetail1 p{
-    font-size: 12px;
-    margin: 1px;
+    font-size: 10px;
+    margin: 5px 0 0 1px;
     word-spacing: 4px;
 }
 
@@ -158,8 +164,7 @@
     text-align: center;
 }
 .boxDetail2{
-    display: inline-block;
-    width: 370px;
+    flex-grow: 1;
     vertical-align: top;
     border-left: 1px solid black;
     padding-left: 10px;
@@ -169,13 +174,13 @@
 
 .boxDetail2 p{
     display: inline-block;
-    font-size: 18px;
-    margin: 0 15px 0 0;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 7px 0 0;
 }
 
 .boxDetail3{
-    display: inline-block;
-    width: 225px;
+    flex-grow: 1;
     vertical-align: top;
     border-right: 1px solid black;
     text-align: center;
@@ -189,8 +194,7 @@
 }
 
 .boxDetail4{
-    display: inline-block;
-    width: 410px;
+    flex-grow: 1;
     vertical-align: top;
     padding-left: 20px;
 }
@@ -208,7 +212,7 @@
 
 .boxDetail4 h3{
     margin: 0;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     letter-spacing: 4px;
     vertical-align: top;
@@ -231,5 +235,20 @@
     margin: 10px 5px 0 5px;
 
 }
+
+@media screen and (max-width: 1300px)  {
+    .pairHolder{
+        border: 1px solid black;
+        padding: 8px;
+    }
+
+    .boxDetail2{
+        border: none;
+    }
+    .boxDetail3{
+        border: none;
+    }
+}
+
 
 

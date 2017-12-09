@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Button} from 'semantic-ui-react'
+import {Button, Label} from 'semantic-ui-react'
 import NavBar from '../../graphql/NavbarContainer'
 
 const moment = require('moment');
@@ -39,7 +39,7 @@ export default class EditorPage extends PureComponent {
             let firstThreeTags = props.data.oneComponent.tags.slice(0, 3);
             firstThreeTags = firstThreeTags.map(tag => {
                 let newTag = [...tag];
-                newTag.name = tag.name.slice(0, 15);
+                newTag.name = tag.name.slice(0, 14);
                 newTag.id = tag.id;
                 return newTag
             });
@@ -63,7 +63,7 @@ export default class EditorPage extends PureComponent {
     }
 
     renderVote() {
-        if (!this.props.authenticatedId) return 'Please Login Contribute';
+        if (!this.props.authenticatedId) return 'Please login to contribute';
         if (this.state.currentVote) {
             switch (this.state.currentVote.vote) {
                 case 1:
@@ -131,15 +131,16 @@ export default class EditorPage extends PureComponent {
                         </div>
                     </div>
                     <div className="detailsBox">
+                        <div className="pairHolder">
                         <div className="boxDetail1">
-                            <h1>{this.props.data.oneComponent.title}</h1>
+                            <h1>{this.props.data.oneComponent.title.slice(0, 30)}{this.props.data.oneComponent.title.length > 30 ? '...' : ''}</h1>
                             <p>framework: {this.props.data.oneComponent.framework.toUpperCase()}</p>
                             <p>created: {moment(this.props.data.oneComponent.created_at).format('LLLL')}</p>
                             <p>updated: {moment(this.props.data.oneComponent.updated_at).format('LLLL')}</p>
                         </div>
                         <div className="boxDetail2">
                             <div className="centerInBox" style={{marginTop: "6px"}}>
-                                <p>{this.props.data.oneComponent.tags.length} tags:</p>
+                                <p>Tags:</p>
                                 {this.state.tagsToDisplay.map((thisTag) =>
 
                                     <Button
@@ -147,37 +148,39 @@ export default class EditorPage extends PureComponent {
                                         color='yellow'
                                         content={thisTag.name}
                                         key={thisTag.id}
-                                        style={{textTransform: 'capitalize'}}
+                                        style={{textTransform: 'capitalize', fontSize: '12px', paddingLeft: '4px', paddingRight: '4px'}}
                                     />)
 
                                 }
                                 {this.props.data.oneComponent.tags.length > this.state.tagsToDisplay.length ?
                                     <Button
                                         compact
-                                        color='yellow'
-                                        content='...'
+                                        color='black'
+                                        content={`${this.props.data.oneComponent.tags.length - this.state.tagsToDisplay.length}+`}
+                                        style={{fontSize: '12px', paddingLeft: '4px', paddingRight: '4px'}}
                                     />
                                     :
                                     null
                                 }
 
                                 <div style={{marginTop: "10px"}}>
-                                    <p>{this.props.data.oneComponent.fans.length} fans:</p>
+                                    <p>Followers:</p>
                                     {this.state.fansToDisplay.map((thisFan) =>
                                         <Button
                                             compact
                                             color='green'
                                             content={thisFan.display_name}
                                             key={thisFan.id}
-                                            style={{textTransform: 'capitalize'}}
+                                            style={{textTransform: 'capitalize', fontSize: '12px', paddingLeft: '4px', paddingRight: '4px'}}
 
                                         />)
                                     }
                                     {this.props.data.oneComponent.fans.length > this.state.fansToDisplay.length ?
                                         <Button
                                             compact
-                                            color='green'
-                                            content='...'
+                                            color='black'
+                                            content={`${this.props.data.oneComponent.fans.length - this.state.fansToDisplay.length}+`}
+                                            style={{fontSize: '12px', paddingLeft: '4px', paddingRight: '4px'}}
                                         />
                                         :
                                         null
@@ -187,6 +190,8 @@ export default class EditorPage extends PureComponent {
 
 
                         </div>
+                        </div>
+                        <div className="pairHolder">
                         <div className="boxDetail3">
                             <div className="buttonHolder">
                                 <Button
@@ -216,9 +221,9 @@ export default class EditorPage extends PureComponent {
                                 <div className="ownerFace" style={{
                                     backgroundImage: `url('${this.props.data.oneComponent.owner.profile_picture}')`
                                 }}></div>
-                                <div style={{display: 'inline-block'}}>
+                                <div style={{display: 'inline-block', marginRight: "20px"}}>
                                     <p>Built by:</p>
-                                    <h3>{this.props.data.oneComponent.owner.display_name}</h3>
+                                    <h3>{this.props.data.oneComponent.owner.display_name.slice(0, 10)}</h3>
                                     <p>member since:</p>
                                     <p>{moment(this.props.data.oneComponent.owner.created_at).format('MM-YYYY')}</p>
                                 </div>
@@ -242,7 +247,7 @@ export default class EditorPage extends PureComponent {
                                 </div>
                             </div>
                         </div>
-
+                        </div>
                     </div>
                 </div>
             </div>
