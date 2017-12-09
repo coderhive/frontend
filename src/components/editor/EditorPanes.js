@@ -222,7 +222,7 @@ export default class EditorPage extends PureComponent {
                                     backgroundImage: `url('${this.props.data.oneComponent.owner.profile_picture}')`
                                 }}></div>
                                 <div style={{display: 'inline-block', marginRight: "20px"}}>
-                                    <p>Built by:</p>
+                                    <p>built by:</p>
                                     <h3>{this.props.data.oneComponent.owner.display_name.slice(0, 10)}</h3>
                                     <p>member since:</p>
                                     <p>{moment(this.props.data.oneComponent.owner.created_at).format('MM-YYYY')}</p>

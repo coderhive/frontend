@@ -251,6 +251,7 @@
 
 .description h2{
     font-size: 14px;
+    text-transform: uppercase;
     margin: 0;
 }
 
