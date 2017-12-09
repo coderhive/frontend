@@ -257,7 +257,7 @@
 
 @media screen and (max-width: 1300px)  {
     .pairHolder{
-        border: 1px solid black;
+        border-bottom: 1px solid black;
         padding: 8px;
     }
 
