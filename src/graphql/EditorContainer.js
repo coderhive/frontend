@@ -15,6 +15,9 @@ const oneComponent = gql`
       id
       display_name
       experience
+      status
+      profile_picture
+      created_at
     }
     fans {
       id
@@ -23,6 +26,7 @@ const oneComponent = gql`
     votes {
       id
       vote
+      user_id
       display_name
     }
     tags {

@@ -11,6 +11,11 @@ export default class EditorPage extends PureComponent {
         this.state = {
             panel1Collapsed: false,
             panel3Collapsed: false,
+            tagsToDisplay: [],
+            fansToDisplay: [],
+            yesVotes: 0,
+            noVotes: 0,
+            currentVote: null,
         };
     }
 
@@ -20,13 +25,67 @@ export default class EditorPage extends PureComponent {
         if (panelNumber === 4) this.setState({panel4Collapsed: !this.state.panel4Collapsed});
     };
 
+    componentWillReceiveProps(props) {
+        console.log(props.data.oneComponent.fans, '< fans')
+        if (props.data.oneComponent) {
+            let firstThreeFans = props.data.oneComponent.fans.slice(0, 3);
+            firstThreeFans = firstThreeFans.map(fan => {
+                let newFan = [...fan];
+                newFan.display_name = fan.display_name.slice(0, 14);
+                newFan.id = fan.id;
+                return newFan
+            });
 
+            let firstThreeTags = props.data.oneComponent.tags.slice(0, 3);
+            firstThreeTags = firstThreeTags.map(tag => {
+                let newTag = [...tag];
+                newTag.name = tag.name.slice(0, 15);
+                newTag.id = tag.id;
+                return newTag
+            });
+
+            let yesVotes = props.data.oneComponent.votes.filter(vote => vote.vote === 1);
+            let noVotes = props.data.oneComponent.votes.filter(vote => vote.vote === -1);
+            let myVote = null;
+            if (this.props.authenticatedId) {
+                myVote = props.data.oneComponent.votes.find(vote => vote.user_id === this.props.authenticatedId)
+            }
+
+            this.setState({
+                tagsToDisplay: firstThreeTags,
+                fansToDisplay: firstThreeFans,
+                yesVotes: yesVotes.length,
+                noVotes: noVotes.length,
+                currentVote: myVote
+            })
+        }
+
+    }
+
+    renderVote() {
+        if (!this.props.authenticatedId) return 'Please Login Contribute';
+        if (this.state.currentVote) {
+            switch (this.state.currentVote.vote) {
+                case 1:
+                    return `You voted in favor of this one.`
+                case -1:
+                    return `You voted against this one.`
+            }
+        }
+        return "You haven't voted yet"
+    }
 
     render() {
         if (this.props.data.loading) return (<p>LOADING...</p>);
+        if (!this.props.data.oneComponent) return (<p>LOADING...</p>);
         return (
             <div>
-                <NavBar />
+                <NavBar
+                    authenticatedId={this.props.authenticatedId}
+                    user={[this.props.loggedUser]}
+                    onSubmit={this.props.handleLogin}
+                    onLogout={this.props.handleLogOut}
+                />
                 <div className="editorContainer">
                     <div className="editorPaneContainer">
                         <div className={this.state.panel1Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
@@ -79,40 +138,111 @@ export default class EditorPage extends PureComponent {
                             <p>updated: {moment(this.props.data.oneComponent.updated_at).format('LLLL')}</p>
                         </div>
                         <div className="boxDetail2">
-                            <p>{this.props.data.oneComponent.tags.length} tags:</p>
-                            {this.props.data.oneComponent.tags.map((thisTag) =>
-                                <div className="tag" key={thisTag.id}>{thisTag.name}</div>)
-                            }
-                            <div className="tag">...</div>
-                            <div style={{marginTop: "20px"}}>
-                                <p>{this.props.data.oneComponent.fans.length} fans:</p>
-                                {this.props.data.oneComponent.fans.map((thisFan) =>
-                                    <div className="fan" key={thisFan.id}>{thisFan.display_name}</div>)
+                            <div className="centerInBox" style={{marginTop: "6px"}}>
+                                <p>{this.props.data.oneComponent.tags.length} tags:</p>
+                                {this.state.tagsToDisplay.map((thisTag) =>
+
+                                    <Button
+                                        compact
+                                        color='yellow'
+                                        content={thisTag.name}
+                                        key={thisTag.id}
+                                    />)
+
                                 }
-                                <div className="fan">...</div>
+                                {this.props.data.oneComponent.tags.length > this.state.tagsToDisplay.length ?
+                                    <Button
+                                        compact
+                                        color='yellow'
+                                        content='...'
+                                        icon='connectdevelop'
+                                    />
+                                    :
+                                    null
+                                }
+
+                                <div style={{marginTop: "10px"}}>
+                                    <p>{this.props.data.oneComponent.fans.length} fans:</p>
+                                    {this.state.fansToDisplay.map((thisFan) =>
+                                        <Button
+                                            compact
+                                            color='green'
+                                            content={thisFan.display_name}
+                                            key={thisFan.id}
+                                        />)
+                                    }
+                                    {this.props.data.oneComponent.fans.length > this.state.fansToDisplay.length ?
+                                        <div className="fan">...</div>
+                                        :
+                                        null
+                                    }
+                                </div>
                             </div>
+
+
                         </div>
                         <div className="boxDetail3">
-                            <Button
-                                color='green'
-                                content='Like'
-                                icon='like outline'
-                                label={{basic: true, color: 'green', pointing: 'left', content: '2,048'}}
-                                style={{borderBottom: "25px"}}
-                            />
-                            <Button
-                                color='black'
-                                content='Dislike'
-                                icon='dislike outline'
-                                label={{basic: true, color: 'black', pointing: 'left', content: '2,048'}}
-                            />
+                            <div className="buttonHolder">
+                                <Button
+                                    color='green'
+                                    content=''
+                                    icon='like outline'
+                                    label={{
+                                        basic: true,
+                                        color: 'green',
+                                        pointing: 'left',
+                                        content: this.state.yesVotes
+                                    }}
+                                />
+                            </div>
+                            <div className="buttonHolder">
+                                <Button
+                                    color='black'
+                                    content=''
+                                    icon='dislike outline'
+                                    label={{basic: true, color: 'black', pointing: 'left', content: this.state.noVotes}}
+                                />
+                            </div>
+                            <p>{this.renderVote()}</p>
                         </div>
+                        <div className="boxDetail4">
+                            <div className="centerInBox">
+                                <div className="ownerFace" style={{
+                                    backgroundImage: `url('${this.props.data.oneComponent.owner.profile_picture}')`
+                                }}></div>
+                                <div style={{display: 'inline-block'}}>
+                                    <p>Built by:</p>
+                                    <h3>{this.props.data.oneComponent.owner.display_name}</h3>
+                                    <p>member since:</p>
+                                    <p>{moment(this.props.data.oneComponent.owner.created_at).format('MM-YYYY')}</p>
+                                </div>
+                                <div style={{display: 'inline-block', verticalAlign: 'top', marginLeft: '20px'}}>
+                                    <div style={{margin: "6px"}}>
+                                        <Button
+                                            compact
+                                            color='yellow'
+                                            content='Follow Code'
+                                            icon='bookmark'
+                                        />
+                                    </div>
+                                    <div style={{margin: "6px"}}>
+                                        <Button
+                                            compact
+                                            color='green'
+                                            content='Follow User'
+                                            icon='user'
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                </div>
+            </div>
 
-                )
-                }
+        )
+    }
 
-                }
+}
 
