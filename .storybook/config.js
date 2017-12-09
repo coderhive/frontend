@@ -1,9 +1,8 @@
 import { configure } from "@storybook/react";
 function loadStories() {
 	require("../src/index.css");
-    require("../src/chuck.css");
-
-    require("../src/components/hive/HoneyCombUserComponent.story");
+	require("../src/chuck.css");
+	require("../src/components/hive/HoneyCombUserComponent.story");
 	require("../src/components/hive/HoneyCombUserGrid.story");
 	require("../src/components/hive/HivePage.story");
 	require("../src/components/nav/Navbar.story");
@@ -13,6 +12,7 @@ function loadStories() {
 	require("../src/components/editor/EditorPanes.story");
 	require("../src/components/editor/EditorDetails.story");
 	require("../src/components/login/SignupForm.story");
+	require("../src/components/editor/render/RenderComponent.story");
 }
 
 configure(loadStories, module);
