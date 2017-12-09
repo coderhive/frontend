@@ -134,7 +134,7 @@
 
 .boxDetail1{
     display: inline-block;
-    width: 300px;
+    width: 275px;
     vertical-align: top;
 }
 
@@ -159,13 +159,12 @@
 }
 .boxDetail2{
     display: inline-block;
-    width: 350px;
+    width: 370px;
     vertical-align: top;
     border-left: 1px solid black;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     border-right: 1px solid black;
-    margin-right: 20px;
 }
 
 .boxDetail2 p{
@@ -176,9 +175,10 @@
 
 .boxDetail3{
     display: inline-block;
-    width: 255px;
+    width: 225px;
     vertical-align: top;
     border-right: 1px solid black;
+    text-align: center;
 
 }
 
@@ -226,38 +226,9 @@
     background-size: cover;
 }
 
-.tag {
-    display: inline-block;
-    padding: 3px;
-    margin-right: 5px;
-    border-radius: 3px;
-    font-size: 18px;
-    background-color: #ffe77b;
-    color: black;
-    min-width: 26px;
-    text-align: center;
-    box-shadow: 1px 1px 1px black;
-    text-transform: capitalize;
-}
-
-.fan {
-    display: inline-block;
-    padding: 3px;
-    margin-right: 5px;
-    border-radius: 3px;
-    font-size: 18px;
-    background-color: #a4ff95;
-    color: black;
-    min-width: 26px;
-    text-align: center;
-    box-shadow: 1px 1px 1px black;
-    text-transform: capitalize;
-
-}
-
 .buttonHolder{
     display: inline-block;
-    margin: 10px 10px 0 10px;
+    margin: 10px 5px 0 5px;
 
 }
 

@@ -147,6 +147,7 @@ export default class EditorPage extends PureComponent {
                                         color='yellow'
                                         content={thisTag.name}
                                         key={thisTag.id}
+                                        style={{textTransform: 'capitalize'}}
                                     />)
 
                                 }
@@ -155,7 +156,6 @@ export default class EditorPage extends PureComponent {
                                         compact
                                         color='yellow'
                                         content='...'
-                                        icon='connectdevelop'
                                     />
                                     :
                                     null
@@ -169,10 +169,16 @@ export default class EditorPage extends PureComponent {
                                             color='green'
                                             content={thisFan.display_name}
                                             key={thisFan.id}
+                                            style={{textTransform: 'capitalize'}}
+
                                         />)
                                     }
                                     {this.props.data.oneComponent.fans.length > this.state.fansToDisplay.length ?
-                                        <div className="fan">...</div>
+                                        <Button
+                                            compact
+                                            color='green'
+                                            content='...'
+                                        />
                                         :
                                         null
                                     }
@@ -216,7 +222,7 @@ export default class EditorPage extends PureComponent {
                                     <p>member since:</p>
                                     <p>{moment(this.props.data.oneComponent.owner.created_at).format('MM-YYYY')}</p>
                                 </div>
-                                <div style={{display: 'inline-block', verticalAlign: 'top', marginLeft: '20px'}}>
+                                <div style={{display: 'inline-block', verticalAlign: 'top'}}>
                                     <div style={{margin: "6px"}}>
                                         <Button
                                             compact
