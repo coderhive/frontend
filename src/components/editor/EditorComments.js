@@ -21,7 +21,7 @@ export default class EditorComments extends PureComponent {
         console.log('authenticated Id in comments: ', this.props.authenticatedId)
         return (
             <div className="commentsContainer">
-                <h2>Comments:</h2>
+                <h2>{this.props.data.oneComponent.comments.length} Comments:</h2>
                 {/*TODO ADD IN CONDITIONAL FOR NO COMMENTS YET*/}
                 {this.props.data.oneComponent.comments.map(thisComment =>
                     <div className="individualComment" key={thisComment.id}>
