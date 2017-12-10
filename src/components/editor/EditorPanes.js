@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Button, Label} from 'semantic-ui-react'
+import {Button} from 'semantic-ui-react'
 import NavBar from '../../graphql/NavbarContainer'
 import EditorComments from './EditorComments';
 
@@ -27,7 +27,6 @@ export default class EditorPage extends PureComponent {
     };
 
     componentWillReceiveProps(props) {
-        console.log(props.data.oneComponent.fans, '< fans')
         if (props.data.oneComponent) {
             let firstThreeFans = props.data.oneComponent.fans.slice(0, 3);
             firstThreeFans = firstThreeFans.map(fan => {
@@ -68,9 +67,11 @@ export default class EditorPage extends PureComponent {
         if (this.state.currentVote) {
             switch (this.state.currentVote.vote) {
                 case 1:
-                    return `You voted in favor of this one.`
+                    return `You voted in favor of this one.`;
                 case -1:
-                    return `You voted against this one.`
+                    return `You voted against this one.`;
+                default:
+                    return "Your vote hasn't been counted yet.";
             }
         }
         return "You haven't voted yet"
@@ -133,121 +134,136 @@ export default class EditorPage extends PureComponent {
                     </div>
                     <div className="detailsBox">
                         <div className="pairHolder">
-                        <div className="boxDetail1">
-                            <h1>{this.props.data.oneComponent.title.slice(0, 30)}{this.props.data.oneComponent.title.length > 30 ? '...' : ''}</h1>
-                            <p>framework: {this.props.data.oneComponent.framework.toUpperCase()}</p>
-                            <p>created: {moment(this.props.data.oneComponent.created_at).format('LLLL')}</p>
-                            <p>updated: {moment(this.props.data.oneComponent.updated_at).format('LLLL')}</p>
-                        </div>
-                        <div className="boxDetail2">
-                            <div className="centerInBox" style={{marginTop: "6px"}}>
-                                <p>Tags:</p>
-                                {this.state.tagsToDisplay.map((thisTag) =>
+                            <div className="boxDetail1">
+                                <h1>{this.props.data.oneComponent.title.slice(0, 30)}{this.props.data.oneComponent.title.length > 30 ? '...' : ''}</h1>
+                                <p>framework: {this.props.data.oneComponent.framework.toUpperCase()}</p>
+                                <p>created: {moment(this.props.data.oneComponent.created_at).format('LLLL')}</p>
+                                <p>updated: {moment(this.props.data.oneComponent.updated_at).format('LLLL')}</p>
+                            </div>
+                            <div className="boxDetail2">
+                                <div className="centerInBox" style={{marginTop: "6px"}}>
+                                    <p>Tags:</p>
+                                    {this.state.tagsToDisplay.map((thisTag) =>
 
-                                    <Button
-                                        compact
-                                        color='yellow'
-                                        content={thisTag.name}
-                                        key={thisTag.id}
-                                        style={{textTransform: 'capitalize', fontSize: '12px', paddingLeft: '4px', paddingRight: '4px'}}
-                                    />)
-
-                                }
-                                {this.props.data.oneComponent.tags.length > this.state.tagsToDisplay.length ?
-                                    <Button
-                                        compact
-                                        color='black'
-                                        content={`${this.props.data.oneComponent.tags.length - this.state.tagsToDisplay.length}+`}
-                                        style={{fontSize: '12px', paddingLeft: '4px', paddingRight: '4px'}}
-                                    />
-                                    :
-                                    null
-                                }
-
-                                <div style={{marginTop: "10px"}}>
-                                    <p>Followers:</p>
-                                    {this.state.fansToDisplay.map((thisFan) =>
                                         <Button
                                             compact
-                                            color='green'
-                                            content={thisFan.display_name}
-                                            key={thisFan.id}
-                                            style={{textTransform: 'capitalize', fontSize: '12px', paddingLeft: '4px', paddingRight: '4px'}}
-
+                                            color='yellow'
+                                            content={thisTag.name}
+                                            key={thisTag.id}
+                                            style={{
+                                                textTransform: 'capitalize',
+                                                fontSize: '12px',
+                                                paddingLeft: '4px',
+                                                paddingRight: '4px'
+                                            }}
                                         />)
+
                                     }
-                                    {this.props.data.oneComponent.fans.length > this.state.fansToDisplay.length ?
+                                    {this.props.data.oneComponent.tags.length > this.state.tagsToDisplay.length ?
                                         <Button
                                             compact
                                             color='black'
-                                            content={`${this.props.data.oneComponent.fans.length - this.state.fansToDisplay.length}+`}
+                                            content={`${this.props.data.oneComponent.tags.length - this.state.tagsToDisplay.length}+`}
                                             style={{fontSize: '12px', paddingLeft: '4px', paddingRight: '4px'}}
                                         />
                                         :
                                         null
                                     }
+
+                                    <div style={{marginTop: "10px"}}>
+                                        <p>Followers:</p>
+                                        {this.state.fansToDisplay.map((thisFan) =>
+                                            <Button
+                                                compact
+                                                color='green'
+                                                content={thisFan.display_name}
+                                                key={thisFan.id}
+                                                style={{
+                                                    textTransform: 'capitalize',
+                                                    fontSize: '12px',
+                                                    paddingLeft: '4px',
+                                                    paddingRight: '4px'
+                                                }}
+
+                                            />)
+                                        }
+                                        {this.props.data.oneComponent.fans.length > this.state.fansToDisplay.length ?
+                                            <Button
+                                                compact
+                                                color='black'
+                                                content={`${this.props.data.oneComponent.fans.length - this.state.fansToDisplay.length}+`}
+                                                style={{fontSize: '12px', paddingLeft: '4px', paddingRight: '4px'}}
+                                            />
+                                            :
+                                            null
+                                        }
+                                    </div>
                                 </div>
+
+
                             </div>
-
-
-                        </div>
                         </div>
                         <div className="pairHolder">
-                        <div className="boxDetail3">
-                            <div className="buttonHolder">
-                                <Button
-                                    color='green'
-                                    content=''
-                                    icon='like outline'
-                                    label={{
-                                        basic: true,
-                                        color: 'green',
-                                        pointing: 'left',
-                                        content: this.state.yesVotes
-                                    }}
-                                />
-                            </div>
-                            <div className="buttonHolder">
-                                <Button
-                                    color='black'
-                                    content=''
-                                    icon='dislike outline'
-                                    label={{basic: true, color: 'black', pointing: 'left', content: this.state.noVotes}}
-                                />
-                            </div>
-                            <p>{this.renderVote()}</p>
-                        </div>
-                        <div className="boxDetail4">
-                            <div className="centerInBox">
-                                <div className="ownerFace" style={{
-                                    backgroundImage: `url('${this.props.data.oneComponent.owner.profile_picture}')`
-                                }}></div>
-                                <div style={{display: 'inline-block', marginRight: "20px"}}>
-                                    <p>built by:</p>
-                                    <h3>{this.props.data.oneComponent.owner.display_name.slice(0, 10)}</h3>
-                                    <p>member since:</p>
-                                    <p>{moment(this.props.data.oneComponent.owner.created_at).format('MM-YYYY')}</p>
+                            <div className="boxDetail3">
+                                <div className="buttonHolder">
+                                    <Button
+                                        color='green'
+                                        content=''
+                                        icon='like outline'
+                                        label={{
+                                            basic: true,
+                                            color: 'green',
+                                            pointing: 'left',
+                                            content: this.state.yesVotes
+                                        }}
+                                    />
                                 </div>
-                                <div style={{display: 'inline-block', verticalAlign: 'top'}}>
-                                    <div style={{margin: "6px"}}>
-                                        <Button
-                                            compact
-                                            color='yellow'
-                                            content='Follow Code'
-                                            icon='bookmark'
-                                        />
+                                <div className="buttonHolder">
+                                    <Button
+                                        color='black'
+                                        content=''
+                                        icon='dislike outline'
+                                        label={{
+                                            basic: true,
+                                            color: 'black',
+                                            pointing: 'left',
+                                            content: this.state.noVotes
+                                        }}
+                                    />
+                                </div>
+                                <p>{this.renderVote()}</p>
+                            </div>
+                            <div className="boxDetail4">
+                                <div className="centerInBox">
+                                    <div className="ownerFace" style={{
+                                        backgroundImage: `url('${this.props.data.oneComponent.owner.profile_picture}')`
+                                    }}></div>
+                                    <div style={{display: 'inline-block', marginRight: "20px"}}>
+                                        <p>built by:</p>
+                                        <h3>{this.props.data.oneComponent.owner.display_name.slice(0, 10)}</h3>
+                                        <p>member since:</p>
+                                        <p>{moment(this.props.data.oneComponent.owner.created_at).format('MM-YYYY')}</p>
                                     </div>
-                                    <div style={{margin: "6px"}}>
-                                        <Button
-                                            compact
-                                            color='green'
-                                            content='Follow User'
-                                            icon='user'
-                                        />
+                                    <div style={{display: 'inline-block', verticalAlign: 'top'}}>
+                                        <div style={{margin: "6px"}}>
+                                            <Button
+                                                compact
+                                                color='yellow'
+                                                content='Follow Code'
+                                                icon='bookmark'
+                                            />
+                                        </div>
+                                        <div style={{margin: "6px"}}>
+                                            <Button
+                                                compact
+                                                color='green'
+                                                content='Follow User'
+                                                icon='user'
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                         <div className="description">
                             <h2>Description</h2>
@@ -255,7 +271,10 @@ export default class EditorPage extends PureComponent {
                         </div>
                     </div>
                 </div>
-                <EditorComments data={this.props.data}/>
+                <EditorComments
+                    data={this.props.data}
+                    authenticatedId={this.props.authenticatedId}
+                    />
             </div>
 
         )

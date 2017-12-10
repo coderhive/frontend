@@ -36,6 +36,10 @@ const oneComponent = gql`
     comments {
       id
       comment
+      display_name
+      profile_picture
+      user_id
+      created_at
     }
     score
     updated_at
