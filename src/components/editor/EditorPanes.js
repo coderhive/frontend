@@ -234,35 +234,77 @@ export default class EditorPage extends PureComponent {
                                 <p>{this.renderVote()}</p>
                             </div>
                             <div className="boxDetail4">
-                                <div className="centerInBox">
-                                    <div className="ownerFace" style={{
-                                        backgroundImage: `url('${this.props.data.oneComponent.owner.profile_picture}')`
-                                    }}></div>
-                                    <div style={{display: 'inline-block', marginRight: "20px"}}>
-                                        <p>built by:</p>
-                                        <h3>{this.props.data.oneComponent.owner.display_name.slice(0, 10)}</h3>
-                                        <p>member since:</p>
-                                        <p>{moment(this.props.data.oneComponent.owner.created_at).format('MM-YYYY')}</p>
-                                    </div>
-                                    <div style={{display: 'inline-block', verticalAlign: 'top'}}>
-                                        <div style={{margin: "6px"}}>
-                                            <Button
-                                                compact
-                                                color='yellow'
-                                                content='Follow Code'
-                                                icon='bookmark'
-                                            />
+
+                                {this.props.data.oneComponent.owner_user_id === this.props.authenticatedId ?
+                                    <div className="centerInBox">
+                                        <div className="ownerFace" style={{
+                                            backgroundImage: `url('${this.props.data.oneComponent.owner.profile_picture}')`,
+                                            verticalAlign: "middle"
+                                        }}></div>
+                                        <div style={{display: "inline-block", verticalAlign: "middle"}}>
+                                            <div style={{margin: "3px"}}>
+                                                <Button
+                                                    compact
+                                                    color='yellow'
+                                                    content='Save Component'
+                                                    icon='save'
+                                                    style={{fontSize: "11px", width: "150px", textAlign: "left"}}
+                                                />
+                                            </div>
+                                            <div style={{margin: "3px"}}>
+                                                <Button
+                                                    compact
+                                                    color='green'
+                                                    content='Edit Information'
+                                                    icon='info circle'
+                                                    style={{fontSize: "11px", width: "150px", textAlign: "left"}}
+                                                />
+                                            </div>
+                                            <div style={{margin: "3px"}}>
+                                                <Button
+                                                    compact
+                                                    color='black'
+                                                    content='Delete Component'
+                                                    icon='delete'
+                                                    style={{fontSize: "11px", width: "150px", textAlign: "left"}}
+                                                />
+                                            </div>
                                         </div>
-                                        <div style={{margin: "6px"}}>
-                                            <Button
-                                                compact
-                                                color='green'
-                                                content='Follow User'
-                                                icon='user'
-                                            />
+                                    </div>
+                                    :
+
+                                    <div className="centerInBox">
+                                        <div className="ownerFace" style={{
+                                            backgroundImage: `url('${this.props.data.oneComponent.owner.profile_picture}')`
+                                        }}></div>
+                                        <div style={{display: 'inline-block', marginRight: "20px"}}>
+                                            <p>built by:</p>
+                                            <h3>{this.props.data.oneComponent.owner.display_name.slice(0, 10)}</h3>
+                                            <p>experience:</p>
+                                            <p>{this.props.data.oneComponent.owner.experience}</p>
+                                        </div>
+                                        <div style={{display: 'inline-block', verticalAlign: 'top'}}>
+                                            <div style={{margin: "6px"}}>
+                                                <Button
+                                                    compact
+                                                    color='yellow'
+                                                    content='Follow Code'
+                                                    icon='bookmark'
+                                                />
+                                            </div>
+                                            <div style={{margin: "6px"}}>
+                                                <Button
+                                                    compact
+                                                    color='green'
+                                                    content='Follow User'
+                                                    icon='user'
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
+
+
                             </div>
                         </div>
                         <div className="description">
@@ -274,7 +316,7 @@ export default class EditorPage extends PureComponent {
                 <EditorComments
                     data={this.props.data}
                     authenticatedId={this.props.authenticatedId}
-                    />
+                />
             </div>
 
         )
