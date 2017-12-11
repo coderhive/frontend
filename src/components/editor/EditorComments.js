@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
-import { Button, Form } from 'semantic-ui-react'
+import {Button, Form} from 'semantic-ui-react'
+
 const moment = require('moment');
 
 export default class EditorComments extends PureComponent {
@@ -42,18 +43,27 @@ export default class EditorComments extends PureComponent {
                         </div>
                     </div>
                 )}
+
                 <div className="commentForm">
                     <h2>Join the Conversation</h2>
-                    <p>Leave your comment below</p>
-                    <Form style={{textAlign: "right"}}>
+
+                    {!this.props.authenticatedId ?
+                        <p>Please login to leave a comment.</p>
+                        :
+                        <div>
+                            <p>Leave your comment below</p>
+                            <Form style={{textAlign: "right"}}>
                         <textarea
                             type="text"
                             value={this.state.value}
                             onChange={this.handleChange}
                             style={{minHeight: "100px"}}
                         />
-                        <Button style={{margin: "12px 0 0 12px"}}>Submit</Button>
-                    </Form>
+                                <Button style={{margin: "12px 0 0 12px"}}>Submit</Button>
+                            </Form>
+                        </div>
+                    }
+
                 </div>
             </div>
         )
