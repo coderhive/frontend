@@ -351,5 +351,97 @@
     }
 }
 
+.userContainer{
+    margin: 53px 8% 5px 8%;
+    background-color: white;
+}
+
+.userContainer h1{
+    text-transform: capitalize;
+    font-weight: 100;
+    letter-spacing: 3px;
+}
+
+.centeredSpinner{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.profileBioTopBlack{
+    background-color: #181718;
+    padding: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.profileBioTopBlack h4{
+    color: #181718;
+    font-size: 5px;
+    margin: 5px;
+}
+
+.topBioHolder1 {
+    flex-grow: 1;
+    padding: 20px;
+    vertical-align: middle;
+    min-width: 270px;
+}
+
+.topBioHolder2 {
+    flex-grow: 10;
+    padding: 20px;
+    vertical-align: middle;
+    border: 1px solid black;
+    min-width: 300px;
+    box-shadow: 1px 1px 1px 1px black;
+    color: white;
+}
+
+.topBioHolder2 h1{
+    font-size: 35px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+
+.topBioHolder2 h2 {
+    color: white;
+    margin: 0px;
+    font-weight: 100;
+    letter-spacing: 3px;
+}
+
+.topBioHolder2 h3 {
+    color: white;
+    margin: 0px;
+    font-weight: 100;
+    letter-spacing: 3px;
+}
+
+.topBioHolder2 h4 {
+    color: white;
+    margin: 0 0 15px 0;
+    font-weight: 100;
+    font-size: 15px;
+}
+
+.topBioHolder2 p {
+    background-color: #fff;
+    color: black;
+    font-size: 16px;
+    height: 200px;
+    overflow: scroll;
+    padding: 10px;
+}
+
+
+
+
 
 
