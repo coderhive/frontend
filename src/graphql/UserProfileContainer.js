@@ -22,6 +22,7 @@ const oneUserById = gql`
     		fanOf{
     			id
     			component_id
+    			component_picture
     			title
     			created_at
     			updated_at
@@ -29,6 +30,7 @@ const oneUserById = gql`
     		followers{
     			id
     			display_name
+    			profile_picture
     			created_at
     			updated_at
 
@@ -36,6 +38,7 @@ const oneUserById = gql`
     		whoIFollow{
     			id
     			display_name
+    			profile_picture
     			created_at
     			updated_at
 
@@ -51,10 +54,12 @@ const oneUserById = gql`
     			user{
     				id
     				display_name
+    				profile_picture
     			}
     			component{
     				id
     				title
+    				component_picture
     			}
 				created_at
     			updated_at
