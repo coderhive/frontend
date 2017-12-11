@@ -15,6 +15,7 @@ const oneUserById = gql`
     		components{
     			id
     			title
+    			component_picture
     			description
     			created_at
     			updated_at
@@ -24,6 +25,7 @@ const oneUserById = gql`
     			component_id
     			component_picture
     			title
+    			description
     			created_at
     			updated_at
     		}
