@@ -17,8 +17,8 @@ export default class EditorComments extends PureComponent {
     };
 
     render() {
-        if (this.props.data.loading) return (<p>LOADING...</p>);
-        if (!this.props.data.oneComponent) return (<p>LOADING...</p>);
+        if (this.props.data.loading) return (<p style={{color: "white"}}>LOADING PAGE...</p>);
+        if (!this.props.data.oneComponent) return (<p style={{color: "white"}}>LOADING COMPONENT...}</p>);
         console.log('authenticated Id in comments: ', this.props.authenticatedId)
         return (
             <div className="commentsContainer">

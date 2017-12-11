@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HiveContainer from "./graphql/HiveContainer";
 import SignupContainer from "./graphql/SignupContainer";
 import EditorContainer from "./graphql/EditorContainer";
+import UserProfileContainer from "./graphql/UserProfileContainer";
 import login from "./helperFunctions/login";
 import jwtDecode from "jwt-decode";
 
@@ -80,6 +81,21 @@ class App extends Component {
 						render={() => {
 							return (
 								<HiveContainer
+									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
+									authenticatedId={this.state.authenticatedId}
+								/>
+							);
+						}}
+					/>
+					<Route
+						exact
+						path="/users/:userId"
+						render={({ match }) => {
+                            const userId = parseInt(match.params.userId, 10);
+                            return (
+								<UserProfileContainer
+									userId={userId}
 									handleLogin={this.handleLogin}
 									handleLogOut={this.handleLogOut}
 									authenticatedId={this.state.authenticatedId}
