@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import RenderComponent from "./RenderComponent";
 
 let codeString =
-	"<div className='first'><p>Hi <mark>there</mark> friend.</p><MyComponent><div>hi</div></MyComponent></div>";
+	"import React, { PureComponent } from 'react'; class MyComponent extends PureComponent {render() {return <div>hi</div>}}";
 
 storiesOf("RenderComponent", module).add("Happy Path", () =>
 	<RenderComponent
