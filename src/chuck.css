@@ -387,19 +387,21 @@
 
 .topBioHolder1 {
     flex-grow: 1;
-    padding: 20px;
+    margin: 0 40px 0 40px;
+    text-align: center;
     vertical-align: middle;
     min-width: 270px;
 }
 
 .topBioHolder2 {
-    flex-grow: 10;
+    flex-grow: 3;
     padding: 20px;
     vertical-align: middle;
     border: 1px solid black;
     min-width: 300px;
     box-shadow: 1px 1px 1px 1px black;
     color: white;
+    margin: 0 40px 0 40px;
 }
 
 .topBioHolder2 h1{
@@ -437,8 +439,7 @@
     background-color: #fff;
     color: black;
     font-size: 16px;
-    height: 200px;
-    overflow: scroll;
+    height: 70px;
     padding: 10px;
 }
 

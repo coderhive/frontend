@@ -43,24 +43,33 @@ export default class UserProfile extends PureComponent {
                     <div className="userContainer">
                         <div>
                             <div className="profileBioTopBlack">
-                                {/*<h4>User Profile:</h4>*/}
-                                <div className="topBioHolder1">
-                                    <div className="honeyCombComponent" style={styles.container}>
-                                        <div style={
-                                            this.props.data.oneUserById.profile_picture
-                                                ? {backgroundImage: "url(" + this.props.data.oneUserById.profile_picture + ")"}
-                                                : {
-                                                    backgroundImage:
-                                                        "url(https://static.pexels.com/photos/20787/pexels-photo.jpg)"
-                                                }
-                                        }
-                                             className="honeyCombComponent">
-                                            <div className="honeyCombTop"/>
-                                            <div className="honeyCombBottom"/>
-                                        </div>
 
-                                    </div>
-                                </div>
+                                <div className="ownerFace" style={{
+                                    backgroundImage: `url('${this.props.data.oneUserById.profile_picture}')`,
+                                    margin: "30px",
+                                    borderRadius: "50%",
+                                    width: "200px",
+                                    height: "200px",
+                                    boxShadow: "1px 1px 1px 1px black"
+                                }} />
+
+                                {/*<div className="topBioHolder1">*/}
+                                    {/*<div className="honeyCombComponent2" style={styles.container}>*/}
+                                        {/*<div style={*/}
+                                            {/*this.props.data.oneUserById.profile_picture*/}
+                                                {/*? {backgroundImage: "url(" + this.props.data.oneUserById.profile_picture + ")"}*/}
+                                                {/*: {*/}
+                                                    {/*backgroundImage:*/}
+                                                        {/*"url(https://static.pexels.com/photos/20787/pexels-photo.jpg)"*/}
+                                                {/*}*/}
+                                        {/*}*/}
+                                             {/*className="honeyCombComponent2">*/}
+                                            {/*<div className="honeyCombTop2"/>*/}
+                                            {/*<div className="honeyCombBottom2"/>*/}
+                                        {/*</div>*/}
+
+                                    {/*</div>*/}
+                                {/*</div>*/}
 
                                 <div className="topBioHolder2">
                                     <h1>{this.props.data.oneUserById.display_name}</h1>
