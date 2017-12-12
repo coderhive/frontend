@@ -23,7 +23,7 @@ export default class UserProfile extends PureComponent {
 
 
     componentWillReceiveProps(props) {
-        console.log(props)
+        console.log(props);
     }
 
     render() {
@@ -108,6 +108,7 @@ export default class UserProfile extends PureComponent {
                                                 userId={this.props.data.oneUserById.id}
                                                 authenticatedId={this.props.authenticatedId}
                                                 title={"Components I Follow"}
+                                                controls={true}
                                             />
                                         </div>
                                     </div>
@@ -126,6 +127,7 @@ export default class UserProfile extends PureComponent {
                                                 userId={this.props.data.oneUserById.id}
                                                 authenticatedId={this.props.authenticatedId}
                                                 title={"Who I Follow"}
+                                                controls={true}
                                             />
                                         </div>
                                     </div>

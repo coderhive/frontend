@@ -7,7 +7,13 @@ export default class UserProfileComponentItem extends PureComponent {
 
     render() {
         return (
-            <div style={{flexGrow: "1", borderTop: "1px solid darkgrey", display: "flex", flexDirection: "row", verticalAlign: "middle"}}>
+            <div style={{
+                flexGrow: "1",
+                borderTop: "1px solid darkgrey",
+                display: "flex",
+                flexDirection: "row",
+                verticalAlign: "middle"
+            }}>
                 <div className="ownerFace"
                      style={{
                          backgroundImage: `url('${this.props.data.component_picture}')`,
@@ -19,9 +25,15 @@ export default class UserProfileComponentItem extends PureComponent {
                 <div style={{flexGrow: "6", padding: "20px", verticalAlign: "middle"}}>
                     <h3 style={{fontSize: "14px", margin: "3px"}}>{this.props.data.title}</h3>
                     <p style={{fontSize: "10px", margin: "3px"}}>{this.props.data.description.slice(0, 200)}</p>
-                    <p style={{fontSize: "10px", fontWeight: "bold", margin: "3px"}}>created at: {moment(this.props.data.updated_at).format('LLLL')}<br/>
-                    updated at: {moment(this.props.data.created_at).format('LLLL')}</p>
+                    <p style={{fontSize: "10px", fontWeight: "bold", margin: "3px"}}>created
+                        at: {moment(this.props.data.updated_at).format('LLLL')}<br/>
+                        updated at: {moment(this.props.data.created_at).format('LLLL')}</p>
                 </div>
+                {this.props.userId === this.props.authenticatedId && this.props.controls ?
+                    <p className="stopFollowButton">
+                        unfollow
+                    </p>
+                    : null}
             </div>
         )
     }

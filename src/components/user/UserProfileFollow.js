@@ -22,6 +22,9 @@ export default class UserProfileComponent extends PureComponent {
                         {this.props.data.map(user =>
                           <UserProfileFollowItem
                             data={user}
+                            userId={this.props.userId}
+                            authenticatedId={this.props.authenticatedId}
+                            controls={this.props.controls}
                           />
                         )}
                     </div>

@@ -17,9 +17,14 @@ export default class UserProfileComponent extends PureComponent {
                     :
                     <div>
                         {this.props.data.map(component =>
-                          <UserProfileComponentItem
-                            data={component}
-                          />
+                            <div key={component.id}>
+                                <UserProfileComponentItem
+                                    data={component}
+                                    userId={this.props.userId}
+                                    authenticatedId={this.props.authenticatedId}
+                                    controls={this.props.controls}
+                                />
+                            </div>
                         )}
                     </div>
                 }
