@@ -33,16 +33,17 @@ export default class UserProfileFeedItem extends PureComponent {
 
     render() {
         return (
-            <div className="userProfileFeedItem">
-                <div style={{float: 'left', width: '100px'}}>
+            <div className="userProfileFeedItem" style={{display: "flex"}}>
+                <div style={{width: "100px"}}>
                     <div className="ownerFace" style={{
                         backgroundImage: `url('${this.props.data.user.profile_picture}')`,
-                        verticalAlign: "middle"
+                        verticalAlign: "middle",
+                        borderRadius: "50%",
                     }} />
                 </div>
-                <div>
-                    <p style={{fontWeight: 'bold'}}>{moment(this.props.data.created_at).format('LLLL')}</p>
-                    <p style={{textTransform: "capitalize"}}>{this.sentenceGenerator()}</p>
+                <div style={{width: "700px"}}>
+                    <p style={{color: 'grey'}}>{moment(this.props.data.created_at).fromNow()}</p>
+                    <p style={{textTransform: "capitalize", fontWeight: 'bold'}}>{this.sentenceGenerator()}</p>
                 </div>
             </div>
         )
