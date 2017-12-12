@@ -429,6 +429,8 @@
     margin: 0 0 15px 0;
     font-weight: 100;
     font-size: 15px;
+    word-spacing: 5px;
+    letter-spacing: 2px;
 }
 
 .topBioHolder2 p {
@@ -440,8 +442,46 @@
     padding: 10px;
 }
 
+.userPanesHolder {
+    width: 100%;
+}
 
+.userPanesRow {
+    width: 100%;
+}
 
+.individualUserPane {
+    display: inline-block;
+    width: 50%;
+    border: 4px solid #181718;
+}
+
+.individualUserPane p {
+    padding: 100px;
+}
+
+.individualUserFeedPane {
+    display: inline-block;
+    width: 100%;
+    border: 4px solid #181718;
+    padding: 15px;
+}
+
+.individualUserFeedPane p {
+    padding: 2px;
+}
+
+.userProfileFeedItem{
+    border-bottom: 1px solid darkgrey;
+    padding: 20px;
+    margin: 20px;
+}
+
+@media screen and (max-width: 500px) {
+    .individualUserPane {
+        width: 100%;
+    }
+}
 
 
 

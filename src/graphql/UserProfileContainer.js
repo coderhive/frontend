@@ -45,27 +45,6 @@ const oneUserById = gql`
     			updated_at
 
     		}
-    		activities{
-    			id
-    			type
-    			user_id
-    			component_id
-    			comment{
-    				comment
-    			}
-    			user{
-    				id
-    				display_name
-    				profile_picture
-    			}
-    			component{
-    				id
-    				title
-    				component_picture
-    			}
-				created_at
-    			updated_at
-    		}
     		created_at
     		updated_at
   		}

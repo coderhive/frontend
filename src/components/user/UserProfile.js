@@ -1,6 +1,8 @@
 import React, {PureComponent} from "react";
 import {Loader} from 'semantic-ui-react'
 import NavBar from '../../graphql/NavbarContainer'
+import UserProfileFeedContainer from "../../graphql/UserProfileFeedContainer";
+
 
 const moment = require('moment');
 
@@ -18,7 +20,7 @@ export default class UserProfile extends PureComponent {
     };
 
     componentWillReceiveProps(props) {
-        console.log("props", props.data.oneUserById)
+        console.log("")
     }
 
     render() {
@@ -62,7 +64,8 @@ export default class UserProfile extends PureComponent {
 
                                 <div className="topBioHolder2">
                                     <h1>{this.props.data.oneUserById.display_name}</h1>
-                                    <div style={{display: "flex", justifyContent: "space-between", textAlign: "center"}}>
+                                    <div
+                                        style={{display: "flex", justifyContent: "space-between", textAlign: "center"}}>
                                         <div style={{flexGrow: "1"}}>
                                             <h3>rank:</h3>
                                             <h4>{this.props.data.oneUserById.experience}</h4>
@@ -77,45 +80,48 @@ export default class UserProfile extends PureComponent {
                                 </div>
                             </div>
                             <div>
-                                {console.log(this.props.data.oneUserById.id)}
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-
-
-                                {this.props.data.oneUserById.components.map(component =>
-                                    <p key={component.id}>{component.title}</p>
-                                )}
-
-                                {this.props.data.oneUserById.fanOf.map(component =>
-                                    <p key={component.id}>{component.title}</p>
-                                )}
-
-                                {this.props.data.oneUserById.followers.map(follower =>
-                                    <p key={follower.id}>{follower.display_name}</p>
-                                )}
-
-                                {this.props.data.oneUserById.whoIFollow.map(user =>
-                                    <p key={user.id}>{user.display_name}</p>
-                                )}
-
-                                {this.props.data.oneUserById.activities.map(activity =>
-                                    <div key={activity.id}>
-                                        <p>{activity.type}</p>
-                                        <p>{activity.user_id}</p>
-                                        <p>{activity.component_id}</p>
-                                        <p>{activity.comment ? activity.comment.comment : ' -- '}</p>
+                                <div className="userPanesHolder">
+                                    <div className="userPanesRow">
+                                        <div className="individualUserPane">
+                                            <p>My Components</p>
+                                        </div>
+                                        <div className="individualUserPane"><p>Components I Follow</p></div>
                                     </div>
-                                )}
+                                    <div className="userPanesRow">
+                                        <div className="individualUserPane"><p>Followers</p></div>
+                                        <div className="individualUserPane"><p>Who I Follow</p></div>
+                                    </div>
+                                    <div className="userPanesRow">
+                                        <div className="individualUserFeedPane">
+                                            <UserProfileFeedContainer
+                                                userId={this.props.data.oneUserById.id}
+                                                authenticatedId={this.props.authenticatedId}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                {/*{this.props.data.oneUserById.components.map(component =>*/}
+                                {/*<p key={component.id}>{component.title}</p>*/}
+                                {/*)}*/}
+                                {/*{this.props.data.oneUserById.fanOf.map(component =>*/}
+                                {/*<p key={component.id}>{component.title}</p>*/}
+                                {/*)}*/}
+                                {/*{this.props.data.oneUserById.followers.map(follower =>*/}
+                                {/*<p key={follower.id}>{follower.display_name}</p>*/}
+                                {/*)}*/}
+                                {/*{this.props.data.oneUserById.whoIFollow.map(user =>*/}
+                                {/*<p key={user.id}>{user.display_name}</p>*/}
+                                {/*)}*/}
+                                {/*{this.props.data.oneUserById.activities.map(activity =>*/}
+                                {/*<div key={activity.id}>*/}
+                                {/*<p>{activity.type}</p>*/}
+                                {/*<p>{activity.user_id}</p>*/}
+                                {/*<p>{activity.component_id}</p>*/}
+                                {/*<p>{activity.comment ? activity.comment.comment : ' -- '}</p>*/}
+                                {/*</div>*/}
+                                {/*)}*/}
                             </div>
                         </div>
                     </div>
