@@ -3,6 +3,7 @@ import { Button } from "semantic-ui-react";
 import NavBar from "../../graphql/NavbarContainer";
 import EditorComments from "./EditorComments";
 import RenderComponent from "./render/RenderComponent";
+import CodeEditor from "./codeEditor/CodeEditor";
 
 const moment = require("moment");
 
@@ -105,7 +106,9 @@ export default class EditorPage extends PureComponent {
 								? <div className="textHolderCollapsed">
 										<p className="closedText">Editor</p>
 									</div>
-								: <p className="bodyText">Code Editor</p>}
+								: <div className="bodyText">
+										<CodeEditor code={this.props.data ? this.props.data.oneComponent.code : null} />
+									</div>}
 						</div>
 						<div className="panelsVertical">
 							<div className="toolbarBg" style={{ paddingLeft: "8px" }}>
@@ -119,7 +122,8 @@ export default class EditorPage extends PureComponent {
 									height: "80%",
 									display: "flex",
 									justifyContent: "center",
-									alignItems: "center"
+									alignItems: "center",
+									overflow: "auto"
 								}}>
 								<RenderComponent id={this.props.data ? this.props.data.oneComponent.id : null} />
 							</p>
