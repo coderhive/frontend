@@ -1,8 +1,6 @@
 import React, {PureComponent} from "react";
 import UserProfileFollowItem from './UserProfileFollowItem'
 
-const moment = require('moment');
-
 export default class UserProfileComponent extends PureComponent {
 
     render() {

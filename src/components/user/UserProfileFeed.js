@@ -1,8 +1,5 @@
 import React, {PureComponent} from "react";
-import {Loader} from 'semantic-ui-react'
 import UserProfileFeedItem from './UserProfileFeedItem'
-
-const moment = require('moment');
 
 export default class UserProfileFeed extends PureComponent {
 

@@ -436,11 +436,12 @@
 }
 
 .topBioHolder2 p {
-    background-color: #fff;
-    color: black;
+    background-color: #3f3e3f;
+    color: white;
     font-size: 16px;
     height: 70px;
     padding: 10px;
+    box-shadow: 1px 1px 1px black;
 }
 
 .userPanesHolder {
