@@ -457,10 +457,8 @@
     border: 4px solid #181718;
     height: 300px;
     overflow: auto;
-}
+    margin-bottom: -5px;
 
-.individualUserPane p {
-    /*padding: 100px;*/
 }
 
 .individualUserFeedPane {
