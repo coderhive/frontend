@@ -113,8 +113,15 @@ export default class EditorPage extends PureComponent {
 									<i className="refresh icon" size="mini" />
 								</div>
 							</div>
-							<p className="bodyText">
-								<RenderComponent />
+							<p
+								className="bodyText"
+								style={{
+									height: "80%",
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center"
+								}}>
+								<RenderComponent id={this.props.data ? this.props.data.oneComponent.id : null} />
 							</p>
 						</div>
 						<div
