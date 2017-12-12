@@ -2,6 +2,8 @@ import React, {PureComponent} from "react";
 import {Loader} from 'semantic-ui-react'
 import NavBar from '../../graphql/NavbarContainer'
 import UserProfileFeedContainer from "../../graphql/UserProfileFeedContainer";
+import UserProfileComponents from "./UserProfileComponents"
+import UserProfileFollow from "./UserProfileFollow"
 
 
 const moment = require('moment');
@@ -11,16 +13,17 @@ export default class UserProfile extends PureComponent {
         super(props);
 
         this.state = {
-            stateThing: false,
+            panel1Toggle: {height: "600px", overflow: "hidden"},
+            panel2Toggle: {height: "600px", overflow: "hidden"},
+            panel3Toggle: {height: "600px", overflow: "hidden"},
+            panel4Toggle: {height: "600px", overflow: "hidden"},
+            panel5Toggle: {height: "600px", overflow: "hidden"},
         };
     }
 
-    handleToggle = thisNumber => {
-        console.log(thisNumber)
-    };
 
     componentWillReceiveProps(props) {
-        console.log("")
+        console.log(props)
     }
 
     render() {
@@ -51,24 +54,24 @@ export default class UserProfile extends PureComponent {
                                     width: "200px",
                                     height: "200px",
                                     boxShadow: "1px 1px 1px 1px black"
-                                }} />
+                                }}/>
 
                                 {/*<div className="topBioHolder1">*/}
-                                    {/*<div className="honeyCombComponent2" style={styles.container}>*/}
-                                        {/*<div style={*/}
-                                            {/*this.props.data.oneUserById.profile_picture*/}
-                                                {/*? {backgroundImage: "url(" + this.props.data.oneUserById.profile_picture + ")"}*/}
-                                                {/*: {*/}
-                                                    {/*backgroundImage:*/}
-                                                        {/*"url(https://static.pexels.com/photos/20787/pexels-photo.jpg)"*/}
-                                                {/*}*/}
-                                        {/*}*/}
-                                             {/*className="honeyCombComponent2">*/}
-                                            {/*<div className="honeyCombTop2"/>*/}
-                                            {/*<div className="honeyCombBottom2"/>*/}
-                                        {/*</div>*/}
+                                {/*<div className="honeyCombComponent2" style={styles.container}>*/}
+                                {/*<div style={*/}
+                                {/*this.props.data.oneUserById.profile_picture*/}
+                                {/*? {backgroundImage: "url(" + this.props.data.oneUserById.profile_picture + ")"}*/}
+                                {/*: {*/}
+                                {/*backgroundImage:*/}
+                                {/*"url(https://static.pexels.com/photos/20787/pexels-photo.jpg)"*/}
+                                {/*}*/}
+                                {/*}*/}
+                                {/*className="honeyCombComponent2">*/}
+                                {/*<div className="honeyCombTop2"/>*/}
+                                {/*<div className="honeyCombBottom2"/>*/}
+                                {/*</div>*/}
 
-                                    {/*</div>*/}
+                                {/*</div>*/}
                                 {/*</div>*/}
 
                                 <div className="topBioHolder2">
@@ -92,13 +95,39 @@ export default class UserProfile extends PureComponent {
                                 <div className="userPanesHolder">
                                     <div className="userPanesRow">
                                         <div className="individualUserPane">
-                                            <p>My Components</p>
+                                                <UserProfileComponents
+                                                    data={this.props.data.oneUserById.components}
+                                                    userId={this.props.data.oneUserById.id}
+                                                    authenticatedId={this.props.authenticatedId}
+                                                    title={"My Components"}
+                                                />
                                         </div>
-                                        <div className="individualUserPane"><p>Components I Follow</p></div>
+                                        <div className="individualUserPane" >
+                                            <UserProfileComponents
+                                                data={this.props.data.oneUserById.fanOf}
+                                                userId={this.props.data.oneUserById.id}
+                                                authenticatedId={this.props.authenticatedId}
+                                                title={"Components I Follow"}
+                                            />
+                                        </div>
                                     </div>
                                     <div className="userPanesRow">
-                                        <div className="individualUserPane"><p>Followers</p></div>
-                                        <div className="individualUserPane"><p>Who I Follow</p></div>
+                                        <div className="individualUserPane">
+                                            <UserProfileFollow
+                                                data={this.props.data.oneUserById.followers}
+                                                userId={this.props.data.oneUserById.id}
+                                                authenticatedId={this.props.authenticatedId}
+                                                title={"My Followers"}
+                                            />
+                                        </div>
+                                        <div className="individualUserPane">
+                                            <UserProfileFollow
+                                                data={this.props.data.oneUserById.whoIFollow}
+                                                userId={this.props.data.oneUserById.id}
+                                                authenticatedId={this.props.authenticatedId}
+                                                title={"Who I Follow"}
+                                            />
+                                        </div>
                                     </div>
                                     <div className="userPanesRow">
                                         <div className="individualUserFeedPane">
@@ -110,27 +139,6 @@ export default class UserProfile extends PureComponent {
                                     </div>
                                 </div>
 
-
-                                {/*{this.props.data.oneUserById.components.map(component =>*/}
-                                {/*<p key={component.id}>{component.title}</p>*/}
-                                {/*)}*/}
-                                {/*{this.props.data.oneUserById.fanOf.map(component =>*/}
-                                {/*<p key={component.id}>{component.title}</p>*/}
-                                {/*)}*/}
-                                {/*{this.props.data.oneUserById.followers.map(follower =>*/}
-                                {/*<p key={follower.id}>{follower.display_name}</p>*/}
-                                {/*)}*/}
-                                {/*{this.props.data.oneUserById.whoIFollow.map(user =>*/}
-                                {/*<p key={user.id}>{user.display_name}</p>*/}
-                                {/*)}*/}
-                                {/*{this.props.data.oneUserById.activities.map(activity =>*/}
-                                {/*<div key={activity.id}>*/}
-                                {/*<p>{activity.type}</p>*/}
-                                {/*<p>{activity.user_id}</p>*/}
-                                {/*<p>{activity.component_id}</p>*/}
-                                {/*<p>{activity.comment ? activity.comment.comment : ' -- '}</p>*/}
-                                {/*</div>*/}
-                                {/*)}*/}
                             </div>
                         </div>
                     </div>

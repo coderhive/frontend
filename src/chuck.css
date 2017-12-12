@@ -455,10 +455,12 @@
     display: inline-block;
     width: 50%;
     border: 4px solid #181718;
+    height: 300px;
+    overflow: auto;
 }
 
 .individualUserPane p {
-    padding: 100px;
+    /*padding: 100px;*/
 }
 
 .individualUserFeedPane {
@@ -478,11 +480,27 @@
     margin: 20px;
 }
 
-@media screen and (max-width: 500px) {
+.userExpandButton{
+    background-color: #1f1e1f;
+    color: yellow;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 4px solid white;
+}
+
+@media screen and (max-width: 1200px) {
     .individualUserPane {
         width: 100%;
     }
-}
 
+    .topBioHolder2 h3 {
+        font-size: 14px;
+    }
+
+    .topBioHolder2 h4 {
+        font-size: 10px;
+    }
+}
 
 
