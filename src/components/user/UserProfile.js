@@ -13,6 +13,7 @@ export default class UserProfile extends PureComponent {
         super(props);
 
         this.state = {
+            aboutMe: '',
             panel1Toggle: {height: "600px", overflow: "hidden"},
             panel2Toggle: {height: "600px", overflow: "hidden"},
             panel3Toggle: {height: "600px", overflow: "hidden"},
@@ -23,8 +24,18 @@ export default class UserProfile extends PureComponent {
 
 
     componentWillReceiveProps(props) {
-        console.log(props)
+        console.log(props.data)
+        if (props.data.oneUserById) {
+            console.log('YEAHHHHHHHHHHHH<<<<<<<<<<<<<<<<')
+            this.setState({
+                aboutMe: props.data.oneUserById.summary
+            })
+        }
     }
+
+    handleChange = event => {
+        this.setState({value: event.target.value});
+    };
 
     render() {
         return (
@@ -56,24 +67,6 @@ export default class UserProfile extends PureComponent {
                                     boxShadow: "1px 1px 1px 1px black"
                                 }}/>
 
-                                {/*<div className="topBioHolder1">*/}
-                                {/*<div className="honeyCombComponent2" style={styles.container}>*/}
-                                {/*<div style={*/}
-                                {/*this.props.data.oneUserById.profile_picture*/}
-                                {/*? {backgroundImage: "url(" + this.props.data.oneUserById.profile_picture + ")"}*/}
-                                {/*: {*/}
-                                {/*backgroundImage:*/}
-                                {/*"url(https://static.pexels.com/photos/20787/pexels-photo.jpg)"*/}
-                                {/*}*/}
-                                {/*}*/}
-                                {/*className="honeyCombComponent2">*/}
-                                {/*<div className="honeyCombTop2"/>*/}
-                                {/*<div className="honeyCombBottom2"/>*/}
-                                {/*</div>*/}
-
-                                {/*</div>*/}
-                                {/*</div>*/}
-
                                 <div className="topBioHolder2">
                                     <h1>{this.props.data.oneUserById.display_name}</h1>
                                     <div
@@ -87,27 +80,44 @@ export default class UserProfile extends PureComponent {
                                             <h4>{moment(this.props.data.oneUserById.created_at).format('LLLL')}</h4>
                                         </div>
                                     </div>
-                                    <h2>about me:</h2>
-                                    <p>{this.props.data.oneUserById.summary}</p>
+
+                                    <h3>about me:</h3>
+                                    {this.props.userId === this.props.authenticatedId ?
+                                        <textarea style={{
+                                            backgroundColor: "#3f3e3f",
+                                            color: "white",
+                                            fontSize: "16px",
+                                            height: "70px",
+                                            padding: "10px",
+                                            boxShadow: "1px 1px 1px black",
+                                            width: "100%",
+                                            value: this.state.aboutMe
+                                        }}
+                                                  onChange={this.handleChange}>
+                                        </textarea>
+                                        :
+                                        <p>{this.props.data.oneUserById.summary}</p>
+                                    }
                                 </div>
                             </div>
                             <div>
                                 <div className="userPanesHolder">
                                     <div className="userPanesRow">
                                         <div className="individualUserPane">
-                                                <UserProfileComponents
-                                                    data={this.props.data.oneUserById.components}
-                                                    userId={this.props.data.oneUserById.id}
-                                                    authenticatedId={this.props.authenticatedId}
-                                                    title={"My Components"}
-                                                />
+                                            <UserProfileComponents
+                                                data={this.props.data.oneUserById.components}
+                                                userId={this.props.data.oneUserById.id}
+                                                authenticatedId={this.props.authenticatedId}
+                                                title={"My Components"}
+                                            />
                                         </div>
-                                        <div className="individualUserPane" >
+                                        <div className="individualUserPane">
                                             <UserProfileComponents
                                                 data={this.props.data.oneUserById.fanOf}
                                                 userId={this.props.data.oneUserById.id}
                                                 authenticatedId={this.props.authenticatedId}
                                                 title={"Components I Follow"}
+                                                controls={true}
                                             />
                                         </div>
                                     </div>
@@ -126,6 +136,7 @@ export default class UserProfile extends PureComponent {
                                                 userId={this.props.data.oneUserById.id}
                                                 authenticatedId={this.props.authenticatedId}
                                                 title={"Who I Follow"}
+                                                controls={true}
                                             />
                                         </div>
                                     </div>
@@ -149,12 +160,4 @@ export default class UserProfile extends PureComponent {
     }
 
 }
-
-let styles = {
-    container: {
-        width: "301px",
-        paddingLeft: "1.3px",
-        paddingRight: "1.3px"
-    }
-};
 

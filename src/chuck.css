@@ -436,11 +436,12 @@
 }
 
 .topBioHolder2 p {
-    background-color: #fff;
-    color: black;
+    background-color: #3f3e3f;
+    color: white;
     font-size: 16px;
     height: 70px;
     padding: 10px;
+    box-shadow: 1px 1px 1px black;
 }
 
 .userPanesHolder {
@@ -485,6 +486,53 @@
     width: 100%;
     padding: 10px;
     border-bottom: 4px solid white;
+}
+
+.stopFollowButton{
+    margin: 10px;
+    border: 2px solid #80000C;
+    border-radius: 3px;
+    padding: 6px;
+    width: 100px;
+    letter-spacing: 2px;
+    height: 28px;
+    color: #80000C;
+    font-weight: bold;
+    font-size: 10px;
+    text-align: center;
+    box-shadow: 1px 1px 1px grey;
+    transition: all .3s ease;
+
+}
+
+.stopFollowButton:hover{
+    background-color: #80000C;
+    box-shadow: none;
+    color: white;
+    transition: all .3s ease;
+}
+
+.stopFollowButton2{
+    background-color: white;
+    margin:  -115px 0 0 -10px;
+    border: 2px solid #80000C;
+    border-radius: 14px;
+    padding: 6px;
+    width: 28px;
+    height: px;
+    color: #80000C;
+    font-weight: bold;
+    font-size: 10px;
+    text-align: center;
+    box-shadow: 1px 1px 1px grey;
+    transition: all .3s ease;
+}
+
+.stopFollowButton2:hover{
+    background-color: #80000C;
+    box-shadow: none;
+    color: white;
+    transition: all .3s ease;
 }
 
 @media screen and (max-width: 1200px) {

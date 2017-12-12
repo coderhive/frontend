@@ -1,8 +1,5 @@
 import React, {PureComponent} from "react";
-import {Loader} from 'semantic-ui-react'
 import UserProfileComponentItem from './UserProfileComponentItem'
-
-const moment = require('moment');
 
 export default class UserProfileComponent extends PureComponent {
 
@@ -17,9 +14,14 @@ export default class UserProfileComponent extends PureComponent {
                     :
                     <div>
                         {this.props.data.map(component =>
-                          <UserProfileComponentItem
-                            data={component}
-                          />
+                            <div key={component.id}>
+                                <UserProfileComponentItem
+                                    data={component}
+                                    userId={this.props.userId}
+                                    authenticatedId={this.props.authenticatedId}
+                                    controls={this.props.controls}
+                                />
+                            </div>
                         )}
                     </div>
                 }
