@@ -100,6 +100,27 @@ export default class EditorPage extends PureComponent {
 		this.setState({ time: Date.now() });
 	};
 
+	handleEdit = (type, code) => {
+		if (type === "jsx") {
+			this.props.updateComponentCode({
+				variables: {
+					id: this.props.data.oneComponent.id,
+					code,
+					css: this.props.data.oneComponent.css
+				}
+			});
+		}
+		if (type === "css") {
+			this.props.updateComponentCode({
+				variables: {
+					id: this.props.data.oneComponent.id,
+					code: this.props.data.oneComponent.code,
+					css: code
+				}
+			});
+		}
+	};
+
 	render() {
 		if (this.state.editSettingsOn)
 			return (
@@ -149,6 +170,7 @@ export default class EditorPage extends PureComponent {
 										<CodeEditor
 											code={this.props.data.oneComponent.code}
 											toggle={this.state.panel1Collapsed}
+											handleChange={this.handleEdit}
 										/>
 									</div>}
 						</div>
@@ -192,7 +214,10 @@ export default class EditorPage extends PureComponent {
 											margin: "0",
 											overflow: "auto"
 										}}>
-										<CSSPanel css={this.props.data.oneComponent.css} />
+										<CSSPanel
+											css={this.props.data.oneComponent.css}
+											handleChange={this.handleEdit}
+										/>
 									</div>}
 						</div>
 					</div>

@@ -16,7 +16,6 @@ export default class RenderComponent extends PureComponent {
 	}
 
 	render() {
-		console.log(this.props);
 		return (
 			<iframe
 				id="reactIframe"

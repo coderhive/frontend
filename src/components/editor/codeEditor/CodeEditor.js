@@ -5,10 +5,6 @@ import AceEditor from "react-ace";
 import "brace/mode/jsx";
 import "brace/theme/twilight";
 
-function onChange(newValue) {
-	console.log("change", newValue);
-}
-
 export default class CodeEditor extends React.Component {
 	componentDidMount() {
 		var undo_manager = this.refs.ace.editor.getSession().getUndoManager();
@@ -17,12 +13,16 @@ export default class CodeEditor extends React.Component {
 		this.refs.ace.editor.setAutoScrollEditorIntoView(false);
 	}
 
+	onChange = newValue => {
+		this.props.handleChange("jsx", newValue);
+	};
+
 	render() {
 		return (
 			<AceEditor
 				mode="jsx"
 				theme="twilight"
-				onChange={onChange}
+				onChange={this.onChange}
 				name="aceEditor"
 				editorProps={{ $blockScrolling: Infinity }}
 				ref="ace"

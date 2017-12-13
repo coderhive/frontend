@@ -51,7 +51,6 @@ const oneComponent = gql`
 	}
 `;
 
-
 const deleteComponent = gql`
 	mutation($id: Int!) {
 		deleteComponent(id: $id) {
@@ -60,8 +59,19 @@ const deleteComponent = gql`
 	}
 `;
 
+const updateComponentCode = gql`
+	mutation($id: Int!, $code: String, $css: String) {
+		updateComponent(id: $id, code: $code, css: $css) {
+			id
+			code
+			css
+		}
+	}
+`;
+
 export default compose(
 	withRouter,
 	graphql(oneComponent, { options: props => ({ variables: { id: props.componentId } }) }),
-	graphql(deleteComponent, { name: "deleteComponent" })
+	graphql(deleteComponent, { name: "deleteComponent" }),
+	graphql(updateComponentCode, { name: "updateComponentCode" })
 )(EditorPanes);
