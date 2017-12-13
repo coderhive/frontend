@@ -15,7 +15,7 @@
 .panelsVertical {
 	flex-grow: 20;
 	font-size: 30px;
-	height: 75vh;
+	height: 570px;
 	margin: 6px;
 	background-color: white;
 	transition: all .3s ease;
@@ -29,7 +29,7 @@
 	flex-grow: .1;
 	/*max-width: 34px;*/
 	font-size: 30px;
-	height: 75vh;
+	height: 570px;
 	margin: 6px;
 	background-color: #2f2e2f;
 	transition: all .3s ease;
