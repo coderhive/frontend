@@ -1,12 +1,13 @@
 import EditorPanes from "../components/editor/EditorPanes";
-import { graphql, compose } from "react-apollo";
+import {graphql, compose} from "react-apollo";
 import gql from "graphql-tag";
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 const oneComponent = gql`
 	query($id: Int!) {
 		oneComponent(id: $id) {
     id
+    status
     title
     description
     framework
@@ -48,13 +49,17 @@ const oneComponent = gql`
 	}
 `;
 
+const deleteComponent = gql`
+	mutation($id: Int!) {
+		deleteComponent(id: $id) {
+			id
+		}
+	}
+`;
+
+
 export default compose(
-	withRouter,
-	graphql(oneComponent, {
-		options: props => ({
-			variables: {
-				id: props.componentId
-			}
-		})
-	})
+    withRouter,
+    graphql(oneComponent, {options: props => ({variables: {id: props.componentId}})}),
+    graphql(deleteComponent, {name: 'deleteComponent'})
 )(EditorPanes);

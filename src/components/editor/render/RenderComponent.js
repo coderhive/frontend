@@ -8,9 +8,6 @@ export default class RenderComponent extends PureComponent {
 				name="myIframe"
 				title="react"
 				src={`http://localhost:3000/component/${this.props.id}`}
-				frameborder="0"
-				marginwidth="0"
-				marginheight="0"
 			/>
 		);
 	}
