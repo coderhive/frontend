@@ -1,6 +1,6 @@
 import React from "react";
-import { render } from "react-dom";
-import brace from "brace";
+import { render } from "react-dom"; // eslint-disable-line no-unused-vars
+import brace from "brace"; // eslint-disable-line no-unused-vars
 import AceEditor from "react-ace";
 import "brace/mode/jsx";
 import "brace/theme/twilight";
