@@ -14,7 +14,9 @@ export default class CodeEditor extends React.Component {
 	}
 
 	onChange = newValue => {
-		this.props.handleChange("jsx", newValue);
+		if (this.props.owner === this.props.authenticatedId) {
+			this.props.handleChange("jsx", newValue);
+		}
 	};
 
 	render() {

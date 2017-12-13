@@ -171,6 +171,8 @@ export default class EditorPage extends PureComponent {
 											code={this.props.data.oneComponent.code}
 											toggle={this.state.panel1Collapsed}
 											handleChange={this.handleEdit}
+											owner={this.props.data.oneComponent.owner_user_id}
+											authenticatedId={this.props.authenticatedId}
 										/>
 									</div>}
 						</div>
@@ -217,6 +219,8 @@ export default class EditorPage extends PureComponent {
 										<CSSPanel
 											css={this.props.data.oneComponent.css}
 											handleChange={this.handleEdit}
+											owner={this.props.data.oneComponent.owner_user_id}
+											authenticatedId={this.props.authenticatedId}
 										/>
 									</div>}
 						</div>
@@ -338,15 +342,6 @@ export default class EditorPage extends PureComponent {
 												}}
 											/>
 											<div style={{ display: "inline-block", verticalAlign: "middle" }}>
-												<div style={{ margin: "3px" }}>
-													<Button
-														compact
-														color="yellow"
-														content="Save Component"
-														icon="save"
-														style={{ fontSize: "11px", width: "150px", textAlign: "left" }}
-													/>
-												</div>
 												<div style={{ margin: "3px" }}>
 													<Button
 														compact

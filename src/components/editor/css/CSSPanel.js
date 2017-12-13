@@ -14,7 +14,9 @@ export default class CSSPanel extends React.Component {
 	}
 
 	onChange = newValue => {
-		this.props.handleChange("css", newValue);
+		if (this.props.owner === this.props.authenticatedId) {
+			this.props.handleChange("css", newValue);
+		}
 	};
 
 	render() {
