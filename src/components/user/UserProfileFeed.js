@@ -22,6 +22,7 @@ export default class UserProfileFeed extends PureComponent {
                         <UserProfileFeedItem
                             data={activity}
                             key={activity.id}
+                            history={this.props.history}
                         />
                         )}
                         <p style={{

@@ -20,6 +20,8 @@ export default class UserProfileComponent extends PureComponent {
                                     userId={this.props.userId}
                                     authenticatedId={this.props.authenticatedId}
                                     controls={this.props.controls}
+                                    handleDeleteFan={this.props.handleDeleteFan}
+                                    history={this.props.history}
                                 />
                             </div>
                         )}

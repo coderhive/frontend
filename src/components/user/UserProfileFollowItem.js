@@ -15,7 +15,9 @@ export default class UserProfileComponentItem extends PureComponent {
                              margin: "30px 10px 10px 10px",
                              width: "100px",
                              height: "100px",
-                         }}>
+                         }}
+                         onClick={() => this.props.history.push(`/users/${this.props.data.id}`)}
+                    >
                         <div style={{
                             paddingTop: "10px",
                             textAlign: "center",
@@ -30,7 +32,10 @@ export default class UserProfileComponentItem extends PureComponent {
                         </div>
 
                     {this.props.userId === this.props.authenticatedId && this.props.controls ?
-                        <p className="stopFollowButton2">
+                        <p
+                            className="stopFollowButton2"
+                            onClick={() => this.props.handleDeleteFollow(this.props)}
+                        >
                             X
                         </p>
                         : null}
