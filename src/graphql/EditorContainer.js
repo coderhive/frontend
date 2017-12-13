@@ -9,6 +9,7 @@ const oneComponent = gql`
 			id
 			title
 			description
+			status
 			code
 			css
 			framework
@@ -49,6 +50,7 @@ const oneComponent = gql`
 		}
 	}
 `;
+
 
 const deleteComponent = gql`
 	mutation($id: Int!) {

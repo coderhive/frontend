@@ -2,30 +2,18 @@ import React, {PureComponent} from "react";
 import NavBar from "../../graphql/NavbarContainer";
 
 
-export default class NewComponent extends PureComponent {
+export default class EditorPage extends PureComponent {
     constructor(props) {
         super(props);
 
         this.state = {
-            owner_user_id: '',
+            id: 0,
             title: '',
             description: '',
-            framework: 'react',
-            language: 'javascript',
+            originalTitle: '',
+            originalDescription: '',
         };
     }
-
-    handleDelete = async () => {
-        let response = await
-            this.props.deleteComponent({variables: {id: this.props.data.oneComponent.id}});
-        this.props.history.goBack()
-        return response
-
-    };
-
-    componentDidMount() {
-        this.setState({owner_user_id: this.props.authenticatedId})
-    };
 
     handleChange = event => {
         this.setState({
@@ -37,20 +25,26 @@ export default class NewComponent extends PureComponent {
         event.preventDefault();
         let response = await this.props.createComponent({
             variables: {
-                owner_user_id: this.state.owner_user_id,
+                id: this.props.componentId,
                 title: this.state.title,
                 description: this.state.description,
-                framework: this.state.framework,
-                language: this.state.language,
             }
         });
-        // console.log(response)
-        this.props.history.push(`/components/${response.data.createComponent.id}`)
+        this.props.history.goBack()
     };
 
-    render() {
+    componentDidMount(){
+        this.setState({
+            title: this.props.title,
+            originalTitle: this.props.title,
+            description: this.props.description,
+            originalDescription: this.props.description,
+            id: this.props.component_id,
+        })
+    }
 
-        return (
+	render() {
+	    return(
             <div>
                 <NavBar
                     authenticatedId={this.props.authenticatedId}
@@ -77,7 +71,7 @@ export default class NewComponent extends PureComponent {
                             textTransform: "uppercase",
                             letterSpacing: "5px",
                             marginBottom: "35px"
-                        }}>New Component</h1>
+                        }}>Update Component</h1>
                         <label style={{
                             fontWeight: "bold",
                             fontSize: '22px',
@@ -126,12 +120,15 @@ export default class NewComponent extends PureComponent {
                             <input
                                 type="submit"
                                 value="C R E A T E"
-                                disabled={this.state.title.length === 0 || this.state.description.length === 0}
+                                disabled={this.state.description === this.state.originalDescription && this.state.title === this.state.originalTitle || this.state.title.length === 0}
                                 style={{
                                     padding: "10px 30px 10px 30px"
                                 }}
                             />
                         </div>
+                        <button onClick={this.props.toggleEdit} style={{padding: '10px 20px'}}>
+                            Cancel
+                        </button>
                     </form>
                     :
                     <p style={{
@@ -140,9 +137,9 @@ export default class NewComponent extends PureComponent {
                         width: "100%",
                         textAlign: "center",
                         fontSize: "30px"
-                    }}>Please Login to Create Components</p>
+                    }}>Please Login to Update Components</p>
                 }
             </div>
-        );
+        )
     }
 }
