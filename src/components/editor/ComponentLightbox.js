@@ -23,14 +23,14 @@ export default class EditorPage extends PureComponent {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        let response = await this.props.createComponent({
+        let response = await this.props.updateComponent({
             variables: {
-                id: this.props.componentId,
+                id: this.state.id,
                 title: this.state.title,
                 description: this.state.description,
             }
         });
-        this.props.history.goBack()
+        this.props.toggleEdit()
     };
 
     componentDidMount(){
@@ -119,7 +119,7 @@ export default class EditorPage extends PureComponent {
                         <div style={{textAlign: "center"}}>
                             <input
                                 type="submit"
-                                value="C R E A T E"
+                                value="U P D A T E"
                                 disabled={this.state.description === this.state.originalDescription && this.state.title === this.state.originalTitle || this.state.title.length === 0}
                                 style={{
                                     padding: "10px 30px 10px 30px"
