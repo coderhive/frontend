@@ -405,6 +405,8 @@ export default class EditorPage extends PureComponent {
 					data={this.props.data}
 					authenticatedId={this.props.authenticatedId}
 					history={this.props.history}
+					createComment={this.props.createComment}
+					client={this.props.client}
 				/>
 			</div>
 		);

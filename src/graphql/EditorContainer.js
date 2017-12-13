@@ -1,5 +1,5 @@
 import EditorPanes from "../components/editor/EditorPanes";
-import { graphql, compose } from "react-apollo";
+import { graphql, withApollo, compose } from "react-apollo";
 import gql from "graphql-tag";
 import { withRouter } from "react-router-dom";
 
@@ -69,9 +69,27 @@ const updateComponentCode = gql`
 	}
 `;
 
+const createComment = gql`
+	mutation(
+	$user_id: Int!
+	$component_id: Int!
+	$comment: String!
+	) {
+		createComment(
+		user_id: $user_id
+		component_id: $component_id
+		comment: $comment
+		) {
+			id
+		}
+	}
+`;
+
 export default compose(
 	withRouter,
+	withApollo,
 	graphql(oneComponent, { options: props => ({ variables: { id: props.componentId } }) }),
 	graphql(deleteComponent, { name: "deleteComponent" }),
-	graphql(updateComponentCode, { name: "updateComponentCode" })
+	graphql(updateComponentCode, { name: "updateComponentCode" }),
+	graphql(createComment, { name: "createComment" }),
 )(EditorPanes);
