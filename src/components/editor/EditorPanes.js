@@ -117,8 +117,13 @@ export default class EditorPage extends PureComponent {
 								? <div className="textHolderCollapsed">
 										<p className="closedText">Editor</p>
 									</div>
-								: <div className="bodyText">
-										<CodeEditor code={this.props.data ? this.props.data.oneComponent.code : null} />
+								: <div
+										className="bodyText"
+										style={{
+											overflow: "auto",
+											margin: "0"
+										}}>
+										<CodeEditor code={this.props.data.oneComponent.code} />
 									</div>}
 						</div>
 						<div className="panelsVertical">

@@ -1,552 +1,540 @@
 @import '~semantic-ui-css/semantic.css';
 
 .editorContainer {
-    margin: 5px;
-    overflow: hidden;
+	margin: 5px;
+	overflow: hidden;
 }
 .editorPaneContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    margin-top: 60px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	margin-top: 60px;
 }
 
-
 .panelsVertical {
-    flex-grow: 20;
-    font-size: 30px;
-    height: 75vh;
-    margin: 6px;
-    background-color: white;
-    transition: all .3s ease;
-    border-radius: 10px 10px 0 0;
-    border: 2px solid black;
-    border-top: 3px solid black;
-    box-shadow: 0px 0px 0px 3px #1f1e1f;
+	flex-grow: 20;
+	font-size: 30px;
+	height: 75vh;
+	margin: 6px;
+	background-color: white;
+	transition: all .3s ease;
+	border-radius: 10px 10px 0 0;
+	border: 2px solid black;
+	border-top: 3px solid black;
+	box-shadow: 0px 0px 0px 3px #1f1e1f;
 }
 
 .panelsVerticalCollapsed {
-    flex-grow: .1;
-    /*max-width: 34px;*/
-    font-size: 30px;
-    height: 75vh;
-    margin: 6px;
-    background-color: #2f2e2f;
-    transition: all .3s ease;
-    border-radius: 8px;
-    border: 2px solid black;
-    border-top: 3px solid black;
-    box-shadow: 0px 0px 0px 3px #1f1e1f;
+	flex-grow: .1;
+	/*max-width: 34px;*/
+	font-size: 30px;
+	height: 75vh;
+	margin: 6px;
+	background-color: #2f2e2f;
+	transition: all .3s ease;
+	border-radius: 8px;
+	border: 2px solid black;
+	border-top: 3px solid black;
+	box-shadow: 0px 0px 0px 3px #1f1e1f;
 }
 
-
 .bodyText {
-    margin: 20px;
+	margin: 20px;
 }
 
 .toolbarBg {
-    display: inline-block;
-    width: 100%;
-    padding: 5px;
-    margin-top: -1px;
-    background-color: #2f2e2f;
-    border-radius: 8px 8px 0 0;
-    border-bottom: 1px solid black;
-    box-shadow: 0px 1px 1px black
+	display: inline-block;
+	width: 100%;
+	padding: 5px;
+	margin-top: -1px;
+	background-color: #2f2e2f;
+	border-radius: 8px 8px 0 0;
+	border-bottom: 1px solid black;
+	box-shadow: 0px 1px 1px black;
 }
 
 .editorCollapseButton {
-    display: inline-block;
-    width: 37px;
-    padding-top: 12px;
-    text-align: center;
-    border-radius: 8px;
-    margin: 5px 0;
-    transition: all .3s ease;
-    text-shadow: 1px 1px black;
-    border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
-    text-align: center;
-    background-color: #2e2d2e;
-    color: #ffe77b;
+	display: inline-block;
+	width: 37px;
+	padding-top: 12px;
+	text-align: center;
+	border-radius: 8px;
+	margin: 5px 0;
+	transition: all .3s ease;
+	text-shadow: 1px 1px black;
+	border: 1px solid black;
+	box-shadow: 1px 1px 1px black;
+	text-align: center;
+	background-color: #2e2d2e;
+	color: #ffe77b;
 }
 
 .editorCollapseButton:hover {
-    background-color: #3f3e3f;
+	background-color: #3f3e3f;
 }
 .editorCollapseButton:active {
-    background-color: #2e2d2e;
-    box-shadow: none;
+	background-color: #2e2d2e;
+	box-shadow: none;
 }
 
 .editorRefreshButton {
-    display: inline-block;
-    width: 37px;
-    padding-top: 12px;
-    text-align: center;
-    border-radius: 8px;
-    margin: 5px 0;
-    transition: all .3s ease;
-    text-shadow: 1px 1px black;
-    border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
-    text-align: center;
-    color: #ffe77b;
-    background-color: #2e2d2e;
+	display: inline-block;
+	width: 37px;
+	padding-top: 12px;
+	text-align: center;
+	border-radius: 8px;
+	margin: 5px 0;
+	transition: all .3s ease;
+	text-shadow: 1px 1px black;
+	border: 1px solid black;
+	box-shadow: 1px 1px 1px black;
+	text-align: center;
+	color: #ffe77b;
+	background-color: #2e2d2e;
 }
 
 .editorRefreshButton:hover {
-    background-color: #3f3e3f;
+	background-color: #3f3e3f;
 }
 .editorRefreshButton:active {
-    background-color: #2e2d2e;
-    box-shadow: none;
+	background-color: #2e2d2e;
+	box-shadow: none;
 }
 
-.textHolderCollapsed{
-    text-align: center;
-    margin-top: 80px;
-    max-width: 45px;
-
+.textHolderCollapsed {
+	text-align: center;
+	margin-top: 80px;
+	max-width: 45px;
 }
 
 .closedText {
-    color: white;
-    font-size: 20px;
-    text-shadow: 2px 2px black;
-    transform: rotate(90deg);
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 20px;
-    margin: auto;
+	color: white;
+	font-size: 20px;
+	text-shadow: 2px 2px black;
+	transform: rotate(90deg);
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 20px;
+	margin: auto;
 }
 
-.detailsBox{
-    width: 99%;
-    display: flex;
-    flex-direction: row;
-    margin: 5px;
-    padding: 6px;
-    font-size: 20px;
-    color: white;
-    background-color: #2f2e2f;
-    box-shadow: 0px 0px 0px 3px #373537;
-    flex-wrap: wrap;
+.detailsBox {
+	width: 99%;
+	display: flex;
+	flex-direction: row;
+	margin: 5px;
+	padding: 6px;
+	font-size: 20px;
+	color: white;
+	background-color: #2f2e2f;
+	box-shadow: 0px 0px 0px 3px #373537;
+	flex-wrap: wrap;
 }
 
-.pairHolder{
-    display: flex;
-    flex-grow: 1;
-    flex-direction: row;
+.pairHolder {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: row;
 }
 
-.boxDetail1{
-    flex-grow: 1;
-    vertical-align: top;
+.boxDetail1 {
+	flex-grow: 1;
+	vertical-align: top;
 }
 
-.boxDetail1 h1{
-    font-size: 15px;
-    text-transform: uppercase;
-    margin-bottom: 0px;
-    vertical-align: top;
+.boxDetail1 h1 {
+	font-size: 15px;
+	text-transform: uppercase;
+	margin-bottom: 0px;
+	vertical-align: top;
 }
 
-.boxDetail1 p{
-    font-size: 10px;
-    margin: 5px 0 0 1px;
-    word-spacing: 4px;
+.boxDetail1 p {
+	font-size: 10px;
+	margin: 5px 0 0 1px;
+	word-spacing: 4px;
 }
 
-.centerInBox{
-    margin: 0 auto;
-    text-align: center;
+.centerInBox {
+	margin: 0 auto;
+	text-align: center;
 }
-.boxDetail2{
-    flex-grow: 1;
-    vertical-align: top;
-    border-left: 1px solid black;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-right: 1px solid black;
-}
-
-.boxDetail2 p{
-    display: inline-block;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 0 7px 0 0;
+.boxDetail2 {
+	flex-grow: 1;
+	vertical-align: top;
+	border-left: 1px solid black;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-right: 1px solid black;
 }
 
-.boxDetail3{
-    flex-grow: 1;
-    vertical-align: top;
-    border-right: 1px solid black;
-    text-align: center;
-
+.boxDetail2 p {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0 7px 0 0;
 }
 
-.boxDetail3 p{
-    text-align: center;
-    font-size: 14px;
-    margin: 6px 0 0 0;
+.boxDetail3 {
+	flex-grow: 1;
+	vertical-align: top;
+	border-right: 1px solid black;
+	text-align: center;
 }
 
-.boxDetail4{
-    flex-grow: 1;
-    vertical-align: top;
-    padding-left: 20px;
+.boxDetail3 p {
+	text-align: center;
+	font-size: 14px;
+	margin: 6px 0 0 0;
 }
 
-.boxDetail4 p{
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    margin-bottom: 0px;
-    vertical-align: top;
-    font-size: 12px;
-    margin: 0;
-    text-align: left;
+.boxDetail4 {
+	flex-grow: 1;
+	vertical-align: top;
+	padding-left: 20px;
 }
 
-.boxDetail4 h3{
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    vertical-align: top;
-    text-transform: capitalize;
-    text-align: left;
+.boxDetail4 p {
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 4px;
+	margin-bottom: 0px;
+	vertical-align: top;
+	font-size: 12px;
+	margin: 0;
+	text-align: left;
+}
+
+.boxDetail4 h3 {
+	margin: 0;
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 4px;
+	vertical-align: top;
+	text-transform: capitalize;
+	text-align: left;
 }
 
 .ownerFace {
-    display: inline-block;
-    width: 70px;
-    padding-top: 70px;
-    margin-right: 20px;
-    border-radius: 4px;
-    background-position: center;
-    background-size: cover;
+	display: inline-block;
+	width: 70px;
+	padding-top: 70px;
+	margin-right: 20px;
+	border-radius: 4px;
+	background-position: center;
+	background-size: cover;
 }
 
-.buttonHolder{
-    display: inline-block;
-    margin: 10px 5px 0 5px;
-
+.buttonHolder {
+	display: inline-block;
+	margin: 10px 5px 0 5px;
 }
 
-.description{
-    background-color: #141515;
-    width: 100%;
-    padding: 10px;
-    margin: 10px;
-    color: white;
+.description {
+	background-color: #141515;
+	width: 100%;
+	padding: 10px;
+	margin: 10px;
+	color: white;
 }
 
-.description p{
-    font-size: 12px;
-    margin: 0px;
+.description p {
+	font-size: 12px;
+	margin: 0px;
 }
 
-.description h2{
-    font-size: 14px;
-    text-transform: uppercase;
-    margin: 0;
+.description h2 {
+	font-size: 14px;
+	text-transform: uppercase;
+	margin: 0;
 }
 
-
-.commentsContainer{
-    width: 70%;
-    min-width: 350px;
-    max-width: 650px;
-    margin: 8px auto;
-    background-color: #2f2e2f;
-    box-shadow: 0px 0px 0px 3px #373537;
-    padding: 12px 12px 1px 12px;
+.commentsContainer {
+	width: 70%;
+	min-width: 350px;
+	max-width: 650px;
+	margin: 8px auto;
+	background-color: #2f2e2f;
+	box-shadow: 0px 0px 0px 3px #373537;
+	padding: 12px 12px 1px 12px;
 }
 
-.commentsContainer h2{
-    color: white;
-    text-transform: uppercase;
-    font-weight: 200;
-    letter-spacing: 3px;
+.commentsContainer h2 {
+	color: white;
+	text-transform: uppercase;
+	font-weight: 200;
+	letter-spacing: 3px;
 }
 
-.commentsContainer h3{
-    text-transform: capitalize;
-    font-weight: 200;
-    font-size: 35px;
-    letter-spacing: 4px;
+.commentsContainer h3 {
+	text-transform: capitalize;
+	font-weight: 200;
+	font-size: 35px;
+	letter-spacing: 4px;
 }
 
-.commentsContainer h4{
-    text-transform: capitalize;
-    font-weight: 200;
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: grey;
+.commentsContainer h4 {
+	text-transform: capitalize;
+	font-weight: 200;
+	font-size: 12px;
+	letter-spacing: 1px;
+	color: grey;
 }
 
-.commentsContainer p{
-    margin: 15px 15px 0 15px;
-    font-size: 18px;
+.commentsContainer p {
+	margin: 15px 15px 0 15px;
+	font-size: 18px;
 }
 
-.individualComment{
-    margin: 12px 0 12px 0;
-    padding: 12px;
-    border-radius: 3px;
-    background-color: #e9e9e9
+.individualComment {
+	margin: 12px 0 12px 0;
+	padding: 12px;
+	border-radius: 3px;
+	background-color: #e9e9e9;
 }
-
 
 .posterFace {
-    display: inline-block;
-    width: 70px;
-    padding-top: 70px;
-    margin-right: 20px;
-    border-radius: 4px;
-    background-position: center;
-    background-size: cover;
-    vertical-align: top;
+	display: inline-block;
+	width: 70px;
+	padding-top: 70px;
+	margin-right: 20px;
+	border-radius: 4px;
+	background-position: center;
+	background-size: cover;
+	vertical-align: top;
 }
 
 .commenterName {
-    display: inline-block;
-    vertical-align: top;
+	display: inline-block;
+	vertical-align: top;
 }
 
-.commentForm{
-    background-color: black;
-    margin: 12px 0 12px 0;
-    padding: 12px;
-    border-radius: 3px;
+.commentForm {
+	background-color: black;
+	margin: 12px 0 12px 0;
+	padding: 12px;
+	border-radius: 3px;
 }
 
 .commentForm h2 {
-    font-size: 20px;
-    color: white;
-    margin: 5px;
+	font-size: 20px;
+	color: white;
+	margin: 5px;
 }
 
-.commentForm p{
-    color: white;
-    margin: 0 5px 5px 5px;
-    font-size: 14px;
-    letter-spacing: 5px;
+.commentForm p {
+	color: white;
+	margin: 0 5px 5px 5px;
+	font-size: 14px;
+	letter-spacing: 5px;
 }
 
-@media screen and (max-width: 1300px)  {
-    .pairHolder{
-        border-bottom: 1px solid black;
-        padding: 8px;
-    }
+@media screen and (max-width: 1300px) {
+	.pairHolder {
+		border-bottom: 1px solid black;
+		padding: 8px;
+	}
 
-    .boxDetail2{
-        border: none;
-    }
-    .boxDetail3{
-        border: none;
-    }
+	.boxDetail2 {
+		border: none;
+	}
+	.boxDetail3 {
+		border: none;
+	}
 }
 
-.userContainer{
-    margin: 53px 8% 5px 8%;
-    background-color: white;
+.userContainer {
+	margin: 53px 8% 5px 8%;
+	background-color: white;
 }
 
-.userContainer h1{
-    text-transform: capitalize;
-    font-weight: 100;
-    letter-spacing: 3px;
+.userContainer h1 {
+	text-transform: capitalize;
+	font-weight: 100;
+	letter-spacing: 3px;
 }
 
-.centeredSpinner{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 50%;
-    transform: translateX(-50%);
+.centeredSpinner {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 50%;
+	transform: translateX(-50%);
 }
 
-.profileBioTopBlack{
-    background-color: #181718;
-    padding: 15px;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.profileBioTopBlack {
+	background-color: #181718;
+	padding: 15px;
+	color: white;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
 }
 
-.profileBioTopBlack h4{
-    color: #181718;
-    font-size: 5px;
-    margin: 5px;
+.profileBioTopBlack h4 {
+	color: #181718;
+	font-size: 5px;
+	margin: 5px;
 }
 
 .topBioHolder1 {
-    flex-grow: 1;
-    margin: 0 40px 0 40px;
-    text-align: center;
-    vertical-align: middle;
-    min-width: 270px;
+	flex-grow: 1;
+	margin: 0 40px 0 40px;
+	text-align: center;
+	vertical-align: middle;
+	min-width: 270px;
 }
 
 .topBioHolder2 {
-    flex-grow: 3;
-    padding: 20px;
-    vertical-align: middle;
-    border: 1px solid black;
-    min-width: 300px;
-    box-shadow: 1px 1px 1px 1px black;
-    color: white;
-    margin: 0 40px 0 40px;
+	flex-grow: 3;
+	padding: 20px;
+	vertical-align: middle;
+	border: 1px solid black;
+	min-width: 300px;
+	box-shadow: 1px 1px 1px 1px black;
+	color: white;
+	margin: 0 40px 0 40px;
 }
 
-.topBioHolder2 h1{
-    font-size: 35px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 4px;
+.topBioHolder2 h1 {
+	font-size: 35px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 4px;
 }
-
 
 .topBioHolder2 h2 {
-    color: white;
-    margin: 0px;
-    font-weight: 100;
-    letter-spacing: 3px;
+	color: white;
+	margin: 0px;
+	font-weight: 100;
+	letter-spacing: 3px;
 }
 
 .topBioHolder2 h3 {
-    color: white;
-    margin: 0px;
-    font-weight: 100;
-    letter-spacing: 3px;
+	color: white;
+	margin: 0px;
+	font-weight: 100;
+	letter-spacing: 3px;
 }
 
 .topBioHolder2 h4 {
-    color: white;
-    margin: 0 0 15px 0;
-    font-weight: 100;
-    font-size: 15px;
-    word-spacing: 5px;
-    letter-spacing: 2px;
+	color: white;
+	margin: 0 0 15px 0;
+	font-weight: 100;
+	font-size: 15px;
+	word-spacing: 5px;
+	letter-spacing: 2px;
 }
 
 .topBioHolder2 p {
-    background-color: #3f3e3f;
-    color: white;
-    font-size: 16px;
-    height: 70px;
-    padding: 10px;
-    box-shadow: 1px 1px 1px black;
+	background-color: #3f3e3f;
+	color: white;
+	font-size: 16px;
+	height: 70px;
+	padding: 10px;
+	box-shadow: 1px 1px 1px black;
 }
 
 .userPanesHolder {
-    width: 100%;
+	width: 100%;
 }
 
 .userPanesRow {
-    width: 100%;
+	width: 100%;
 }
 
 .individualUserPane {
-    display: inline-block;
-    width: 50%;
-    border: 4px solid #181718;
-    height: 300px;
-    overflow: auto;
-    margin-bottom: -5px;
-
+	display: inline-block;
+	width: 50%;
+	border: 4px solid #181718;
+	height: 300px;
+	overflow: auto;
+	margin-bottom: -5px;
 }
 
 .individualUserFeedPane {
-    display: inline-block;
-    width: 100%;
-    border: 4px solid #181718;
-    padding: 35px;
+	display: inline-block;
+	width: 100%;
+	border: 4px solid #181718;
+	padding: 35px;
 }
 
 .individualUserFeedPane p {
-    padding: 2px;
+	padding: 2px;
 }
 
-.userProfileFeedItem{
-    border-bottom: 1px solid darkgrey;
-    padding: 20px;
-    margin: 20px;
+.userProfileFeedItem {
+	border-bottom: 1px solid darkgrey;
+	padding: 20px;
+	margin: 20px;
 }
 
-.userExpandButton{
-    background-color: #1f1e1f;
-    color: yellow;
-    text-align: center;
-    width: 100%;
-    padding: 10px;
-    border-bottom: 4px solid white;
+.userExpandButton {
+	background-color: #1f1e1f;
+	color: yellow;
+	text-align: center;
+	width: 100%;
+	padding: 10px;
+	border-bottom: 4px solid white;
 }
 
-.stopFollowButton{
-    margin: 10px;
-    border: 2px solid #80000C;
-    border-radius: 3px;
-    padding: 6px;
-    width: 100px;
-    letter-spacing: 2px;
-    height: 28px;
-    color: #80000C;
-    font-weight: bold;
-    font-size: 10px;
-    text-align: center;
-    box-shadow: 1px 1px 1px grey;
-    transition: all .3s ease;
-
+.stopFollowButton {
+	margin: 10px;
+	border: 2px solid #80000c;
+	border-radius: 3px;
+	padding: 6px;
+	width: 100px;
+	letter-spacing: 2px;
+	height: 28px;
+	color: #80000c;
+	font-weight: bold;
+	font-size: 10px;
+	text-align: center;
+	box-shadow: 1px 1px 1px grey;
+	transition: all .3s ease;
 }
 
-.stopFollowButton:hover{
-    background-color: #80000C;
-    box-shadow: none;
-    color: white;
-    transition: all .3s ease;
+.stopFollowButton:hover {
+	background-color: #80000c;
+	box-shadow: none;
+	color: white;
+	transition: all .3s ease;
 }
 
-.stopFollowButton2{
-    background-color: white;
-    margin:  -115px 0 0 -10px;
-    border: 2px solid #80000C;
-    border-radius: 14px;
-    padding: 6px;
-    width: 28px;
-    height: px;
-    color: #80000C;
-    font-weight: bold;
-    font-size: 10px;
-    text-align: center;
-    box-shadow: 1px 1px 1px grey;
-    transition: all .3s ease;
+.stopFollowButton2 {
+	background-color: white;
+	margin: -115px 0 0 -10px;
+	border: 2px solid #80000c;
+	border-radius: 14px;
+	padding: 6px;
+	width: 28px;
+	height: px;
+	color: #80000c;
+	font-weight: bold;
+	font-size: 10px;
+	text-align: center;
+	box-shadow: 1px 1px 1px grey;
+	transition: all .3s ease;
 }
 
-.stopFollowButton2:hover{
-    background-color: #80000C;
-    box-shadow: none;
-    color: white;
-    transition: all .3s ease;
+.stopFollowButton2:hover {
+	background-color: #80000c;
+	box-shadow: none;
+	color: white;
+	transition: all .3s ease;
 }
 
 @media screen and (max-width: 1200px) {
-    .individualUserPane {
-        width: 100%;
-    }
+	.individualUserPane {
+		width: 100%;
+	}
 
-    .topBioHolder2 h3 {
-        font-size: 14px;
-    }
+	.topBioHolder2 h3 {
+		font-size: 14px;
+	}
 
-    .topBioHolder2 h4 {
-        font-size: 10px;
-    }
+	.topBioHolder2 h4 {
+		font-size: 10px;
+	}
 }
-
-
