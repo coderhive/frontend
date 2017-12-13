@@ -3,6 +3,7 @@ import {Button} from "semantic-ui-react";
 import NavBar from "../../graphql/NavbarContainer";
 import EditorComments from "./EditorComments";
 import RenderComponent from "./render/RenderComponent";
+import CodeEditor from "./codeEditor/CodeEditor";
 
 const moment = require("moment");
 
@@ -80,123 +81,122 @@ export default class EditorPage extends PureComponent {
         return "You haven't voted yet";
     }
 
-
     handleDelete = async() => {
         let response = await
-        this.props.deleteComponent({variables: {id: this.props.data.oneComponent.id}});
+            this.props.deleteComponent({variables: {id: this.props.data.oneComponent.id}});
         console.log('response: >>>> ', response)
         this.props.history.goBack()
         return response
 
     }
 
-
-
-    render() {
-        if (this.props.data.loading) return <p>LOADING...</p>;
-        if (!this.props.data.oneComponent) return <p>LOADING...</p>;
-        if (this.props.data.oneComponent.status === 'deleted') return <p style={{color: "white"}}>DELETED COMPONENT...</p>;
-        return (
-            <div>
-                <NavBar
-                    authenticatedId={this.props.authenticatedId}
-                    user={[this.props.loggedUser]}
-                    onSubmit={this.props.handleLogin}
-                    onLogout={this.props.handleLogOut}
-                />
-                <div className="editorContainer">
-                    <div className="editorPaneContainer">
-                        <div
-                            className={this.state.panel1Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
-                            <div className="toolbarBg">
-                                <div className="editorCollapseButton" onClick={() => this.handleToggle(1)}>
-                                    {this.state.panel1Collapsed
-                                        ? <i className="plus square outline icon" size="mini"/>
-                                        : <i className="minus square outline icon" size="mini"/>}
-                                </div>
-                            </div>
-                            {this.state.panel1Collapsed
-                                ? <div className="textHolderCollapsed">
-                                    <p className="closedText">Editor</p>
-                                </div>
-                                : <p className="bodyText">Code Editor</p>}
-                        </div>
-                        <div className="panelsVertical">
-                            <div className="toolbarBg" style={{paddingLeft: "8px"}}>
-                                <div className="editorRefreshButton">
-                                    <i className="refresh icon" size="mini"/>
-                                </div>
-                            </div>
-                            <p
-                                className="bodyText"
-                                style={{
-                                    height: "80%",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center"
-                                }}>
-                                <RenderComponent id={this.props.data ? this.props.data.oneComponent.id : null}/>
-                            </p>
-                        </div>
-                        <div
-                            className={this.state.panel3Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
-                            <div className="toolbarBg">
-                                <div className="editorCollapseButton" onClick={() => this.handleToggle(3)}>
-                                    {this.state.panel3Collapsed
-                                        ? <i className="plus square outline icon" size="mini"/>
-                                        : <i className="minus square outline icon" size="mini"/>}
-                                </div>
-                            </div>
-                            {this.state.panel3Collapsed
-                                ? <div className="textHolderCollapsed">
-                                    <p className="closedText">Styling</p>
-                                </div>
-                                : <p className="bodyText">CSS Panel</p>}
-                        </div>
-                    </div>
-                    <div className="detailsBox">
-                        <div className="pairHolder">
-                            <div className="boxDetail1">
-                                <h1>
-                                    {this.props.data.oneComponent.title.slice(0, 30)}
-                                    {this.props.data.oneComponent.title.length > 30 ? "..." : ""}
-                                </h1>
-                                <p>
-                                    framework: {this.props.data.oneComponent.framework.toUpperCase()}
-                                </p>
-                                <p>
-                                    created: {moment(this.props.data.oneComponent.created_at).format("LLLL")}
-                                </p>
-                                <p>
-                                    updated: {moment(this.props.data.oneComponent.updated_at).format("LLLL")}
-                                </p>
-                            </div>
-                            <div className="boxDetail2">
-                                <div className="centerInBox" style={{marginTop: "6px"}}>
-                                    <p>Tags:</p>
-                                    {this.state.tagsToDisplay.map(thisTag =>
-                                        <Button
-                                            compact
-                                            color="yellow"
-                                            content={thisTag.name}
-                                            key={thisTag.id}
-                                            style={{
-                                                textTransform: "capitalize",
-                                                fontSize: "12px",
-                                                paddingLeft: "4px",
-                                                paddingRight: "4px"
-                                            }}
-                                        />
-                                    )}
-                                    {this.props.data.oneComponent.tags.length > this.state.tagsToDisplay.length
-                                        ? <Button
-                                            compact
-                                            color="black"
-                                            content={`${this.props.data.oneComponent.tags.length -
-                                            this.state.tagsToDisplay.length}+`}
-                                            style={{fontSize: "12px", paddingLeft: "4px", paddingRight: "4px"}}
-                                        />
-                                        : null}
+	render() {
+		if (this.props.data.loading) return <p>LOADING...</p>;
+		if (!this.props.data.oneComponent) return <p>LOADING...</p>;
+		return (
+			<div>
+				<NavBar
+					authenticatedId={this.props.authenticatedId}
+					user={[this.props.loggedUser]}
+					onSubmit={this.props.handleLogin}
+					onLogout={this.props.handleLogOut}
+				/>
+				<div className="editorContainer">
+					<div className="editorPaneContainer">
+						<div
+							className={this.state.panel1Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
+							<div className="toolbarBg">
+								<div className="editorCollapseButton" onClick={() => this.handleToggle(1)}>
+									{this.state.panel1Collapsed
+										? <i className="plus square outline icon" size="mini" />
+										: <i className="minus square outline icon" size="mini" />}
+								</div>
+							</div>
+							{this.state.panel1Collapsed
+								? <div className="textHolderCollapsed">
+										<p className="closedText">Editor</p>
+									</div>
+								: <div className="bodyText">
+										<CodeEditor code={this.props.data ? this.props.data.oneComponent.code : null} />
+									</div>}
+						</div>
+						<div className="panelsVertical">
+							<div className="toolbarBg" style={{ paddingLeft: "8px" }}>
+								<div className="editorRefreshButton">
+									<i className="refresh icon" size="mini" />
+								</div>
+							</div>
+							<p
+								className="bodyText"
+								style={{
+									height: "80%",
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									overflow: "auto"
+								}}>
+								<RenderComponent id={this.props.data ? this.props.data.oneComponent.id : null} />
+							</p>
+						</div>
+						<div
+							className={this.state.panel3Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
+							<div className="toolbarBg">
+								<div className="editorCollapseButton" onClick={() => this.handleToggle(3)}>
+									{this.state.panel3Collapsed
+										? <i className="plus square outline icon" size="mini" />
+										: <i className="minus square outline icon" size="mini" />}
+								</div>
+							</div>
+							{this.state.panel3Collapsed
+								? <div className="textHolderCollapsed">
+										<p className="closedText">Styling</p>
+									</div>
+								: <p className="bodyText">CSS Panel</p>}
+						</div>
+					</div>
+					<div className="detailsBox">
+						<div className="pairHolder">
+							<div className="boxDetail1">
+								<h1>
+									{this.props.data.oneComponent.title.slice(0, 30)}
+									{this.props.data.oneComponent.title.length > 30 ? "..." : ""}
+								</h1>
+								<p>
+									framework: {this.props.data.oneComponent.framework.toUpperCase()}
+								</p>
+								<p>
+									created: {moment(this.props.data.oneComponent.created_at).format("LLLL")}
+								</p>
+								<p>
+									updated: {moment(this.props.data.oneComponent.updated_at).format("LLLL")}
+								</p>
+							</div>
+							<div className="boxDetail2">
+								<div className="centerInBox" style={{ marginTop: "6px" }}>
+									<p>Tags:</p>
+									{this.state.tagsToDisplay.map(thisTag =>
+										<Button
+											compact
+											color="yellow"
+											content={thisTag.name}
+											key={thisTag.id}
+											style={{
+												textTransform: "capitalize",
+												fontSize: "12px",
+												paddingLeft: "4px",
+												paddingRight: "4px"
+											}}
+										/>
+									)}
+									{this.props.data.oneComponent.tags.length > this.state.tagsToDisplay.length
+										? <Button
+												compact
+												color="black"
+												content={`${this.props.data.oneComponent.tags.length -
+													this.state.tagsToDisplay.length}+`}
+												style={{ fontSize: "12px", paddingLeft: "4px", paddingRight: "4px" }}
+											/>
+										: null}
 
                                     <div style={{marginTop: "10px"}}>
                                         <p>Followers:</p>
