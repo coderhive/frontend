@@ -26,7 +26,11 @@ export default class EditorPage extends PureComponent {
 	}
 
 	handleToggle = panelNumber => {
-		if (panelNumber === 1) this.setState({ panel1Collapsed: !this.state.panel1Collapsed });
+		// if (panelNumber === 1) this.setState({ panel1Collapsed: !this.state.panel1Collapsed });
+		if (panelNumber === 1)
+			this.setState(prevState => {
+				return { panel1Collapsed: !prevState.panel1Collapsed };
+			});
 		if (panelNumber === 3) this.setState({ panel3Collapsed: !this.state.panel3Collapsed });
 		if (panelNumber === 4) this.setState({ panel4Collapsed: !this.state.panel4Collapsed });
 	};
@@ -87,9 +91,6 @@ export default class EditorPage extends PureComponent {
 		let response = await this.props.deleteComponent({
 			variables: { id: this.props.data.oneComponent.id }
 		});
-		console.log("response: >>>> ", response);
-		this.props.history.push("/components/");
-		return response;
 
 		this.props.history.goBack();
 		return response;
@@ -138,6 +139,12 @@ export default class EditorPage extends PureComponent {
 							{this.state.panel1Collapsed
 								? <div className="textHolderCollapsed">
 										<p className="closedText">Editor</p>
+										<div style={{ visibility: "hidden" }}>
+											<CodeEditor
+												code={this.props.data.oneComponent.code}
+												toggle={this.state.panel1Collapsed}
+											/>
+										</div>
 									</div>
 								: <div
 										className="bodyText"
@@ -182,14 +189,14 @@ export default class EditorPage extends PureComponent {
 								? <div className="textHolderCollapsed">
 										<p className="closedText">Styling</p>
 									</div>
-								: <p
+								: <div
 										className="bodyText"
 										style={{
 											margin: "0",
 											overflow: "auto"
 										}}>
 										<CSSPanel css={this.props.data.oneComponent.css} />
-									</p>}
+									</div>}
 						</div>
 					</div>
 					<div className="detailsBox">

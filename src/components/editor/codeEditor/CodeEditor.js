@@ -14,12 +14,7 @@ export default class CodeEditor extends React.Component {
 		var undo_manager = this.refs.ace.editor.getSession().getUndoManager();
 		undo_manager.reset();
 		this.refs.ace.editor.getSession().setUndoManager(undo_manager);
-		this.refs.ace.editor.setAutoScrollEditorIntoView(true);
-	}
-
-	componentWillReceiveProps() {
-		console.log(this.props.toggle);
-		this.refs.editor.getSession().setUseWrapMode(!this.props.toggle);
+		this.refs.ace.editor.setAutoScrollEditorIntoView(false);
 	}
 
 	render() {
@@ -35,7 +30,7 @@ export default class CodeEditor extends React.Component {
 				value={this.props.code}
 				onLoad={editor => {
 					editor.focus();
-					editor.getSession().setUseWrapMode(true);
+					editor.getSession().setUseWrapMode(false);
 				}}
 			/>
 		);
