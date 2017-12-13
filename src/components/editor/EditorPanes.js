@@ -93,6 +93,7 @@ export default class EditorPage extends PureComponent {
 	render() {
 		if (this.props.data.loading) return <p>LOADING...</p>;
 		if (!this.props.data.oneComponent) return <p>LOADING...</p>;
+		if (this.props.data.oneComponent.status === 'deleted') return <p style={{color: 'white', margin: '200px', textAlign: "center"}}>Deleted Component</p>;
 		return (
 			<div>
 				<NavBar
