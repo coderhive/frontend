@@ -101,6 +101,20 @@ const createVote = gql`
 	}
 `;
 
+const deleteVote = gql`
+	mutation(
+	$user_id: Int!
+	$component_id: Int!
+	) {
+		deleteVote(
+		user_id: $user_id
+		component_id: $component_id
+		) {
+			id
+		}
+	}
+`;
+
 export default compose(
 	withRouter,
 	withApollo,
@@ -109,4 +123,5 @@ export default compose(
 	graphql(updateComponentCode, { name: "updateComponentCode" }),
 	graphql(createComment, { name: "createComment" }),
 	graphql(createVote, { name: "createVote" }),
+	graphql(deleteVote, { name: "deleteVote" }),
 )(EditorPanes);
