@@ -26,11 +26,7 @@ export default class EditorPage extends PureComponent {
 	}
 
 	handleToggle = panelNumber => {
-		// if (panelNumber === 1) this.setState({ panel1Collapsed: !this.state.panel1Collapsed });
-		if (panelNumber === 1)
-			this.setState(prevState => {
-				return { panel1Collapsed: !prevState.panel1Collapsed };
-			});
+		if (panelNumber === 1) this.setState({ panel1Collapsed: !this.state.panel1Collapsed });
 		if (panelNumber === 3) this.setState({ panel3Collapsed: !this.state.panel3Collapsed });
 		if (panelNumber === 4) this.setState({ panel4Collapsed: !this.state.panel4Collapsed });
 	};
@@ -100,6 +96,10 @@ export default class EditorPage extends PureComponent {
 		this.setState({ editSettingsOn: !this.state.editSettingsOn });
 	};
 
+	handleRefresh = () => {
+		this.setState({ time: Date.now() });
+	};
+
 	render() {
 		if (this.state.editSettingsOn)
 			return (
@@ -139,12 +139,6 @@ export default class EditorPage extends PureComponent {
 							{this.state.panel1Collapsed
 								? <div className="textHolderCollapsed">
 										<p className="closedText">Editor</p>
-										<div style={{ visibility: "hidden" }}>
-											<CodeEditor
-												code={this.props.data.oneComponent.code}
-												toggle={this.state.panel1Collapsed}
-											/>
-										</div>
 									</div>
 								: <div
 										className="bodyText"
@@ -160,7 +154,7 @@ export default class EditorPage extends PureComponent {
 						</div>
 						<div className="panelsVertical">
 							<div className="toolbarBg" style={{ paddingLeft: "8px" }}>
-								<div className="editorRefreshButton">
+								<div className="editorRefreshButton" onClick={this.handleRefresh}>
 									<i className="refresh icon" size="mini" />
 								</div>
 							</div>
@@ -173,7 +167,10 @@ export default class EditorPage extends PureComponent {
 									alignItems: "center",
 									overflow: "auto"
 								}}>
-								<RenderComponent id={this.props.data ? this.props.data.oneComponent.id : null} />
+								<RenderComponent
+									id={this.props.data ? this.props.data.oneComponent.id : null}
+									time={this.state.time ? this.state.time : null}
+								/>
 							</p>
 						</div>
 						<div
