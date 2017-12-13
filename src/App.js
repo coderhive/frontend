@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HiveContainer from "./graphql/HiveContainer";
 import SignupContainer from "./graphql/SignupContainer";
 import EditorContainer from "./graphql/EditorContainer";
 import UserProfileContainer from "./graphql/UserProfileContainer";
+import NewComponentContainer from "./graphql/NewComponentContainer";
 import login from "./helperFunctions/login";
 import jwtDecode from "jwt-decode";
 
@@ -33,7 +34,7 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<div>
+				<Switch>
 					<Route
 						exact
 						path="/"
@@ -53,6 +54,19 @@ class App extends Component {
 						render={() => {
 							return (
 								<HiveContainer
+									handleLogin={this.handleLogin}
+									handleLogOut={this.handleLogOut}
+									authenticatedId={this.state.authenticatedId}
+								/>
+							);
+						}}
+					/>
+					<Route
+						exact
+						path="/components/new"
+						render={() => {
+							return (
+								<NewComponentContainer
 									handleLogin={this.handleLogin}
 									handleLogOut={this.handleLogOut}
 									authenticatedId={this.state.authenticatedId}
@@ -116,7 +130,7 @@ class App extends Component {
 							);
 						}}
 					/>
-				</div>
+				</Switch>
 			</Router>
 		);
 	}

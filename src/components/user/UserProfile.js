@@ -13,7 +13,7 @@ export default class UserProfile extends PureComponent {
         super(props);
 
         this.state = {
-            aboutMe: '',
+            aboutMe: 'Loading...',
             panel1Toggle: {height: "600px", overflow: "hidden"},
             panel2Toggle: {height: "600px", overflow: "hidden"},
             panel3Toggle: {height: "600px", overflow: "hidden"},
@@ -26,7 +26,6 @@ export default class UserProfile extends PureComponent {
     componentWillReceiveProps(props) {
         console.log(props.data)
         if (props.data.oneUserById) {
-            console.log('YEAHHHHHHHHHHHH<<<<<<<<<<<<<<<<')
             this.setState({
                 aboutMe: props.data.oneUserById.summary
             })
@@ -34,7 +33,7 @@ export default class UserProfile extends PureComponent {
     }
 
     handleChange = event => {
-        this.setState({value: event.target.value});
+        this.setState({aboutMe: event.target.value});
     };
 
     render() {
@@ -83,6 +82,7 @@ export default class UserProfile extends PureComponent {
 
                                     <h3>about me:</h3>
                                     {this.props.userId === this.props.authenticatedId ?
+                                        <form>
                                         <textarea style={{
                                             backgroundColor: "#3f3e3f",
                                             color: "white",
@@ -91,10 +91,13 @@ export default class UserProfile extends PureComponent {
                                             padding: "10px",
                                             boxShadow: "1px 1px 1px black",
                                             width: "100%",
-                                            value: this.state.aboutMe
                                         }}
+                                                  value={this.state.aboutMe}
                                                   onChange={this.handleChange}>
                                         </textarea>
+                                            <input type="submit" value="save" style={{float: 'right', padding: '5px' +
+                                            ' 20px 5px 20px'}} />
+                                        </form>
                                         :
                                         <p>{this.props.data.oneUserById.summary}</p>
                                     }

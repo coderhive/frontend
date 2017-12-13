@@ -50,13 +50,16 @@ const oneComponent = gql`
 	}
 `;
 
+const deleteComponent = gql`
+	mutation($id: Int!) {
+		deleteComponent(id: $id) {
+			id
+		}
+	}
+`;
+
 export default compose(
 	withRouter,
-	graphql(oneComponent, {
-		options: props => ({
-			variables: {
-				id: props.componentId
-			}
-		})
-	})
+	graphql(oneComponent, { options: props => ({ variables: { id: props.componentId } }) }),
+	graphql(deleteComponent, { name: "deleteComponent" })
 )(EditorPanes);
