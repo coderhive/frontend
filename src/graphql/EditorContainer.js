@@ -25,6 +25,7 @@ const oneComponent = gql`
 			fans {
 				id
 				display_name
+				user_id
 			}
 			votes {
 				id

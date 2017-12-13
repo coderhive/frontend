@@ -32,6 +32,7 @@ export default class EditorPage extends PureComponent {
     };
 
     componentWillReceiveProps(props) {
+        console.log(props)
         if (props.data.oneComponent) {
             let firstThreeFans = props.data.oneComponent.fans.slice(0, 3);
             firstThreeFans = firstThreeFans.map(fan => {
