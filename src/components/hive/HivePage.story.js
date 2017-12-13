@@ -1,9 +1,6 @@
 import React, { PureComponent } from "react";
 import { storiesOf, addDecorator } from "@storybook/react";
 import StoryRouter from "storybook-router";
-import apolloStorybookDecorator from "apollo-storybook-decorator";
-import { graphql } from "react-apollo";
-import gql from "graphql-tag";
 import Navbar from "../nav/Navbar";
 import HoneyCombUserGrid from "./HoneyCombUserGrid";
 

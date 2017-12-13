@@ -158,3 +158,8 @@ body {
 	bottom: 74px;
 }
 
+.aceEditor {
+	position: relative;
+	width: 10%;
+	height: 100%;
+}
