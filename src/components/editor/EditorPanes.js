@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { Button } from "semantic-ui-react";
 import NavBar from "../../graphql/NavbarContainer";
+import ComponentLightboxContainer from "../../graphql/ComponentLightboxContainer";
 import EditorComments from "./EditorComments";
 import RenderComponent from "./render/RenderComponent";
 import CodeEditor from "./codeEditor/CodeEditor";
@@ -19,7 +20,8 @@ export default class EditorPage extends PureComponent {
 			fansToDisplay: [],
 			yesVotes: 0,
 			noVotes: 0,
-			currentVote: null
+			currentVote: null,
+			editSettingsOn: false
 		};
 	}
 
@@ -85,14 +87,35 @@ export default class EditorPage extends PureComponent {
 		let response = await this.props.deleteComponent({
 			variables: { id: this.props.data.oneComponent.id }
 		});
+		console.log("response: >>>> ", response);
+		this.props.history.push("/components/");
+		return response;
 
 		this.props.history.goBack();
 		return response;
 	};
 
+	toggleEdit = () => {
+		this.setState({ editSettingsOn: !this.state.editSettingsOn });
+	};
+
 	render() {
+		if (this.state.editSettingsOn)
+			return (
+				<ComponentLightboxContainer
+					authenticatedId={this.props.authenticatedId}
+					toggleEdit={this.toggleEdit}
+					component_id={this.props.data.oneComponent.id}
+					title={this.props.data.oneComponent.title}
+					description={this.props.data.oneComponent.description || ""}
+				/>
+			);
 		if (this.props.data.loading) return <p>LOADING...</p>;
 		if (!this.props.data.oneComponent) return <p>LOADING...</p>;
+		if (this.props.data.oneComponent.status === "deleted")
+			return (
+				<p style={{ color: "white", margin: "200px", textAlign: "center" }}>Deleted Component</p>
+			);
 		return (
 			<div>
 				<NavBar
@@ -302,6 +325,7 @@ export default class EditorPage extends PureComponent {
 														content="Edit Information"
 														icon="info circle"
 														style={{ fontSize: "11px", width: "150px", textAlign: "left" }}
+														onClick={() => this.toggleEdit()}
 													/>
 												</div>
 												<div style={{ margin: "3px" }}>
