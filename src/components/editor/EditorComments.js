@@ -21,23 +21,21 @@ export default class EditorComments extends PureComponent {
         let user_id = this.props.authenticatedId;
         let component_id = this.props.data.oneComponent.id;
         let comment = this.state.value;
-
         let response = await this.props.createComment({
             variables: {user_id, component_id, comment}
         });
         this.props.client.resetStore()
         this.state.value=''
+        return response;
     };
 
     componentWillReceiveProps(props){
-        console.log(props)
         if(props.data.oneComponent.comments){
             let newComments = [...props.data.oneComponent.comments]
             newComments = newComments.reverse();
         this.setState({
             comments: newComments
         })
-            console.log(newComments)
 
         }
     }
