@@ -16,6 +16,12 @@ export default class EditorComments extends PureComponent {
 		this.setState({ value: event.target.value });
 	};
 
+	handleSubmit = () => {
+		console.log(this.state.value);
+		console.log(this.props.authenticatedId);
+		console.log(this.props.data.oneComponent.id)
+	};
+
 	render() {
 		if (this.props.data.loading) return <p style={{ color: "white" }}>LOADING PAGE...</p>;
 		if (!this.props.data.oneComponent)
@@ -30,12 +36,14 @@ export default class EditorComments extends PureComponent {
 					<div className="individualComment" key={thisComment.id}>
 						<div>
 							<div
-								className="posterFace"
+								className="ownerFace"
 								style={{ backgroundImage: `url('${thisComment.profile_picture}')` }}
+								onClick={() => this.props.history.push(`/users/${thisComment.user_id}`)}
+
 							/>
 							<div className="commenterName">
 								<div>
-									<h3>
+									<h3 onClick={() => this.props.history.push(`/users/${thisComment.user_id}`)}>
 										{thisComment.display_name}
 									</h3>
 								</div>
@@ -66,7 +74,14 @@ export default class EditorComments extends PureComponent {
 										onChange={this.handleChange}
 										style={{ minHeight: "100px" }}
 									/>
-									<Button style={{ margin: "12px 0 0 12px" }}>Submit</Button>
+									<Button
+										style={{ margin: "12px 0 0 12px" }}
+										onClick={this.handleSubmit}
+									>
+										Submit
+									</Button>
+
+                                    />
 								</Form>
 							</div>}
 				</div>
