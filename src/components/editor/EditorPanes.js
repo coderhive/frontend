@@ -21,7 +21,8 @@ export default class EditorPage extends PureComponent {
             yesVotes: 0,
             noVotes: 0,
             currentVote: null,
-            editSettingsOn: false
+            editSettingsOn: false,
+            iAmAFan: false,
         };
     }
 
@@ -32,7 +33,6 @@ export default class EditorPage extends PureComponent {
     };
 
     componentWillReceiveProps(props) {
-        console.log(props)
         if (props.data.oneComponent) {
             let firstThreeFans = props.data.oneComponent.fans.slice(0, 3);
             firstThreeFans = firstThreeFans.map(fan => {
@@ -59,12 +59,18 @@ export default class EditorPage extends PureComponent {
                 );
             }
 
+            let iAmAFan = false;
+            if(props.data.oneComponent.fans.find(user => user.user_id === this.props.authenticatedId)){
+                iAmAFan = true;
+            }
+
             this.setState({
                 tagsToDisplay: firstThreeTags,
                 fansToDisplay: firstThreeFans,
                 yesVotes: yesVotes.length,
                 noVotes: noVotes.length,
-                currentVote: myVote
+                currentVote: myVote,
+                iAmAFan
             });
         }
     }
@@ -139,6 +145,24 @@ export default class EditorPage extends PureComponent {
         }
         this.props.client.resetStore()
         return response
+    };
+
+    handleFan = async () => {
+        let user_id = this.props.authenticatedId;
+        let component_id = this.props.data.oneComponent.id;
+        let response;
+        if(this.state.iAmAFan){
+            let id = this.props.data.oneComponent.fans.find(fan => fan.user_id === this.props.authenticatedId).id;
+            response = await this.props.deleteFan({
+                variables: {id}
+            })
+        }else {
+            response = await this.props.createFan({
+                variables: {user_id, component_id}
+            })
+        }
+        this.props.client.resetStore()
+        return response;
     }
 
     render() {
@@ -405,9 +429,26 @@ export default class EditorPage extends PureComponent {
                                             </p>
                                         </div>
                                         <div style={{display: "inline-block", verticalAlign: "top"}}>
+                                            {this.state.iAmAFan ?
+                                                <div style={{margin: "6px"}}>
+                                                    <Button
+                                                        compact color="grey"
+                                                        content="Unfollow Code"
+                                                        icon="bookmark"
+                                                        onClick={this.handleFan}
+                                                    />
+                                                </div>
+                                                :
                                             <div style={{margin: "6px"}}>
-                                                <Button compact color="yellow" content="Follow Code" icon="bookmark"/>
+                                                <Button
+                                                    compact
+                                                    color="yellow"
+                                                    content="Follow Code"
+                                                    icon="bookmark"
+                                                    onClick={this.handleFan}
+                                                />
                                             </div>
+                                            }
                                             <div style={{margin: "6px"}}>
                                                 <Button compact color="green" content="Follow User" icon="user"/>
                                             </div>
