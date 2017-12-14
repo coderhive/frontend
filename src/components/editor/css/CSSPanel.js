@@ -11,6 +11,7 @@ export default class CSSPanel extends React.Component {
 		undo_manager.reset();
 		this.refs.ace.editor.getSession().setUndoManager(undo_manager);
 		this.refs.ace.editor.setAutoScrollEditorIntoView(true);
+		this.refs.ace.editor.setOptions({ wrap: "45", tabSize: 2 });
 	}
 
 	onChange = newValue => {
@@ -29,7 +30,7 @@ export default class CSSPanel extends React.Component {
 				editorProps={{ $blockScrolling: Infinity }}
 				ref="ace"
 				width="100%"
-				value={this.props.css}
+				value={this.props.css || ""}
 				onLoad={editor => {
 					editor.focus();
 					editor.getSession().setUseWrapMode(false);

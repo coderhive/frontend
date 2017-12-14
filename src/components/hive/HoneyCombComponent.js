@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Reveal, Table, Button } from "semantic-ui-react";
+const moment = require("moment");
 
 export default class HoneycombComponent extends PureComponent {
 	handleClick = (id, e) => {
@@ -14,7 +15,9 @@ export default class HoneycombComponent extends PureComponent {
 						<div
 							style={
 								this.props.component.component_picture
-									? { backgroundImage: "url(" + this.props.component.component_picture + ")" }
+									? {
+											backgroundImage: "url(" + this.props.component.component_picture + ")"
+										}
 									: {
 											backgroundImage:
 												"url(https://static.pexels.com/photos/20787/pexels-photo.jpg)"
@@ -37,15 +40,11 @@ export default class HoneycombComponent extends PureComponent {
 										</Table.Cell>
 									</Table.Row>
 									<Table.Row textAlign="center">
-										<Table.Cell style={{ color: "white" }}>{`Added on ${this.props.component
-											.created_at}`}</Table.Cell>
+										<Table.Cell style={{ color: "white" }}>{`Added on ${moment(
+											this.props.component.created_at
+										).format("LLL")}`}</Table.Cell>
 									</Table.Row>
-									<Table.Row textAlign="left" style={{ padding: "10px" }}>
-										<Table.Cell
-											style={{
-												color: "white"
-											}}>{`Description: ${this.props.component.description}`}</Table.Cell>
-									</Table.Row>
+									<Table.Row textAlign="left" style={{ padding: "10px" }} />
 								</Table.Body>
 							</Table>
 						</div>

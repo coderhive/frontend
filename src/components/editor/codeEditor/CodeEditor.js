@@ -7,10 +7,11 @@ import "brace/theme/twilight";
 
 export default class CodeEditor extends React.Component {
 	componentDidMount() {
-		var undo_manager = this.refs.ace.editor.getSession().getUndoManager();
+		let undo_manager = this.refs.ace.editor.getSession().getUndoManager();
 		undo_manager.reset();
 		this.refs.ace.editor.getSession().setUndoManager(undo_manager);
-		this.refs.ace.editor.setAutoScrollEditorIntoView(false);
+		this.refs.ace.editor.setAutoScrollEditorIntoView(true);
+		this.refs.ace.editor.setOptions({ wrap: "45", tabSize: 2 });
 	}
 
 	onChange = newValue => {
@@ -29,7 +30,7 @@ export default class CodeEditor extends React.Component {
 				editorProps={{ $blockScrolling: Infinity }}
 				ref="ace"
 				width="100%"
-				value={this.props.code}
+				value={this.props.code || ""}
 				onLoad={editor => {
 					editor.focus();
 					editor.getSession().setUseWrapMode(false);
