@@ -130,6 +130,7 @@ export default class EditorPage extends PureComponent {
     };
 
     handleVote = async (vote) => {
+        if(!this.props.authenticatedId) return
         let user_id = this.props.authenticatedId;
         let component_id = this.props.data.oneComponent.id;
         let response;
