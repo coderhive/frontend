@@ -62,6 +62,14 @@ const updateUser = gql`
 	}
 `;
 
+const createFollow = gql`
+	mutation($follower: Int!, $followee: Int!) {
+		createFollow(follower: $follower, followee: $followee) {
+			id
+		}
+	}
+`;
+
 const deleteFollow = gql`
 	mutation($follower: Int!, $followee: Int!) {
 		deleteFollow(follower: $follower, followee: $followee) {
@@ -91,4 +99,5 @@ export default compose(
     graphql(updateUser, { name: "updateUser" }),
     graphql(deleteFollow, { name: "deleteFollow" }),
     graphql(deleteFan, { name: "deleteFan" }),
+    graphql(createFollow, { name: "createFollow" }),
 )(UserProfile);
