@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Loader} from 'semantic-ui-react'
+import {Loader, Button} from 'semantic-ui-react'
 import NavBar from '../../graphql/NavbarContainer'
 import UserProfileFeedContainer from "../../graphql/UserProfileFeedContainer";
 import UserProfileComponents from "./UserProfileComponents"
@@ -16,6 +16,7 @@ export default class UserProfile extends PureComponent {
             id: 0,
             summary: 'Loading...',
             display_name: 'Loading...',
+            iFollow: false,
         };
     }
 
@@ -26,6 +27,15 @@ export default class UserProfile extends PureComponent {
                 id: props.authenticatedId,
                 display_name: props.data.oneUserById.display_name,
                 summary: props.data.oneUserById.summary
+            })
+        }
+        if(props.data.oneUserById.followers.find(follower => follower.id === this.props.authenticatedId)){
+            this.setState({
+                iFollow: true
+            })
+        } else {
+            this.setState({
+                iFollow: false
             })
         }
     }
@@ -63,6 +73,26 @@ export default class UserProfile extends PureComponent {
         this.props.client.resetStore()
     };
 
+    handleFollow = async () => {
+        let followee = this.props.data.oneUserById.id;
+        let follower = this.props.authenticatedId;
+        let response;
+        if(this.state.iFollow){
+            response = await this.props.deleteFollow({
+                variables: {followee, follower}
+            });
+            this.props.client.resetStore();
+
+        } else{
+            response = await this.props.createFollow({
+                variables: {followee, follower}
+            });
+            this.props.client.resetStore();
+
+        }
+        return response;
+    };
+
     render() {
         return (
             <div>
@@ -94,6 +124,29 @@ export default class UserProfile extends PureComponent {
                                 }}/>
 
                                 <div className="topBioHolder2">
+
+                                    {this.props.authenticatedId ?
+                                        this.state.iFollow ?
+                                        <Button
+                                            color="grey"
+                                            content="Unfollow User"
+                                            width="150px"
+                                            style={{float: "right"}}
+                                            onClick={this.handleFollow}
+                                        />
+                                        :
+                                        <Button
+                                        color="green"
+                                        content="Follow User"
+                                        width="150px"
+                                        style={{float: "right"}}
+                                        onClick={this.handleFollow}
+                                        />
+                                        :
+                                        ''
+                                    }
+
+
 
                                     {this.props.userId === this.props.authenticatedId ?
                                         <form style={{
