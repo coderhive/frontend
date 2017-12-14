@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+
 const moment = require('moment');
 
 export default class UserProfileFeedItem extends PureComponent {
@@ -37,11 +38,17 @@ export default class UserProfileFeedItem extends PureComponent {
                         backgroundImage: `url('${this.props.data.user.profile_picture}')`,
                         verticalAlign: "middle",
                         borderRadius: "50%",
-                    }} />
+                    }}
+                         onClick={() => this.props.history.push(`/users/${this.props.data.user_id}`)}
+                    />
                 </div>
                 <div style={{width: "700px"}}>
                     <p style={{color: 'grey'}}>{moment(this.props.data.created_at).fromNow()}</p>
-                    <p style={{textTransform: "capitalize", fontWeight: 'bold'}}>{this.sentenceGenerator()}</p>
+                    <p style={{textTransform: "capitalize", fontWeight: 'bold'}}
+                       onClick={() => this.props.history.push(`/components/${this.props.data.component_id}`)}
+                    >
+                        {this.sentenceGenerator()}
+                        </p>
                 </div>
             </div>
         )

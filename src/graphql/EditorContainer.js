@@ -1,5 +1,5 @@
 import EditorPanes from "../components/editor/EditorPanes";
-import { graphql, compose } from "react-apollo";
+import { graphql, withApollo, compose } from "react-apollo";
 import gql from "graphql-tag";
 import { withRouter } from "react-router-dom";
 
@@ -25,6 +25,7 @@ const oneComponent = gql`
 			fans {
 				id
 				display_name
+				user_id
 			}
 			votes {
 				id
@@ -69,9 +70,59 @@ const updateComponentCode = gql`
 	}
 `;
 
+const createComment = gql`
+	mutation(
+	$user_id: Int!
+	$component_id: Int!
+	$comment: String!
+	) {
+		createComment(
+		user_id: $user_id
+		component_id: $component_id
+		comment: $comment
+		) {
+			id
+		}
+	}
+`;
+
+const createVote = gql`
+	mutation(
+	$user_id: Int!
+	$component_id: Int!
+	$vote: Int!
+	) {
+		createVote(
+		user_id: $user_id
+		component_id: $component_id
+		vote: $vote
+		) {
+			id
+		}
+	}
+`;
+
+const deleteVote = gql`
+	mutation(
+	$user_id: Int!
+	$component_id: Int!
+	) {
+		deleteVote(
+		user_id: $user_id
+		component_id: $component_id
+		) {
+			id
+		}
+	}
+`;
+
 export default compose(
 	withRouter,
+	withApollo,
 	graphql(oneComponent, { options: props => ({ variables: { id: props.componentId } }) }),
 	graphql(deleteComponent, { name: "deleteComponent" }),
-	graphql(updateComponentCode, { name: "updateComponentCode" })
+	graphql(updateComponentCode, { name: "updateComponentCode" }),
+	graphql(createComment, { name: "createComment" }),
+	graphql(createVote, { name: "createVote" }),
+	graphql(deleteVote, { name: "deleteVote" }),
 )(EditorPanes);

@@ -13,27 +13,54 @@ export default class UserProfile extends PureComponent {
         super(props);
 
         this.state = {
-            aboutMe: 'Loading...',
-            panel1Toggle: {height: "600px", overflow: "hidden"},
-            panel2Toggle: {height: "600px", overflow: "hidden"},
-            panel3Toggle: {height: "600px", overflow: "hidden"},
-            panel4Toggle: {height: "600px", overflow: "hidden"},
-            panel5Toggle: {height: "600px", overflow: "hidden"},
+            id: 0,
+            summary: 'Loading...',
+            display_name: 'Loading...',
         };
     }
 
 
     componentWillReceiveProps(props) {
-        console.log(props.data)
         if (props.data.oneUserById) {
             this.setState({
-                aboutMe: props.data.oneUserById.summary
+                id: props.authenticatedId,
+                display_name: props.data.oneUserById.display_name,
+                summary: props.data.oneUserById.summary
             })
         }
     }
 
     handleChange = event => {
-        this.setState({aboutMe: event.target.value});
+        this.setState({[event.target.name]: event.target.value});
+    };
+
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        let response = await this.props.updateUser({
+            variables: {
+                id: this.state.id,
+                summary: this.state.summary,
+                display_name: this.state.display_name,
+            }
+        });
+    };
+
+    handleDeleteFollow = async (event) => {
+        let followee = event.data.id;
+        let follower = event.userId;
+        console.log(followee, follower)
+        let response = await this.props.deleteFollow({
+            variables: {followee, follower}
+        });
+        this.props.client.resetStore()
+    };
+
+    handleDeleteFan= async (id) => {
+        let response = await this.props.deleteFan({
+            variables: {id}
+        });
+        console.log(response)
+        this.props.client.resetStore()
     };
 
     render() {
@@ -67,7 +94,37 @@ export default class UserProfile extends PureComponent {
                                 }}/>
 
                                 <div className="topBioHolder2">
-                                    <h1>{this.props.data.oneUserById.display_name}</h1>
+
+                                    {this.props.userId === this.props.authenticatedId ?
+                                        <form style={{
+                                            maxWidth: "600px",
+                                            margin: "0 auto 40px auto",
+                                        }}
+                                              onSubmit={this.handleSubmit}
+                                        >
+                                            <h3>display name:</h3>
+                                            <input style={{
+                                                backgroundColor: "#3f3e3f",
+                                                color: "white",
+                                                fontSize: "50px",
+                                                height: "70px",
+                                                padding: "10px",
+                                                boxShadow: "1px 1px 1px black",
+                                                width: "100%",
+                                            }}
+                                                   name="display_name"
+                                                   value={this.state.display_name}
+                                                   onChange={this.handleChange}>
+                                            </input>
+                                            <input type="submit" value="save" style={{
+                                                float: 'right', padding: '5px' +
+                                                ' 20px 5px 20px'
+                                            }}/>
+                                        </form>
+                                        :
+                                        <h1>{this.props.data.oneUserById.display_name}</h1>
+                                    }
+
                                     <div
                                         style={{display: "flex", justifyContent: "space-between", textAlign: "center"}}>
                                         <div style={{flexGrow: "1"}}>
@@ -82,21 +139,31 @@ export default class UserProfile extends PureComponent {
 
                                     <h3>about me:</h3>
                                     {this.props.userId === this.props.authenticatedId ?
-                                        <form>
-                                        <textarea style={{
-                                            backgroundColor: "#3f3e3f",
-                                            color: "white",
-                                            fontSize: "16px",
-                                            height: "70px",
-                                            padding: "10px",
-                                            boxShadow: "1px 1px 1px black",
-                                            width: "100%",
+                                        <form style={{
+                                            maxWidth: "600px",
+                                            margin: "10px auto"
                                         }}
-                                                  value={this.state.aboutMe}
-                                                  onChange={this.handleChange}>
+                                              onSubmit={this.handleSubmit}
+                                        >
+                                            <textarea style={{
+                                                backgroundColor: "#3f3e3f",
+                                                color: "white",
+                                                fontSize: "16px",
+                                                height: "70px",
+                                                padding: "10px",
+                                                boxShadow: "1px 1px 1px black",
+                                                width: "100%",
+                                            }}
+                                                      value={this.state.summary}
+                                                      onChange={this.handleChange}
+                                                      name="summary"
+                                            >
+
                                         </textarea>
-                                            <input type="submit" value="save" style={{float: 'right', padding: '5px' +
-                                            ' 20px 5px 20px'}} />
+                                            <input type="submit" value="save" style={{
+                                                float: 'right', padding: '5px' +
+                                                ' 20px 5px 20px'
+                                            }}/>
                                         </form>
                                         :
                                         <p>{this.props.data.oneUserById.summary}</p>
@@ -112,6 +179,8 @@ export default class UserProfile extends PureComponent {
                                                 userId={this.props.data.oneUserById.id}
                                                 authenticatedId={this.props.authenticatedId}
                                                 title={"My Components"}
+                                                history={this.props.history}
+
                                             />
                                         </div>
                                         <div className="individualUserPane">
@@ -121,6 +190,9 @@ export default class UserProfile extends PureComponent {
                                                 authenticatedId={this.props.authenticatedId}
                                                 title={"Components I Follow"}
                                                 controls={true}
+                                                handleDeleteFan={this.handleDeleteFan}
+                                                history={this.props.history}
+
                                             />
                                         </div>
                                     </div>
@@ -131,6 +203,7 @@ export default class UserProfile extends PureComponent {
                                                 userId={this.props.data.oneUserById.id}
                                                 authenticatedId={this.props.authenticatedId}
                                                 title={"My Followers"}
+                                                history={this.props.history}
                                             />
                                         </div>
                                         <div className="individualUserPane">
@@ -138,8 +211,10 @@ export default class UserProfile extends PureComponent {
                                                 data={this.props.data.oneUserById.whoIFollow}
                                                 userId={this.props.data.oneUserById.id}
                                                 authenticatedId={this.props.authenticatedId}
+                                                handleDeleteFollow={this.handleDeleteFollow}
                                                 title={"Who I Follow"}
                                                 controls={true}
+                                                history={this.props.history}
                                             />
                                         </div>
                                     </div>
