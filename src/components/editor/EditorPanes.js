@@ -60,7 +60,7 @@ export default class EditorPage extends PureComponent {
             }
 
             let iAmAFan = false;
-            if(props.data.oneComponent.fans.find(user => user.user_id === this.props.authenticatedId)){
+            if (props.data.oneComponent.fans.find(user => user.user_id === this.props.authenticatedId)) {
                 iAmAFan = true;
             }
 
@@ -130,7 +130,7 @@ export default class EditorPage extends PureComponent {
     };
 
     handleVote = async (vote) => {
-        if(!this.props.authenticatedId) return
+        if (!this.props.authenticatedId) return
         let user_id = this.props.authenticatedId;
         let component_id = this.props.data.oneComponent.id;
         let response;
@@ -153,12 +153,12 @@ export default class EditorPage extends PureComponent {
         let user_id = this.props.authenticatedId;
         let component_id = this.props.data.oneComponent.id;
         let response;
-        if(this.state.iAmAFan){
+        if (this.state.iAmAFan) {
             let id = this.props.data.oneComponent.fans.find(fan => fan.user_id === this.props.authenticatedId).id;
             response = await this.props.deleteFan({
                 variables: {id}
             })
-        }else {
+        } else {
             response = await this.props.createFan({
                 variables: {user_id, component_id}
             })
@@ -388,6 +388,7 @@ export default class EditorPage extends PureComponent {
                                                     .profile_picture}')`,
                                                 verticalAlign: "middle"
                                             }}
+                                            onClick={() => this.props.history.push(`/users/${this.props.data.oneComponent.owner_user_id}`)}
                                         />
                                         <div style={{display: "inline-block", verticalAlign: "middle"}}>
                                             <div style={{margin: "3px"}}>
@@ -431,8 +432,10 @@ export default class EditorPage extends PureComponent {
                                                 {this.props.data.oneComponent.owner.experience}
                                             </p>
                                         </div>
-                                        <div style={{display: "inline-block", verticalAlign: "top", paddingTop: "20px"}}>
-                                            {this.state.iAmAFan ?
+                                        <div
+                                            style={{display: "inline-block", verticalAlign: "top", paddingTop: "20px"}}>
+                                            {this.props.authenticatedId ?
+                                                this.state.iAmAFan ?
                                                     <Button
                                                         compact color="grey"
                                                         content="Unfollow Code"
@@ -440,15 +443,17 @@ export default class EditorPage extends PureComponent {
                                                         onClick={this.handleFan}
                                                         style={{width: "150px"}}
                                                     />
+                                                    :
+                                                    <Button
+                                                        compact
+                                                        color="yellow"
+                                                        content="Follow Code"
+                                                        icon="bookmark"
+                                                        onClick={this.handleFan}
+                                                        style={{width: "150px"}}
+                                                    />
                                                 :
-                                                <Button
-                                                    compact
-                                                    color="yellow"
-                                                    content="Follow Code"
-                                                    icon="bookmark"
-                                                    onClick={this.handleFan}
-                                                    style={{width: "150px"}}
-                                                />
+                                                ""
                                             }
                                         </div>
                                     </div>}
