@@ -29,7 +29,7 @@ export default class UserProfile extends PureComponent {
                 summary: props.data.oneUserById.summary
             })
         }
-        if(props.data.oneUserById.followers.find(follower => follower.id === this.props.authenticatedId)){
+        if (props.data.oneUserById.followers.find(follower => follower.id === this.props.authenticatedId)) {
             this.setState({
                 iFollow: true
             })
@@ -65,7 +65,7 @@ export default class UserProfile extends PureComponent {
         this.props.client.resetStore()
     };
 
-    handleDeleteFan= async (id) => {
+    handleDeleteFan = async (id) => {
         let response = await this.props.deleteFan({
             variables: {id}
         });
@@ -77,13 +77,13 @@ export default class UserProfile extends PureComponent {
         let followee = this.props.data.oneUserById.id;
         let follower = this.props.authenticatedId;
         let response;
-        if(this.state.iFollow){
+        if (this.state.iFollow) {
             response = await this.props.deleteFollow({
                 variables: {followee, follower}
             });
             this.props.client.resetStore();
 
-        } else{
+        } else {
             response = await this.props.createFollow({
                 variables: {followee, follower}
             });
@@ -125,27 +125,26 @@ export default class UserProfile extends PureComponent {
 
                                 <div className="topBioHolder2">
 
-                                    {this.props.authenticatedId ?
+                                    {this.props.authenticatedId && this.props.authenticatedId !== this.props.data.oneUserById.id ?
                                         this.state.iFollow ?
-                                        <Button
-                                            color="grey"
-                                            content="Unfollow User"
-                                            width="150px"
-                                            style={{float: "right"}}
-                                            onClick={this.handleFollow}
-                                        />
-                                        :
-                                        <Button
-                                        color="green"
-                                        content="Follow User"
-                                        width="150px"
-                                        style={{float: "right"}}
-                                        onClick={this.handleFollow}
-                                        />
+                                            <Button
+                                                color="grey"
+                                                content="Unfollow User"
+                                                width="150px"
+                                                style={{float: "right"}}
+                                                onClick={this.handleFollow}
+                                            />
+                                            :
+                                            <Button
+                                                color="green"
+                                                content="Follow User"
+                                                width="150px"
+                                                style={{float: "right"}}
+                                                onClick={this.handleFollow}
+                                            />
                                         :
                                         ''
                                     }
-
 
 
                                     {this.props.userId === this.props.authenticatedId ?
