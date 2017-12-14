@@ -16,8 +16,7 @@ export default class HoneycombComponent extends PureComponent {
 							style={
 								this.props.component.component_picture
 									? {
-											backgroundImage: `url(${this.props.component
-												.component_picture}?t=${new Date().getTime()})`
+											backgroundImage: `url(${this.props.component.component_picture})`
 										}
 									: {
 											backgroundImage:
