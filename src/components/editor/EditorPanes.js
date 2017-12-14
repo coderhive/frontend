@@ -64,6 +64,7 @@ export default class EditorPage extends PureComponent {
                 iAmAFan = true;
             }
 
+
             this.setState({
                 tagsToDisplay: firstThreeTags,
                 fansToDisplay: firstThreeFans,
@@ -417,6 +418,7 @@ export default class EditorPage extends PureComponent {
                                                 backgroundImage: `url('${this.props.data.oneComponent.owner
                                                     .profile_picture}')`
                                             }}
+                                            onClick={() => this.props.history.push(`/users/${this.props.data.oneComponent.owner_user_id}`)}
                                         />
                                         <div style={{display: "inline-block", marginRight: "20px"}}>
                                             <p>built by:</p>
@@ -428,30 +430,25 @@ export default class EditorPage extends PureComponent {
                                                 {this.props.data.oneComponent.owner.experience}
                                             </p>
                                         </div>
-                                        <div style={{display: "inline-block", verticalAlign: "top"}}>
+                                        <div style={{display: "inline-block", verticalAlign: "top", paddingTop: "20px"}}>
                                             {this.state.iAmAFan ?
-                                                <div style={{margin: "6px"}}>
                                                     <Button
                                                         compact color="grey"
                                                         content="Unfollow Code"
                                                         icon="bookmark"
                                                         onClick={this.handleFan}
+                                                        style={{width: "150px"}}
                                                     />
-                                                </div>
                                                 :
-                                            <div style={{margin: "6px"}}>
                                                 <Button
                                                     compact
                                                     color="yellow"
                                                     content="Follow Code"
                                                     icon="bookmark"
                                                     onClick={this.handleFan}
+                                                    style={{width: "150px"}}
                                                 />
-                                            </div>
                                             }
-                                            <div style={{margin: "6px"}}>
-                                                <Button compact color="green" content="Follow User" icon="user"/>
-                                            </div>
                                         </div>
                                     </div>}
                             </div>
