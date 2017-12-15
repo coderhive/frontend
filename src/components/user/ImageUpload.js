@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-var aws = require("aws-sdk");
+let aws = require("aws-sdk");
 
 export default class ImageUpload extends PureComponent {
 	constructor(props) {
@@ -9,21 +9,22 @@ export default class ImageUpload extends PureComponent {
 
 	_handleSubmit(e) {
 		e.preventDefault();
-		// TODO: do something with -> this.state.file
-		console.log("handle uploading-", this.state.file);
-
 		let s3 = new aws.S3({
 			params: {
 				Bucket: "coderhive",
 				Key: `profile_${this.props.userId}.jpeg`,
-				ContentType: "image/jpeg",
-				ACL: "public-read"
-			}
+				ContentType: "image/jpeg"
+			},
+			accessKeyId: process.env.REACT_APP_AWSKEY,
+			secretAccessKey: process.env.REACT_APP_AWSSECRET
 		});
 
-		s3.upload({ Body: this.state.file }, function(err, data) {
-			if (err) return console.log(err);
-		});
+		if (this.state.file) {
+			s3.upload({ Body: this.state.file }, function(err, data) {
+				if (err) return console.log(err);
+				console.log(data);
+			});
+		}
 	}
 
 	_handleImageChange(e) {
