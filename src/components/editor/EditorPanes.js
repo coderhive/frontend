@@ -6,6 +6,7 @@ import EditorComments from "./EditorComments";
 import RenderComponent from "./render/RenderComponent";
 import CodeEditor from "./codeEditor/CodeEditor";
 import CSSPanel from "./css/CSSPanel";
+import loading from '../../img/loading.gif'
 
 const moment = require("moment");
 
@@ -76,6 +77,7 @@ export default class EditorPage extends PureComponent {
                 let newFan = [...fan];
                 newFan.display_name = fan.display_name.slice(0, 14);
                 newFan.id = fan.id;
+                newFan.user_id = fan.user_id;
                 return newFan;
             });
 
@@ -193,6 +195,9 @@ export default class EditorPage extends PureComponent {
 
     handleFan = async () => {
         if (!this.props.authenticatedId) return
+        this.setState({
+            followSpinner: true,
+        })
         let user_id = this.props.authenticatedId;
         let component_id = this.props.data.oneComponent.id;
         let response;
@@ -206,7 +211,12 @@ export default class EditorPage extends PureComponent {
                 variables: {user_id, component_id}
             })
         }
-        this.props.client.resetStore()
+        let newResponse = this.props.client.resetStore();
+        if (newResponse) {
+            this.setState({
+                followSpinner: false,
+            })
+        }
         return response;
     }
 
@@ -382,6 +392,7 @@ export default class EditorPage extends PureComponent {
                                                     paddingLeft: "4px",
                                                     paddingRight: "4px"
                                                 }}
+                                                onClick={() => this.props.history.push(`/users/${thisFan.user_id}`)}
                                             />
                                         )}
                                         {this.props.data.oneComponent.fans.length > this.state.fansToDisplay.length
@@ -492,8 +503,12 @@ export default class EditorPage extends PureComponent {
                                         </div>
                                         <div
                                             style={{display: "inline-block", verticalAlign: "top", paddingTop: "20px"}}>
-                                            {this.props.authenticatedId ?
-                                                this.state.iAmAFan ?
+                                            {this.props.authenticatedId
+                                                ?
+                                                !this.state.followSpinner
+                                                    ?
+                                                this.state.iAmAFan
+                                                    ?
                                                     <Button
                                                         compact color="grey"
                                                         content="Unfollow Code"
@@ -510,6 +525,9 @@ export default class EditorPage extends PureComponent {
                                                         onClick={this.handleFan}
                                                         style={{width: "150px"}}
                                                     />
+                                                    :
+                                                    <img alt='loader' src={loading}
+                                                         style={{width: '30px', float: 'right', marginRight: "67px", marginLeft: "67px"}}/>
                                                 :
                                                 ""
                                             }

@@ -22,7 +22,7 @@ export default class UserProfileComponentItem extends PureComponent {
 						height: "70px"
 					}}
 					onClick={() => this.props.history.push(`/components/${this.props.data.id}`)}
-				/>z
+				/>
 				<div style={{ flexGrow: "6", padding: "20px", verticalAlign: "middle" }}>
 					<h3
 						style={{ fontSize: "14px", margin: "3px", textDecoration: "underline" }}

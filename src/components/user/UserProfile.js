@@ -103,7 +103,6 @@ export default class UserProfile extends PureComponent {
                 followSpinner: false,
             })
         }
-        console.log(newResponse)
         return response;
     };
 
