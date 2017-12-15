@@ -46,7 +46,8 @@ export default class UserProfile extends PureComponent {
 	};
 
 	handleSubmit = async event => {
-		event.preventDefault();
+        if(!this.props.authenticatedId) return
+        event.preventDefault();
 		let response = await this.props.updateUser({
 			variables: {
 				id: this.state.id,
@@ -57,7 +58,8 @@ export default class UserProfile extends PureComponent {
 	};
 
 	handleDeleteFollow = async event => {
-		let followee = event.data.id;
+        if(!this.props.authenticatedId) return
+        let followee = event.data.id;
 		let follower = event.userId;
 		console.log(followee, follower);
 		let response = await this.props.deleteFollow({
@@ -67,7 +69,8 @@ export default class UserProfile extends PureComponent {
 	};
 
 	handleDeleteFan = async id => {
-		let response = await this.props.deleteFan({
+        if(!this.props.authenticatedId) return
+        let response = await this.props.deleteFan({
 			variables: { id }
 		});
 		console.log(response);
@@ -75,6 +78,7 @@ export default class UserProfile extends PureComponent {
 	};
 
 	handleFollow = async () => {
+		if(!this.props.authenticatedId) return
 		let followee = this.props.data.oneUserById.id;
 		let follower = this.props.authenticatedId;
 		let response;
