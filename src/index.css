@@ -157,3 +157,11 @@ body {
 	right: -370px;
 	bottom: 74px;
 }
+
+.ImageUpload {
+	display: flex;
+	height: 20px;
+	margin-top: 50px;
+	width: 100%;
+	justify-content: center;
+}

@@ -6,6 +6,7 @@
     "apollo-client-preset": "^1.0.4",
     "apollo-link-context": "^1.0.2",
     "apollo-test-utils": "^0.3.2",
+    "aws-sdk": "^2.170.0",
     "brace": "^0.11.0",
     "graphql": "^0.11.7",
     "graphql-tag": "^2.5.0",
