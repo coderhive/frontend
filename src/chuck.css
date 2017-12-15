@@ -224,10 +224,13 @@
 	border-radius: 4px;
 	background-position: center;
 	background-size: cover;
+	box-shadow: none;
 }
 
 .ownerFace:hover {
 	cursor: pointer;
+	box-shadow: 1px 1px 2px black;
+	transition: all .5s ease;
 }
 
 .buttonHolder {
@@ -526,6 +529,17 @@
 	background-color: #80000c;
 	box-shadow: none;
 	color: white;
+	transition: all .3s ease;
+}
+
+
+.clickableHover p {
+	font-size: 26px;
+}
+
+.clickableHover:hover {
+	cursor: pointer;
+	color: grey;
 	transition: all .3s ease;
 }
 

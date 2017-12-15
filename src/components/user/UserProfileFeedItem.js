@@ -44,7 +44,7 @@ export default class UserProfileFeedItem extends PureComponent {
                 </div>
                 <div style={{width: "700px"}}>
                     <p style={{color: 'grey'}}>{moment(this.props.data.created_at).fromNow()}</p>
-                    <p style={{textTransform: "capitalize", fontWeight: 'bold'}}
+                    <p className="clickableHover" style={{textTransform: "capitalize", fontWeight: 'bold'}}
                        onClick={() => this.props.history.push(`/components/${this.props.data.component_id}`)}
                     >
                         {this.sentenceGenerator()}
