@@ -24,6 +24,7 @@ export default class EditorPage extends PureComponent {
             editSettingsOn: false,
             iAmAFan: false,
             loaderToggle: false,
+            followSpinner: false,
         };
     }
 
@@ -191,6 +192,7 @@ export default class EditorPage extends PureComponent {
     };
 
     handleFan = async () => {
+        if (!this.props.authenticatedId) return
         let user_id = this.props.authenticatedId;
         let component_id = this.props.data.oneComponent.id;
         let response;
