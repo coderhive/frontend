@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Button} from "semantic-ui-react";
+import {Loader, Button, Header, Icon, Modal} from "semantic-ui-react";
 import NavBar from "../../graphql/NavbarContainer";
 import ComponentLightboxContainer from "../../graphql/ComponentLightboxContainer";
 import EditorComments from "./EditorComments";
@@ -23,8 +23,44 @@ export default class EditorPage extends PureComponent {
             currentVote: null,
             editSettingsOn: false,
             iAmAFan: false,
+            loaderToggle: false,
         };
     }
+
+    ModalBasicExample = () => (
+        <Modal trigger={<Button
+            compact
+            color="black"
+            content="Delete Component"
+            icon="archive"
+            style={{fontSize: "11px", width: "150px", textAlign: "left"}}
+        >
+            Delete Component
+        </Button>}
+               basic
+               size='large'
+               closeIcon={true}
+        >
+            <Header icon='delete' content='Delete Component'/>
+            <Modal.Content>
+                <p>Are you sure you want to delete this component forever?</p>
+            </Modal.Content>
+            <Modal.Actions>
+                {!this.state.loaderToggle
+                    ?
+                    <Button color='green' inverted
+                            onClick={this.handleDelete}
+                    >
+                        <Icon
+                            name='checkmark'
+                        /> Yes
+                    </Button>
+                    :
+                    null
+                }
+            </Modal.Actions>
+        </Modal>
+    )
 
     handleToggle = panelNumber => {
         if (panelNumber === 1) this.setState({panel1Collapsed: !this.state.panel1Collapsed});
@@ -92,11 +128,16 @@ export default class EditorPage extends PureComponent {
     }
 
     handleDelete = async () => {
+        this.setState({
+            loaderToggle: true
+        });
         let response = await this.props.deleteComponent({
             variables: {id: this.props.data.oneComponent.id}
         });
-
-        this.props.history.goBack();
+        this.setState({
+            loaderToggle: false
+        });
+        this.props.history.push('/components/');
         return response;
     };
 
@@ -193,6 +234,16 @@ export default class EditorPage extends PureComponent {
                     onLogout={this.props.handleLogOut}
                 />
                 <div className="editorContainer">
+                    {this.state.loaderToggle ?
+                        <div className="centeredSpinner">
+                            <Loader
+                                active
+                                size="massive"
+                            />
+                        </div>
+                        :
+                        null
+                    }
                     <div className="editorPaneContainer">
                         <div
                             className={this.state.panel1Collapsed ? "panelsVerticalCollapsed" : "panelsVertical"}>
@@ -402,14 +453,19 @@ export default class EditorPage extends PureComponent {
                                                 />
                                             </div>
                                             <div style={{margin: "3px"}}>
-                                                <Button
-                                                    compact
-                                                    color="black"
-                                                    content="Delete Component"
-                                                    icon="delete"
-                                                    style={{fontSize: "11px", width: "150px", textAlign: "left"}}
-                                                    onClick={() => this.handleDelete()}
-                                                />
+
+                                                {this.ModalBasicExample()}
+
+                                                {/*<Button*/}
+                                                {/*compact*/}
+                                                {/*color="black"*/}
+                                                {/*content="Delete Component"*/}
+                                                {/*icon="delete"*/}
+                                                {/*style={{fontSize: "11px", width: "150px", textAlign: "left"}}*/}
+                                                {/*onClick={() => this.handleDelete()}*/}
+                                                {/*/>*/}
+
+
                                             </div>
                                         </div>
                                     </div>
