@@ -20,6 +20,13 @@ export default class Navbar extends PureComponent {
 						<Image size="tiny" src="/favicon.ico" style={{ marginTop: "20px" }} />
 						CoderHive
 					</Menu.Item>
+					{this.props.data.loggedUser ?
+					<Menu.Item as={Link} to="/components/new" header position="right">
+						New Component
+					</Menu.Item>
+					:
+						null
+					}
 					<Menu.Item style={{ padding: "0" }}>
 						<Dropdown item simple text="Hive" position="right">
 							<Dropdown.Menu>
