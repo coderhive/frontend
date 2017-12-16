@@ -143,7 +143,6 @@ export default class EditorPage extends PureComponent {
 	};
 
 	handleRefresh = () => {
-		this.setState({ time: Date.now() });
 		this.props.updateComponentCode({
 			variables: {
 				id: this.props.data.oneComponent.id,
@@ -151,6 +150,7 @@ export default class EditorPage extends PureComponent {
 				css: this.state.currentCSS
 			}
 		});
+		this.setState({ time: Date.now() });
 	};
 
 	handleEdit = (type, code) => {
