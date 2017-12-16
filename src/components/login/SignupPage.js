@@ -12,7 +12,7 @@ export default class SignupPage extends PureComponent {
 					onSubmit={this.props.handleLogin}
 					onLogout={this.props.handleLogOut}
 				/>
-				<SignupForm mutate={this.props.mutate} />
+				<SignupForm mutate={this.props.mutate} history={this.props.history} />
 			</div>
 		);
 	}

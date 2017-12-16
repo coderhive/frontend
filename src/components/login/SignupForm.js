@@ -8,7 +8,6 @@ export default class SignupForm extends PureComponent {
 		passwordCheck: "",
 		errorPassword: false,
 		errorLength: true,
-		errorSymbol: true,
 		errorNumber: true,
 		errorCap: true,
 		existingEmail: false
@@ -25,12 +24,6 @@ export default class SignupForm extends PureComponent {
 		}
 		if (this.state.password.length >= 6) {
 			this.setState({ errorLength: false });
-		}
-		if (!/^[a-zA-Z0-9]*$/.test(this.state.password)) {
-			this.setState({ errorSymbol: false });
-		}
-		if (/^[a-zA-Z0-9]*$/.test(this.state.password)) {
-			this.setState({ errorSymbol: true });
 		}
 		if (this.state.password.length < 6) {
 			this.setState({ errorLength: true });
@@ -49,9 +42,14 @@ export default class SignupForm extends PureComponent {
 		if (password === passwordCheck) {
 			const display_name = email.match(/[^@$]*/i)[0];
 			let response = await this.props.mutate({
-				variables: { email, password, display_name }
+				variables: {
+					email,
+					password,
+					display_name,
+					profile_picture: "https://s3-us-west-1.amazonaws.com/coderhive/default.jpg"
+				}
 			});
-			console.log(response);
+			this.props.history.push(`/users`);
 		} else {
 			this.setState({ errorPassword: true });
 		}
@@ -113,9 +111,6 @@ export default class SignupForm extends PureComponent {
 										{this.state.errorLength
 											? <li style={{ color: "gray" }}>Must be at least 6 characters long</li>
 											: <li style={{ color: "green" }}>Must be at least 6 characters long</li>}
-										{this.state.errorSymbol
-											? <li style={{ color: "gray" }}>Must include a symbol (e.g. !@#$)</li>
-											: <li style={{ color: "green" }}>Must include a symbol (e.g. !@#$)</li>}
 										{this.state.errorNumber
 											? <li style={{ color: "gray" }}>Must include a number (e.g. 1234)</li>
 											: <li style={{ color: "green" }}>Must include a number (e.g. 1234)</li>}
