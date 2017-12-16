@@ -5,6 +5,7 @@ import SignupContainer from "./graphql/SignupContainer";
 import EditorContainer from "./graphql/EditorContainer";
 import UserProfileContainer from "./graphql/UserProfileContainer";
 import NewComponentContainer from "./graphql/NewComponentContainer";
+import HomePageContainer from "./graphql/HomePageContainer";
 import login from "./helperFunctions/login";
 import jwtDecode from "jwt-decode";
 
@@ -40,7 +41,7 @@ class App extends Component {
 						path="/"
 						render={() => {
 							return (
-								<HiveContainer
+								<HomePageContainer
 									handleLogin={this.handleLogin}
 									handleLogOut={this.handleLogOut}
 									authenticatedId={this.state.authenticatedId}
