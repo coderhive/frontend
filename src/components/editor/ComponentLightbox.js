@@ -28,12 +28,14 @@ export default class EditorPage extends PureComponent {
                 id: this.state.id,
                 title: this.state.title,
                 description: this.state.description,
+                owner_user_id: this.props.owner_user_id
             }
         });
         this.props.toggleEdit()
     };
 
     componentDidMount(){
+        console.log(this.props)
         this.setState({
             title: this.props.title,
             originalTitle: this.props.title,

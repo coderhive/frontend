@@ -11,6 +11,7 @@ const updateComponent = gql`
 	    $description: String
 	    $code: String
 	    $css: String
+	    $owner_user_id: Int!
 	) {
 		updateComponent(
 	    id: $id
@@ -18,12 +19,14 @@ const updateComponent = gql`
 	    description: $description
 	    code: $code
 	    css: $css
+	    owner_user_id: $owner_user_id
 		) {
 			id
 			title
 			description
 			code
 	    	css
+	    	owner_user_id
 		}
 	}
 `;

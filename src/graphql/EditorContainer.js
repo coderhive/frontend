@@ -61,11 +61,12 @@ const deleteComponent = gql`
 `;
 
 const updateComponentCode = gql`
-	mutation($id: Int!, $code: String, $css: String) {
-		updateComponent(id: $id, code: $code, css: $css) {
+	mutation($id: Int!, $code: String, $css: String, $owner_user_id: Int!) {
+		updateComponent(id: $id, code: $code, css: $css, owner_user_id: $owner_user_id) {
 			id
 			code
 			css
+			owner_user_id
 		}
 	}
 `;

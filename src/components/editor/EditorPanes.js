@@ -148,7 +148,8 @@ export default class EditorPage extends PureComponent {
 			variables: {
 				id: this.props.data.oneComponent.id,
 				code: this.state.currentCode,
-				css: this.state.currentCSS
+				css: this.state.currentCSS,
+                owner_user_id: this.props.data.oneComponent.owner_user_id
 			}
 		});
 		this.setState({ time: Date.now() });
@@ -220,6 +221,7 @@ export default class EditorPage extends PureComponent {
 					component_id={this.props.data.oneComponent.id}
 					title={this.props.data.oneComponent.title}
 					description={this.props.data.oneComponent.description || ""}
+					owner_user_id={this.props.data.oneComponent.owner_user_id}
 				/>
 			);
 		if (this.props.data.loading) return <p>LOADING...</p>;
