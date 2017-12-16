@@ -47,7 +47,6 @@ export default class Navbar extends PureComponent {
 								<Dropdown.Item as={Link} to={`/users/${user.id}`}>
 									Profile
 								</Dropdown.Item>
-								<Dropdown.Item>Settings</Dropdown.Item>
 								<Dropdown.Item onClick={this.logOut}>Logout</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
