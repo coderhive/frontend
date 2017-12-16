@@ -104,7 +104,9 @@ export default class EditorPage extends PureComponent {
 				yesVotes: yesVotes.length,
 				noVotes: noVotes.length,
 				currentVote: myVote,
-				iAmAFan
+				iAmAFan,
+				currentCode: props.data.oneComponent.code,
+				currentCSS: props.data.oneComponent.css
 			});
 		}
 	}
@@ -142,8 +144,8 @@ export default class EditorPage extends PureComponent {
 		this.setState({ editSettingsOn: !this.state.editSettingsOn });
 	};
 
-	handleRefresh = () => {
-		this.props.updateComponentCode({
+	handleRefresh = async (currentCode, currentCSS) => {
+		await this.props.updateComponentCode({
 			variables: {
 				id: this.props.data.oneComponent.id,
 				code: this.state.currentCode,
@@ -155,6 +157,7 @@ export default class EditorPage extends PureComponent {
 
 	handleEdit = (type, code) => {
 		if (type === "jsx") {
+			console.log(code);
 			this.setState({ currentCode: code });
 		}
 		if (type === "css") {
@@ -262,7 +265,7 @@ export default class EditorPage extends PureComponent {
 											overflow: "auto"
 										}}>
 										<CodeEditor
-											code={this.props.data.oneComponent.code}
+											code={this.state.currentCode}
 											toggle={this.state.panel1Collapsed}
 											handleChange={this.handleEdit}
 											owner={this.props.data.oneComponent.owner_user_id}
@@ -311,7 +314,7 @@ export default class EditorPage extends PureComponent {
 											overflow: "auto"
 										}}>
 										<CSSPanel
-											css={this.props.data.oneComponent.css}
+											css={this.state.currentCSS}
 											handleChange={this.handleEdit}
 											owner={this.props.data.oneComponent.owner_user_id}
 											authenticatedId={this.props.authenticatedId}
