@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Form, Message, Rail, Segment } from "semantic-ui-react";
+let aws = require("aws-sdk");
 
 export default class SignupForm extends PureComponent {
 	state = {
@@ -10,7 +11,8 @@ export default class SignupForm extends PureComponent {
 		errorLength: true,
 		errorNumber: true,
 		errorCap: true,
-		existingEmail: false
+		existingEmail: false,
+		image: null
 	};
 
 	handleChange = async (e, { name, value }) => {
@@ -37,23 +39,58 @@ export default class SignupForm extends PureComponent {
 	};
 
 	handleSubmit = async () => {
-		const { email, password, passwordCheck } = this.state;
+		const { email, password, passwordCheck, image } = this.state;
 
-		if (password === passwordCheck) {
+		if (password === passwordCheck && image) {
 			const display_name = email.match(/[^@$]*/i)[0];
 			let response = await this.props.mutate({
 				variables: {
 					email,
 					password,
-					display_name,
-					profile_picture: "https://s3-us-west-1.amazonaws.com/coderhive/default.jpg"
+					display_name
 				}
 			});
-			this.props.history.push(`/users`);
+
+			let s3 = new aws.S3({
+				accessKeyId: process.env.REACT_APP_AWSKEY,
+				secretAccessKey: process.env.REACT_APP_AWSSECRET
+			});
+
+			if (this.state.image) {
+				s3.upload(
+					{
+						Bucket: "coderhive",
+						Key: `profile_${response.data.createUser.id}.jpeg`,
+						ContentType: "image/jpeg",
+						Body: this.state.image
+					},
+					function(err, data) {
+						if (err) return console.log(err);
+						console.log(data);
+					}
+				);
+			}
+
+			this.props.history.push(`/`);
 		} else {
 			this.setState({ errorPassword: true });
 		}
 	};
+
+	handleImageChange(e) {
+		e.preventDefault();
+
+		let reader = new FileReader();
+		let file = e.target.files[0];
+
+		reader.onloadend = () => {
+			this.setState({
+				image: file
+			});
+		};
+
+		reader.readAsDataURL(file);
+	}
 
 	render() {
 		const { email, password, passwordCheck } = this.state;
@@ -122,6 +159,17 @@ export default class SignupForm extends PureComponent {
 													Must include a capitalized letter (e.g. ABC)
 												</li>}
 									</div>
+									Please add an image to your profile
+									{!this.state.image
+										? <li style={{ color: "gray" }}>Select image to upload</li>
+										: <li style={{ color: "green" }}>Select image to upload</li>}
+									<div className="signupImageUpload">
+										<input
+											className="fileInput"
+											type="file"
+											onChange={e => this.handleImageChange(e)}
+										/>
+									</div>
 								</Segment>
 							</Rail>
 						</div>
@@ -153,7 +201,8 @@ export default class SignupForm extends PureComponent {
 						className="SignupButton"
 						disabled={
 							this.state.password.length !== this.state.passwordCheck.length ||
-							!this.state.passwordCheck
+							!this.state.passwordCheck ||
+							!this.state.image
 						}
 					/>
 					{this.state.errorPassword

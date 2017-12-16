@@ -7,7 +7,6 @@ import RenderComponent from "./render/RenderComponent";
 import CodeEditor from "./codeEditor/CodeEditor";
 import CSSPanel from "./css/CSSPanel";
 import loading from "../../img/loading.gif";
-
 const moment = require("moment");
 
 export default class EditorPage extends PureComponent {
@@ -157,7 +156,6 @@ export default class EditorPage extends PureComponent {
 
 	handleEdit = (type, code) => {
 		if (type === "jsx") {
-			console.log(code);
 			this.setState({ currentCode: code });
 		}
 		if (type === "css") {

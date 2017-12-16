@@ -165,3 +165,8 @@ body {
 	width: 100%;
 	justify-content: center;
 }
+
+.signupImageUpload {
+	height: 50px;
+	padding: 5px;
+}
