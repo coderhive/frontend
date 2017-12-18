@@ -66,7 +66,7 @@ export default class EditorPage extends PureComponent {
 
 	componentWillReceiveProps(props) {
 		if (props.data.oneComponent) {
-			let firstThreeFans = props.data.oneComponent.fans.slice(0, 3);
+			let firstThreeFans = props.data.oneComponent.fans.slice(0, 5);
 			firstThreeFans = firstThreeFans.map(fan => {
 				let newFan = [...fan];
 				newFan.display_name = fan.display_name.slice(0, 14);
@@ -341,32 +341,32 @@ export default class EditorPage extends PureComponent {
 							</div>
 							<div className="boxDetail2">
 								<div className="centerInBox" style={{ marginTop: "6px" }}>
-									<p>Tags:</p>
-									{this.state.tagsToDisplay.map(thisTag =>
-										<Button
-											compact
-											color="yellow"
-											content={thisTag.name}
-											key={thisTag.id}
-											style={{
-												textTransform: "capitalize",
-												fontSize: "12px",
-												paddingLeft: "4px",
-												paddingRight: "4px"
-											}}
-										/>
-									)}
-									{this.props.data.oneComponent.tags.length > this.state.tagsToDisplay.length
-										? <Button
-												compact
-												color="black"
-												content={`${this.props.data.oneComponent.tags.length -
-													this.state.tagsToDisplay.length}+`}
-												style={{ fontSize: "12px", paddingLeft: "4px", paddingRight: "4px" }}
-											/>
-										: null}
+									{/*<p>Tags:</p>*/}
+									{/*{this.state.tagsToDisplay.map(thisTag =>*/}
+										{/*<Button*/}
+											{/*compact*/}
+											{/*color="yellow"*/}
+											{/*content={thisTag.name}*/}
+											{/*key={thisTag.id}*/}
+											{/*style={{*/}
+												{/*textTransform: "capitalize",*/}
+												{/*fontSize: "12px",*/}
+												{/*paddingLeft: "4px",*/}
+												{/*paddingRight: "4px"*/}
+											{/*}}*/}
+										{/*/>*/}
+									{/*)}*/}
+									{/*{this.props.data.oneComponent.tags.length > this.state.tagsToDisplay.length*/}
+										{/*? <Button*/}
+												{/*compact*/}
+												{/*color="black"*/}
+												{/*content={`${this.props.data.oneComponent.tags.length -*/}
+													{/*this.state.tagsToDisplay.length}+`}*/}
+												{/*style={{ fontSize: "12px", paddingLeft: "4px", paddingRight: "4px" }}*/}
+											{/*/>*/}
+										{/*: null}*/}
 
-									<div style={{ marginTop: "10px" }}>
+									<div style={{ marginTop: "20px" }}>
 										<p>Followers:</p>
 										{this.state.fansToDisplay.map(thisFan =>
 											<Button
