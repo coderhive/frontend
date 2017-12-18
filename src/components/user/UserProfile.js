@@ -63,7 +63,6 @@ export default class UserProfile extends PureComponent {
 		if (!this.props.authenticatedId) return;
 		let followee = event.data.id;
 		let follower = event.userId;
-		console.log(followee, follower);
 		let response = await this.props.deleteFollow({
 			variables: { followee, follower }
 		});
@@ -75,7 +74,6 @@ export default class UserProfile extends PureComponent {
 		let response = await this.props.deleteFan({
 			variables: { id }
 		});
-		console.log(response);
 		this.props.client.resetStore();
 	};
 
@@ -91,7 +89,6 @@ export default class UserProfile extends PureComponent {
 			response = await this.props.deleteFollow({
 				variables: { followee, follower }
 			});
-			console.log(response);
 		} else {
 			response = await this.props.createFollow({
 				variables: { followee, follower }
@@ -202,7 +199,7 @@ export default class UserProfile extends PureComponent {
 												textAlign: "center"
 											}}>
 											<div style={{ flexGrow: "1" }}>
-												<h3>rank:</h3>
+												<h3>XP:</h3>
 												<h4>
 													{this.props.data.oneUserById.experience}
 												</h4>
