@@ -12,7 +12,7 @@ export default class HoneyCombUserComponent extends PureComponent {
 				<Reveal animated="fade" onClick={this.handleClick.bind(this, this.props.user.id)}>
 					<Reveal.Content visible>
 						<div
-							style={{ backgroundImage: "url(" + this.props.user.profile_picture + ")" }}
+							style={{ backgroundImage: "url(" + this.props.user.profile_picture + ")?" }}
 							className="honeyCombComponent">
 							<div className="honeyCombTop" />
 							<div className="honeyCombBottom" />
