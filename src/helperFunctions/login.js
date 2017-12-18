@@ -1,5 +1,5 @@
 export default function login({ email, password }, baseUrl) {
-	return fetch(`${baseUrl}/token/`, {
+	return fetch(`${baseUrl}token/`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"

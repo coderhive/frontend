@@ -9,6 +9,7 @@ export default class ImageUpload extends PureComponent {
 
 	_handleSubmit = e => {
 		e.preventDefault();
+
 		let s3 = new aws.S3({
 			params: {
 				Bucket: "coderhive",
