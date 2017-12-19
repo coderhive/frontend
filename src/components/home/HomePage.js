@@ -119,6 +119,12 @@ export default class EditorPage extends PureComponent {
 							the platform only supports React/JSX, but we aspire to extend the app to also support
 							Vue and Angular. They named the application Coder Hive due to the collaborative nature
 							of bees and most importantly because bees are neat.
+						</p>{" "}
+						<p>
+							Would you like to work on our open source project?{" "}
+							<a href="https://github.com/coderhive" target="_blank" rel="noopener noreferrer">
+								Join the hive as a contributor
+							</a>
 						</p>
 					</div>
 				</div>
