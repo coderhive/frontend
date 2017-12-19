@@ -29,7 +29,21 @@ export default class EditorPage extends PureComponent {
                         onLogout={this.props.handleLogOut}
                     />
                     <div className="homeSplash">
-                        <div className="callToAction">
+                        {this.props.authenticatedId ?
+                            <div className="callToAction">
+                                <div style={{border: "1px solid black"}}>
+                                    <h1>Coder Hive</h1>
+                                    <p>Welcome back to CoderHive, a place for React developers to build and to share.
+                                        Check out our hive's top rated components to get inspiration or go an make
+                                        a new component now!
+                                    </p>
+                                </div>
+                                <div className="callToActionButton" onClick={() => this.props.history.push('/components/new')}>
+                                    New Component
+                                </div>
+                            </div>
+                            :
+                            <div className="callToAction">
                             <div style={{border: "1px solid black"}}>
                             <h1>Coder Hive</h1>
                             <p>Welcome to CoderHive, a place for React developers to build and to share.
@@ -41,6 +55,7 @@ export default class EditorPage extends PureComponent {
                                 Sign Up
                             </div>
                         </div>
+                        }
                     </div>
                     <div className="homeContainer">
                         <div className="homeColumn">

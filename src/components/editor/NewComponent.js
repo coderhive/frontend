@@ -23,7 +23,8 @@ export default class NewComponent extends PureComponent {
 	};
 
 	componentDidMount() {
-		this.setState({ owner_user_id: this.props.authenticatedId });
+        if(!this.props.authenticatedId) return(this.props.history.push('/'))
+        this.setState({ owner_user_id: this.props.authenticatedId });
 	}
 
 	handleChange = event => {
