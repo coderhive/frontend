@@ -193,38 +193,35 @@ export default class EditorPage extends PureComponent {
       </script>
         </body>
       </html>`;
-			const options = {
-				siteType: "html",
-				streamType: "jpeg",
-				defaultWhiteBackground: true,
-				captureSelector: "#root",
-				customCSS:
-					"#root:before, #root *:first-child {display: inline-block; vertical-align:middle} #root:before {content: ''; height: 100%; width: 37%}"
-			};
+			// const options = {
+			// 	siteType: "html",
+			// 	streamType: "jpeg",
+			// 	defaultWhiteBackground: true,
+			// 	captureSelector: "#root",
+			// 	customCSS:
+			// 		"#root:before, #root *:first-child {display: inline-block; vertical-align:middle} #root:before {content: ''; height: 100%; width: 37%}"
+			// };
 
-			html2canvas(html, options, function(err, stream) {
-				if (err) return console.log(err, "ERROR");
-				let s3 = new aws.S3({
-					accessKeyId: process.env.REACT_APP_AWSKEY,
-					secretAccessKey: process.env.REACT_APP_AWSSECRET
-				});
-
-				let readableStream = new Readable().wrap(stream);
-
-				s3.upload(
-					{
-						Body: readableStream,
-						Bucket: "coderhive",
-						Key: `component_${id}.jpeg`,
-						ContentType: "image/jpeg",
-						ACL: "public-read-write"
-					},
-					function(err, data) {
-						if (err) return console.log(err);
-						console.log(data);
-					}
-				);
+			let canvas = await html2canvas(html);
+			let file = canvas.toDataURL("image/jpeg");
+			let s3 = new aws.S3({
+				accessKeyId: process.env.REACT_APP_AWSKEY,
+				secretAccessKey: process.env.REACT_APP_AWSSECRET
 			});
+
+			s3.upload(
+				{
+					Body: file,
+					Bucket: "coderhive",
+					Key: `component_${id}.jpeg`,
+					ContentType: "image/jpeg",
+					ACL: "public-read-write"
+				},
+				function(err, data) {
+					if (err) return console.log(err);
+					console.log(data);
+				}
+			);
 		} catch (error) {
 			console.error(error);
 		}
