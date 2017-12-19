@@ -7,7 +7,11 @@ import RenderComponent from "./render/RenderComponent";
 import CodeEditor from "./codeEditor/CodeEditor";
 import CSSPanel from "./css/CSSPanel";
 import loading from "../../img/loading.gif";
+import html2canvas from "html2canvas";
 const moment = require("moment");
+const cssbeautify = require("cssbeautify");
+const Readable = require("stream").Readable;
+const aws = require("aws-sdk");
 
 export default class EditorPage extends PureComponent {
 	constructor(props) {
@@ -149,9 +153,82 @@ export default class EditorPage extends PureComponent {
 				id: this.props.data.oneComponent.id,
 				code: this.state.currentCode,
 				css: this.state.currentCSS,
-                owner_user_id: this.props.data.oneComponent.owner_user_id
+				owner_user_id: this.props.data.oneComponent.owner_user_id
 			}
 		});
+
+		try {
+			const id = this.props.data.oneComponent.id;
+			let code = this.state.currentCode;
+			let css = this.state.currentCSS;
+
+			if (css) {
+				var beautifiedCSS = cssbeautify(css, {
+					indent: "  ",
+					autosemicolon: true
+				});
+			}
+
+			let html = `<!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <title>test</title>
+          <style>
+            html {height: 100%; width: 100%;}
+            body {height: 100%; width: 100%;}
+            #root {height: 100%; width: 100%; display: "flex"; justify-content: "center"; align-items: "center"}
+            ${beautifiedCSS}
+          </style>
+        </head>
+        <body>
+          <div id="root"></div>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+          <script type="text/babel">
+            ${code}
+
+      ReactDOM.render(<Component />, document.getElementById("root"));
+      </script>
+        </body>
+      </html>`;
+			const options = {
+				siteType: "html",
+				streamType: "jpeg",
+				defaultWhiteBackground: true,
+				captureSelector: "#root",
+				customCSS:
+					"#root:before, #root *:first-child {display: inline-block; vertical-align:middle} #root:before {content: ''; height: 100%; width: 37%}"
+			};
+
+			html2canvas(html, options, function(err, stream) {
+				if (err) return console.log(err, "ERROR");
+				let s3 = new aws.S3({
+					accessKeyId: process.env.REACT_APP_AWSKEY,
+					secretAccessKey: process.env.REACT_APP_AWSSECRET
+				});
+
+				let readableStream = new Readable().wrap(stream);
+
+				s3.upload(
+					{
+						Body: readableStream,
+						Bucket: "coderhive",
+						Key: `component_${id}.jpeg`,
+						ContentType: "image/jpeg",
+						ACL: "public-read-write"
+					},
+					function(err, data) {
+						if (err) return console.log(err);
+						console.log(data);
+					}
+				);
+			});
+		} catch (error) {
+			console.error(error);
+		}
+
 		this.setState({ time: Date.now() });
 	};
 
@@ -343,28 +420,28 @@ export default class EditorPage extends PureComponent {
 								<div className="centerInBox" style={{ marginTop: "6px" }}>
 									{/*<p>Tags:</p>*/}
 									{/*{this.state.tagsToDisplay.map(thisTag =>*/}
-										{/*<Button*/}
-											{/*compact*/}
-											{/*color="yellow"*/}
-											{/*content={thisTag.name}*/}
-											{/*key={thisTag.id}*/}
-											{/*style={{*/}
-												{/*textTransform: "capitalize",*/}
-												{/*fontSize: "12px",*/}
-												{/*paddingLeft: "4px",*/}
-												{/*paddingRight: "4px"*/}
-											{/*}}*/}
-										{/*/>*/}
+									{/*<Button*/}
+									{/*compact*/}
+									{/*color="yellow"*/}
+									{/*content={thisTag.name}*/}
+									{/*key={thisTag.id}*/}
+									{/*style={{*/}
+									{/*textTransform: "capitalize",*/}
+									{/*fontSize: "12px",*/}
+									{/*paddingLeft: "4px",*/}
+									{/*paddingRight: "4px"*/}
+									{/*}}*/}
+									{/*/>*/}
 									{/*)}*/}
 									{/*{this.props.data.oneComponent.tags.length > this.state.tagsToDisplay.length*/}
-										{/*? <Button*/}
-												{/*compact*/}
-												{/*color="black"*/}
-												{/*content={`${this.props.data.oneComponent.tags.length -*/}
-													{/*this.state.tagsToDisplay.length}+`}*/}
-												{/*style={{ fontSize: "12px", paddingLeft: "4px", paddingRight: "4px" }}*/}
-											{/*/>*/}
-										{/*: null}*/}
+									{/*? <Button*/}
+									{/*compact*/}
+									{/*color="black"*/}
+									{/*content={`${this.props.data.oneComponent.tags.length -*/}
+									{/*this.state.tagsToDisplay.length}+`}*/}
+									{/*style={{ fontSize: "12px", paddingLeft: "4px", paddingRight: "4px" }}*/}
+									{/*/>*/}
+									{/*: null}*/}
 
 									<div style={{ marginTop: "20px" }}>
 										<p>Followers:</p>
