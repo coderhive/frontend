@@ -14,11 +14,12 @@ describe('Tests the navbar component', () => {
         <NavBar
             onSubmit={() => {}}
             user={[]}
+            match={{path: '/'}}
         />
     );
 
 
-    it('should have three menu items - and no other direct children', () => {
+    it('should have four menu items - and no other direct children', () => {
         expect(wrapper.find('MenuItem')).toHaveLength(3);
         expect(wrapper.children()).toHaveLength(3);
     });

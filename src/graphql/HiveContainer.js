@@ -20,6 +20,7 @@ const usersAndComponents = gql`
 			title
 			description
 			component_picture
+			status
 		}
 	}
 `;
