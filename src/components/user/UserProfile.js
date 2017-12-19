@@ -122,7 +122,7 @@ export default class UserProfile extends PureComponent {
 									<div
 										className="ownerFace"
 										style={{
-											backgroundImage: `url('${this.props.data.oneUserById.profile_picture}')`,
+											backgroundImage: `url('${this.props.data.oneUserById.profile_picture}?')`,
 											margin: "30px",
 											borderRadius: "50%",
 											width: "200px",
