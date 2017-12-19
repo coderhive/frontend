@@ -12,7 +12,7 @@ import "./chuck.css";
 import checkAuthentication from "./helperFunctions/checkAuthentication";
 
 const httpLink = new HttpLink({
-	uri: "http://localhost:3000/graphql"
+	uri: `${process.env.REACT_APP_BASE_URL}graphql`
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
@@ -37,7 +37,7 @@ const client = new ApolloClient({
 });
 
 async function render() {
-	const authenticatedId = await checkAuthentication("http://localhost:3000");
+	const authenticatedId = await checkAuthentication(process.env.REACT_APP_BASE_URL);
 	ReactDOM.render(
 		<ApolloProvider client={client}>
 			<App authenticatedId={authenticatedId} />

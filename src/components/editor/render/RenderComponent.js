@@ -5,7 +5,7 @@ export default class RenderComponent extends PureComponent {
 		super(props);
 		this.state = {
 			update: this.props.time,
-			url: `http://localhost:3000/component/${this.props.id}`
+			url: `${process.env.REACT_APP_BASE_URL}component/${this.props.id}`
 		};
 	}
 

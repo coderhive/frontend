@@ -18,7 +18,7 @@ class App extends Component {
 	}
 
 	handleLogin = async ({ email, password }) => {
-		let { token } = await login({ email, password }, "http://localhost:3000");
+		let { token } = await login({ email, password }, process.env.REACT_APP_BASE_URL);
 		if (token) {
 			localStorage.setItem("token", token);
 			let { sub: authenticatedId } = jwtDecode(token);
@@ -107,8 +107,8 @@ class App extends Component {
 						exact
 						path="/users/:userId"
 						render={({ match }) => {
-                            const userId = parseInt(match.params.userId, 10);
-                            return (
+							const userId = parseInt(match.params.userId, 10);
+							return (
 								<UserProfileContainer
 									userId={userId}
 									handleLogin={this.handleLogin}
