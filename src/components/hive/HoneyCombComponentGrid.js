@@ -3,7 +3,10 @@ import HoneyCombComponent from "./HoneyCombComponent";
 
 export default function HoneycombComponentGrid({ components, history }) {
 	if (components.length) {
-		let chunks = components
+		let filteredComponents = components.filter(component => {
+			if(component.status === 'active') return component
+		})
+		let chunks = filteredComponents
 			.map((component, index, arr) => {
 				let size = 3;
 				// let size = Math.floor(Math.random() * (5 - 3)) + 3;
