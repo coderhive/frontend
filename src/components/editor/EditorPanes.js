@@ -36,7 +36,6 @@ export default class EditorPage extends PureComponent {
 				<Button
 					compact
 					color="black"
-					content="Delete Component"
 					style={{ fontSize: "11px", width: "150px", textAlign: "left" }}>
 					Delete Component
 				</Button>
