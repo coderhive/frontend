@@ -7,11 +7,7 @@ import RenderComponent from "./render/RenderComponent";
 import CodeEditor from "./codeEditor/CodeEditor";
 import CSSPanel from "./css/CSSPanel";
 import loading from "../../img/loading.gif";
-import html2canvas from "html2canvas";
 const moment = require("moment");
-const cssbeautify = require("cssbeautify");
-const Readable = require("stream").Readable;
-const aws = require("aws-sdk");
 
 export default class EditorPage extends PureComponent {
 	constructor(props) {
@@ -41,7 +37,6 @@ export default class EditorPage extends PureComponent {
 					compact
 					color="black"
 					content="Delete Component"
-					icon="archive"
 					style={{ fontSize: "11px", width: "150px", textAlign: "left" }}>
 					Delete Component
 				</Button>
@@ -156,75 +151,6 @@ export default class EditorPage extends PureComponent {
 				owner_user_id: this.props.data.oneComponent.owner_user_id
 			}
 		});
-
-		try {
-			const id = this.props.data.oneComponent.id;
-			let code = this.state.currentCode;
-			let css = this.state.currentCSS;
-
-			if (css) {
-				var beautifiedCSS = cssbeautify(css, {
-					indent: "  ",
-					autosemicolon: true
-				});
-			}
-
-			let html = `<!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <title>test</title>
-          <style>
-            html {height: 100%; width: 100%;}
-            body {height: 100%; width: 100%;}
-            #root {height: 100%; width: 100%; display: "flex"; justify-content: "center"; align-items: "center"}
-            ${beautifiedCSS}
-          </style>
-        </head>
-        <body>
-          <div id="root"></div>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
-          <script type="text/babel">
-            ${code}
-
-      ReactDOM.render(<Component />, document.getElementById("root"));
-      </script>
-        </body>
-      </html>`;
-			// const options = {
-			// 	siteType: "html",
-			// 	streamType: "jpeg",
-			// 	defaultWhiteBackground: true,
-			// 	captureSelector: "#root",
-			// 	customCSS:
-			// 		"#root:before, #root *:first-child {display: inline-block; vertical-align:middle} #root:before {content: ''; height: 100%; width: 37%}"
-			// };
-
-			let canvas = await html2canvas(html);
-			let file = canvas.toDataURL("image/jpeg");
-			let s3 = new aws.S3({
-				accessKeyId: process.env.REACT_APP_AWSKEY,
-				secretAccessKey: process.env.REACT_APP_AWSSECRET
-			});
-
-			s3.upload(
-				{
-					Body: file,
-					Bucket: "coderhive",
-					Key: `component_${id}.jpeg`,
-					ContentType: "image/jpeg",
-					ACL: "public-read-write"
-				},
-				function(err, data) {
-					if (err) return console.log(err);
-					console.log(data);
-				}
-			);
-		} catch (error) {
-			console.error(error);
-		}
 
 		this.setState({ time: Date.now() });
 	};
