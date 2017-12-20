@@ -12,10 +12,8 @@
 		"graphql": "^0.11.7",
 		"graphql-tag": "^2.5.0",
 		"graphql-tools": "^2.11.0",
-		"html2canvas": "^1.0.0-alpha.4",
 		"jwt-decode": "^2.2.0",
 		"moment": "^2.19.3",
-		"phantomjs-prebuilt": "^2.1.16",
 		"react": "^16.2.0",
 		"react-ace": "^5.8.0",
 		"react-apollo": "^2.0.1",
@@ -24,8 +22,7 @@
 		"react-scripts": "1.0.17",
 		"semantic-ui-css": "^2.2.12",
 		"semantic-ui-react": "^0.77.0",
-		"webpack": "^3.10.0",
-		"webshot": "^0.18.0"
+		"webpack": "^3.10.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",
