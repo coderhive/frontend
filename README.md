@@ -6,8 +6,9 @@
 
 Coder Hive was the brainchild of Chuck Hagy and Melisa Im to empower developers to collaborate and learn JavaScript frameworks. At this time, the platform only supports React/JSX, but we aspire to extend the app to also support Vue and Angular. They named the application Coder Hive due to the collaborative nature of bees and most importantly because bees are neat.
 
-Would you like to work on our open source project? Join the hive as a contributor
+Would you like to work on our open source project? Join the hive as a contributor.
 
+Click to watch video:
 [![Youtube Demo](./README/screenshot.png)](https://youtu.be/PTrmbalzQzk)
 
 
