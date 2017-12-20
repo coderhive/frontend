@@ -8,7 +8,7 @@ Coder Hive was the brainchild of Chuck Hagy and Melisa Im to empower developers 
 
 Would you like to work on our open source project? Join the hive as a contributor.
 
-Click to watch video:
+Click below to watch video:
 [![Youtube Demo](./README/screenshot.png)](https://youtu.be/PTrmbalzQzk)
 
 
