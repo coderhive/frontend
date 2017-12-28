@@ -28,17 +28,19 @@ export default class ImageUpload extends PureComponent {
 					{ Body: this.state.file },
 					function(err, data) {
 						if (err) {
-							console.log(err);
+							console.log("err", err);
 							this.setState({ error: true });
 						}
 						if (data) {
-							console.log(data);
+							console.log("data", data);
 							this.setState({ done: true });
 						}
 					}.bind(this)
 				);
 			}
-		} else {
+		}
+
+		if (this.props.userId) {
 			let s3 = new aws.S3({
 				params: {
 					Bucket: "coderhive",

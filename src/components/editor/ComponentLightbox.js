@@ -55,7 +55,7 @@ export default class EditorPage extends PureComponent {
 					onLogout={this.props.handleLogOut}
 				/>
 				{this.props.authenticatedId
-					? <form
+					? <div
 							style={{
 								backgroundColor: "#181718",
 								width: "500px",
@@ -66,68 +66,72 @@ export default class EditorPage extends PureComponent {
 								border: "1px solid black",
 								borderRadius: "8px",
 								boxShadow: "0 0 0 5px #282728"
-							}}
-							onSubmit={this.handleSubmit}>
-							<h1
-								style={{
-									textAlign: "center",
-									textTransform: "uppercase",
-									letterSpacing: "5px",
-									marginBottom: "35px"
-								}}>
-								Update Component
-							</h1>
-							<label
-								style={{
-									fontWeight: "bold",
-									fontSize: "22px",
-									textTransform: "uppercase",
-									letterSpacing: "4px"
-								}}>
-								Name:
-								<input
-									type="text"
-									value={this.state.title}
-									name="title"
-									onChange={this.handleChange}
-									maxLength={25}
+							}}>
+							<form id="form" onSubmit={this.handleSubmit}>
+								<h1
 									style={{
-										width: "430px",
-										fontSize: "22px",
-										margin: "15px",
-										color: "black"
-									}}
-								/>
-							</label>
-							<br />
-							<br />
-							<label
-								style={{
-									fontWeight: "bold",
-									fontSize: "22px",
-									textTransform: "uppercase",
-									letterSpacing: "4px"
-								}}>
-								Description:
-								<textarea
-									type="text"
-									value={this.state.description}
-									name="description"
-									onChange={this.handleChange}
+										textAlign: "center",
+										textTransform: "uppercase",
+										letterSpacing: "5px",
+										marginBottom: "35px"
+									}}>
+									Update Component
+								</h1>
+								<label
 									style={{
-										width: "430px",
+										fontWeight: "bold",
 										fontSize: "22px",
-										height: "200px",
-										margin: "15px",
-										color: "black"
-									}}
-								/>
-							</label>
-							<div style={{ marginBottom: "20px", textAlign: "center" }}>
+										textTransform: "uppercase",
+										letterSpacing: "4px"
+									}}>
+									Name:
+									<input
+										type="text"
+										value={this.state.title}
+										name="title"
+										onChange={this.handleChange}
+										maxLength={25}
+										style={{
+											width: "430px",
+											fontSize: "22px",
+											margin: "15px",
+											color: "black"
+										}}
+									/>
+								</label>
+								<br />
+								<br />
+								<label
+									style={{
+										fontWeight: "bold",
+										fontSize: "22px",
+										textTransform: "uppercase",
+										letterSpacing: "4px"
+									}}>
+									Description:
+									<textarea
+										type="text"
+										value={this.state.description}
+										name="description"
+										onChange={this.handleChange}
+										style={{
+											width: "430px",
+											fontSize: "22px",
+											height: "200px",
+											margin: "15px",
+											color: "black"
+										}}
+									/>
+								</label>
+							</form>
+							<div style={{ textAlign: "center" }}>
+								{/*Integrate image upload with update otherwise cancel button will undo image uplaod*/}
 								<ImageUpload componentId={this.state.id} />
 							</div>
+							<div style={{ marginBottom: "20px", textAlign: "center" }} />
 							<div style={{ textAlign: "center" }}>
 								<input
+									form="form"
 									type="submit"
 									value="U P D A T E"
 									disabled={
@@ -140,10 +144,14 @@ export default class EditorPage extends PureComponent {
 									}}
 								/>
 							</div>
-							<button onClick={this.props.toggleEdit} style={{ padding: "10px 20px" }}>
-								Cancel
-							</button>
-						</form>
+							<input
+								type="button"
+								form="form"
+								value="Cancel"
+								onClick={this.props.toggleEdit}
+								style={{ padding: "10px 20px" }}
+							/>
+						</div>
 					: <p
 							style={{
 								color: "white",
