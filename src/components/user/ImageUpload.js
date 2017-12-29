@@ -7,7 +7,7 @@ export default class ImageUpload extends PureComponent {
 		this.state = { file: "", done: false, uploading: false, error: false };
 	}
 
-	_handleSubmit = e => {
+	_handleSubmit = async e => {
 		e.preventDefault();
 
 		if (this.props.componentId) {
@@ -23,6 +23,8 @@ export default class ImageUpload extends PureComponent {
 			});
 
 			if (this.state.file) {
+				this.props.addFile(this.state.file);
+
 				this.setState({ uploading: true });
 				s3.upload(
 					{ Body: this.state.file },
@@ -34,6 +36,7 @@ export default class ImageUpload extends PureComponent {
 						if (data) {
 							console.log("data", data);
 							this.setState({ done: true });
+							this.props.toggleEdit();
 						}
 					}.bind(this)
 				);

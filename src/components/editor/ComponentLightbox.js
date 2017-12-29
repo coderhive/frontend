@@ -34,6 +34,10 @@ export default class EditorPage extends PureComponent {
 		this.props.toggleEdit();
 	};
 
+	addFile = file => {
+		this.setState({ file });
+	};
+
 	componentDidMount() {
 		console.log(this.props);
 		this.setState({
@@ -67,16 +71,38 @@ export default class EditorPage extends PureComponent {
 								borderRadius: "8px",
 								boxShadow: "0 0 0 5px #282728"
 							}}>
+							<h1
+								style={{
+									textAlign: "center",
+									textTransform: "uppercase",
+									letterSpacing: "5px",
+									marginBottom: "15px"
+								}}>
+								Update Component
+							</h1>
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									marginBottom: "10px"
+								}}>
+								{this.state.file
+									? null
+									: <img
+											style={{ width: "80px", height: "80px", marginRight: "5px" }}
+											src={`https://s3-us-west-1.amazonaws.com/coderhive/component_${this.state
+												.id}.jpeg`}
+											alt="Component"
+										/>}
+
+								<ImageUpload
+									componentId={this.state.id}
+									addFile={this.addFile}
+									toggleEdit={this.props.toggleEdit}
+								/>
+							</div>
 							<form id="form" onSubmit={this.handleSubmit}>
-								<h1
-									style={{
-										textAlign: "center",
-										textTransform: "uppercase",
-										letterSpacing: "5px",
-										marginBottom: "35px"
-									}}>
-									Update Component
-								</h1>
 								<label
 									style={{
 										fontWeight: "bold",
@@ -123,34 +149,28 @@ export default class EditorPage extends PureComponent {
 										}}
 									/>
 								</label>
-							</form>
-							<div style={{ textAlign: "center" }}>
-								{/*Integrate image upload with update otherwise cancel button will undo image uplaod*/}
-								<ImageUpload componentId={this.state.id} />
-							</div>
-							<div style={{ marginBottom: "20px", textAlign: "center" }} />
-							<div style={{ textAlign: "center" }}>
+								<div style={{ marginBottom: "20px", textAlign: "center" }} />
+								<div style={{ textAlign: "center" }}>
+									<input
+										type="submit"
+										value="U P D A T E"
+										disabled={
+											(this.state.description === this.state.originalDescription &&
+												this.state.title === this.state.originalTitle) ||
+											this.state.title.length === 0
+										}
+										style={{
+											padding: "10px 30px 10px 30px"
+										}}
+									/>
+								</div>
 								<input
-									form="form"
-									type="submit"
-									value="U P D A T E"
-									disabled={
-										(this.state.description === this.state.originalDescription &&
-											this.state.title === this.state.originalTitle) ||
-										this.state.title.length === 0
-									}
-									style={{
-										padding: "10px 30px 10px 30px"
-									}}
+									type="button"
+									value="Cancel"
+									onClick={this.props.toggleEdit}
+									style={{ padding: "10px 20px" }}
 								/>
-							</div>
-							<input
-								type="button"
-								form="form"
-								value="Cancel"
-								onClick={this.props.toggleEdit}
-								style={{ padding: "10px 20px" }}
-							/>
+							</form>
 						</div>
 					: <p
 							style={{
