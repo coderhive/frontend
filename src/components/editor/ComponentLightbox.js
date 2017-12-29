@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import NavBar from "../../graphql/NavbarContainer";
-import ImageUpload from "../user/ImageUpload";
+let aws = require("aws-sdk");
 
 export default class EditorPage extends PureComponent {
 	constructor(props) {
@@ -11,7 +11,11 @@ export default class EditorPage extends PureComponent {
 			title: "",
 			description: "",
 			originalTitle: "",
-			originalDescription: ""
+			originalDescription: "",
+			file: "",
+			done: false,
+			uploading: false,
+			error: false
 		};
 	}
 
@@ -21,8 +25,23 @@ export default class EditorPage extends PureComponent {
 		});
 	};
 
+	_handleImageChange = e => {
+		e.preventDefault();
+
+		let reader = new FileReader();
+		let file = e.target.files[0];
+		document.getElementById("ComponentPreview").src = window.URL.createObjectURL(file);
+		reader.onloadend = () => {
+			this.setState({
+				file: file
+			});
+		};
+		reader.readAsDataURL(file);
+	};
+
 	handleSubmit = async event => {
 		event.preventDefault();
+		this.setState({ uploading: true });
 		let response = await this.props.updateComponent({
 			variables: {
 				id: this.state.id,
@@ -31,11 +50,35 @@ export default class EditorPage extends PureComponent {
 				owner_user_id: this.props.owner_user_id
 			}
 		});
-		this.props.toggleEdit();
-	};
+		this.setState({ done: true });
 
-	addFile = file => {
-		this.setState({ file });
+		let s3 = new aws.S3({
+			params: {
+				Bucket: "coderhive",
+				Key: `component_${this.state.id}.jpeg`,
+				ContentType: "image/jpeg",
+				ACL: "public-read-write"
+			},
+			accessKeyId: process.env.REACT_APP_AWSKEY,
+			secretAccessKey: process.env.REACT_APP_AWSSECRET
+		});
+
+		if (this.state.file) {
+			await s3.upload(
+				{ Body: this.state.file },
+				function(err, data) {
+					if (err) {
+						console.log("err", err);
+						this.setState({ error: true });
+					}
+					if (data) {
+						console.log("data", data);
+
+						this.props.toggleEdit();
+					}
+				}.bind(this)
+			);
+		}
 	};
 
 	componentDidMount() {
@@ -87,20 +130,26 @@ export default class EditorPage extends PureComponent {
 									alignItems: "center",
 									marginBottom: "10px"
 								}}>
-								{this.state.file
-									? null
-									: <img
-											style={{ width: "80px", height: "80px", marginRight: "5px" }}
-											src={`https://s3-us-west-1.amazonaws.com/coderhive/component_${this.state
-												.id}.jpeg`}
-											alt="Component"
-										/>}
-
-								<ImageUpload
-									componentId={this.state.id}
-									addFile={this.addFile}
-									toggleEdit={this.props.toggleEdit}
+								<img
+									id="ComponentPreview"
+									style={{ width: "80px", height: "80px", marginRight: "5px" }}
+									src={`https://s3-us-west-1.amazonaws.com/coderhive/component_${this.state
+										.id}.jpeg`}
+									alt="Component"
 								/>
+								<div>
+									{!this.state.done
+										? <form onSubmit={e => this.handleSubmit(e)}>
+												<input
+													className="fileInput"
+													type="file"
+													onChange={e => this._handleImageChange(e)}
+												/>
+											</form>
+										: <div>
+												{this.state.error ? "Image Upload Failed" : "Image Upload Successful!"}
+											</div>}
+								</div>
 							</div>
 							<form id="form" onSubmit={this.handleSubmit}>
 								<label
@@ -156,7 +205,8 @@ export default class EditorPage extends PureComponent {
 										value="U P D A T E"
 										disabled={
 											(this.state.description === this.state.originalDescription &&
-												this.state.title === this.state.originalTitle) ||
+												this.state.title === this.state.originalTitle &&
+												!this.state.file) ||
 											this.state.title.length === 0
 										}
 										style={{
