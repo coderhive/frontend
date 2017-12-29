@@ -78,6 +78,8 @@ export default class EditorPage extends PureComponent {
 					}
 				}.bind(this)
 			);
+		} else {
+			this.props.toggleEdit();
 		}
 	};
 
